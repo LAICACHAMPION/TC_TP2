@@ -1,12 +1,19 @@
 close all;
 clear all;
 
+componentes=[5 50 5 20; 5 5 5 20;50 5 50 100];
+%compoenetes
+%filas numero de caso
+%columnas R1 , R2 ... R4
+
 R1 = sym('R1');
 R2 = sym('R2');
 R3 = sym('R3');
 R4 = sym('R4');
 R5 = sym('R5');
 Avol=sym('Avol');
+A0=10^(100/20); %%dato sacado del grafico
+wp=2*pi*6 %%frecuencai da corte obtenida del datasheet
 %circuito a
 Gi=-R2/R1;
 Gni=(1/(((R2 -R3)/(Avol*R2*R3))-(1/R2)))*(1/R1);
