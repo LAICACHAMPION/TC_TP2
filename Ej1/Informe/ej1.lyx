@@ -135,10 +135,34 @@ Circuito A
 \end_layout
 
 \begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \begin_inset Graphics
 	filename esquematico 1-a.png
-	scale 50
-	rotateOrigin center
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquematico del circuito A
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
