@@ -106,8 +106,32 @@
 
 \begin_body
 
-\begin_layout Standard
-Analisis del circuito a
+\begin_layout Section
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+Analicis Matematico
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+Circuito A
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -121,17 +145,133 @@ Analisis del circuito a
 
 \end_layout
 
-\begin_layout Standard
-caso A ideal
+\begin_layout Subsubsection
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+Caso $A_{vol}$ infinito
 \end_layout
 
-\begin_layout Standard
-Caso A finito
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset ERT
 status open
+
+\begin_layout Plain Layout
+
+Como $A_{vol}$ lo consideramos infinito entonces $V_{i}=0$ 
+\backslash
+big( tierra virtual 
+\backslash
+big).Por ende $i_{3}=0$ y $i_{2}=-i_{1}$.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{gather}
+\end_layout
+
+\begin_layout Plain Layout
+
+V_{out}=-
+\backslash
+frac{i_{1}}{R_{2}}
+\backslash
+label{eq=CircuitoA6}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+i_{1}=
+\backslash
+frac{V_{in}}{R_{1}}
+\backslash
+label{eq=CircuitoA7}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{gather}
+\end_layout
+
+\begin_layout Plain Layout
+
+Reemplazando 
+\backslash
+ref{eq=CircuitoA7} en 
+\backslash
+ref{eq=CircuitoA6} y operando algebraicamente se obtine:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frac{V_{out}}{V_{in}}= -
+\backslash
+frac{R_{2}}{R_{1}} 
+\backslash
+label{eq=CircuitoAideal}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+Caso $A_{vol}$ finito
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -231,14 +371,11 @@ ref{eq=CircuitoA5}, se obtiene:
 
 \begin_layout Plain Layout
 
-
-\backslash
-begin{equation}
 \end_layout
 
 \begin_layout Plain Layout
 
-
+$$
 \backslash
 frac{V_{in}}{R_{1}} + 
 \backslash
@@ -256,14 +393,7 @@ frac{1}{R_{2}} +
 \backslash
 frac{1}{R_{3}} 
 \backslash
-bigg) = 0
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{equation}
+bigg) = 0$$
 \end_layout
 
 \begin_layout Plain Layout
@@ -316,6 +446,54 @@ label{eq=gananciaAfinito}
 
 \backslash
 end{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+Observacion
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+$$ 
+\backslash
+lim_{A_{vol}
+\backslash
+to
+\backslash
+infty} 
+\backslash
+big( 
+\backslash
+ref{eq=gananciaAfinito} 
+\backslash
+big) = -
+\backslash
+frac{R_{2}}{R_{1}} $$
+\end_layout
+
+\begin_layout Plain Layout
+
+La expresion se redujo a la ganancia del circuito, con el apmlificador operacion
+al ideal
+\backslash
+
+\backslash
+ 
+\backslash
+big(
+\backslash
+ref{eq=CircuitoAideal}
+\backslash
+big).
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
