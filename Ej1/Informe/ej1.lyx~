@@ -107,7 +107,222 @@
 \begin_body
 
 \begin_layout Standard
+Analisis del circuito a
+\end_layout
 
+\begin_layout Standard
+\begin_inset Graphics
+	filename esquematico 1-a.png
+	scale 50
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+caso A ideal
+\end_layout
+
+\begin_layout Standard
+Caso A finito
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{gather}
+\end_layout
+
+\begin_layout Plain Layout
+
+V_{out}= -V_{i}
+\backslash
+cdot A_{vol}
+\backslash
+label{eq=CircuitoA1}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+i_{1}=
+\backslash
+frac{V_{in}-V{i}}{R_{1}}
+\backslash
+label{eq=CircuitoA2}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+i_{2}=
+\backslash
+frac{V_{out}-V_{i}}{R_{2}}
+\backslash
+label{eq=CircuitoA3}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+i_{3}=
+\backslash
+frac{-V_{i}}{R_{3}}
+\backslash
+label{eq=CircuitoA4}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+i_{1}+i_{2}+i_{3}=0
+\backslash
+label{eq=CircuitoA5}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{gather}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Reemplazando 
+\backslash
+ref{eq=CircuitoA1},
+\backslash
+ref{eq=CircuitoA2},
+\backslash
+ref{eq=CircuitoA3},
+\backslash
+ref{eq=CircuitoA4} en 
+\backslash
+ref{eq=CircuitoA5}, se obtiene:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frac{V_{in}}{R_{1}} + 
+\backslash
+frac{V_{out}}{R_{2}}+
+\backslash
+frac{V_{out}}{A_{vol}}
+\backslash
+cdot 
+\backslash
+bigg( 
+\backslash
+frac{1}{R_{1}} + 
+\backslash
+frac{1}{R_{2}} + 
+\backslash
+frac{1}{R_{3}} 
+\backslash
+bigg) = 0
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Operando algebraicamente, se obtiene:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frac{V_{out}}{V_{in}}= - 
+\backslash
+frac{A_{vol} 
+\backslash
+cdot R_{2} 
+\backslash
+cdot R_{3}}{A_{vol}
+\backslash
+cdot R_{1} 
+\backslash
+cdot R_{3} + R_{2} 
+\backslash
+cdot R_{3} +  R_{1} 
+\backslash
+cdot R_{3} + R_{1} 
+\backslash
+cdot R_{2} }
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
 \end_layout
 
 \end_body
