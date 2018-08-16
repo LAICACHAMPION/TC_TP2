@@ -1,5 +1,4 @@
 * C:\Users\mlste\Documents\ITBA\6 Cuatrimestre\TC\TC_TP2\Ej5\Simulacion\punto 5.asc
-XU1 V+ V- vcc+ 0 N002 LM741/NS
 R1 V+ vcc+ 47k
 R2 0 V+ 47k
 R3 N001 V- 10k
@@ -17,11 +16,13 @@ R8 Vin 0 1Meg
 C5 vcc+ 0 1µF
 V2 vcc+ 0 9
 V1 Vin 0 SINE(-0 100mV 1Meg 0 0 0) AC 1.
+XU1 V+ V- NC_01 0 N002 NC_02 vcc+ LT1008
 .model D D
 .lib C:\Users\mlste\Documents\LTspiceXVII\lib\cmp\standard.dio
-.inc "LM741\LM741.MOD"
+.inc "opamp variete\OPAMPLIB.lib"
 .inc "1N4148\1n4148.sub"
 .ac dec 100 10 10000000
-.wave "C:\Users\mlste\Documents\ITBA\6 Cuatrimestre\TC\TC_TP2\Ej2\Simulacion\output.wav" 16 44100 signal_out
+.wave "output.wav" 16 44100 signal_out
+.lib LTC.lib
 .backanno
 .end
