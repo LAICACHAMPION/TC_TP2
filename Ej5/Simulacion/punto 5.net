@@ -15,13 +15,13 @@ R7 signal_out 0 10K
 R8 Vin 0 1Meg
 C5 vcc+ 0 1µF
 V2 vcc+ 0 9
-V1 Vin 0 SINE(-0 100mV 1Meg 0 0 0) AC 1.
+V1 Vin 0 SINE(-0 100mV 440 0 0 0) AC 1.
 XU1 V+ V- NC_01 0 N002 NC_02 vcc+ LT1008
 .model D D
 .lib C:\Users\mlste\Documents\LTspiceXVII\lib\cmp\standard.dio
 .inc "opamp variete\OPAMPLIB.lib"
 .inc "1N4148\1n4148.sub"
-.ac dec 100 10 10000000
+.tran 10ms
 .wave "output.wav" 16 44100 signal_out
 .lib LTC.lib
 .backanno
