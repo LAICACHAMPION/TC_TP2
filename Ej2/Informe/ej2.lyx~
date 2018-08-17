@@ -5,6 +5,41 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+\usepackage{makecell}		%Para emprolijar celdas de tablas
+\usepackage{amsmath}
+\usepackage{upgreek}		%puedo usar \uptau que es como \tau pero con mas rulito
+\usepackage{steinmetz}
+\usepackage{mathtools}
+\usepackage{placeins}
+\usepackage[textwidth=14cm]{geometry}	%texto ocupa mas ancho de pagina
+\usepackage{xcolor}		%se usa en \code
+
+
+\usepackage[parfill]{parskip}		%pone espacio entre parrafos
+\setlength{\parindent}{10pt}		%cuanta sangria al principio de un parrafo
+\usepackage{indentfirst}		%pone sangria al primer parrafo de una seccion
+
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\DeclarePairedDelimiter\abs{\lvert}{\rvert} %
+\makeatletter	%magia de categoria de caracteres en Tex, ignorar
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother	%magia de categoria de caracteres en Tex, ignorar
+
+%Definicion comando \parsum: hace re piola el simbolo de la suma en paralelo
+\newcommand{\parsum}{\mathbin{\!/\mkern-5mu/\!}} 
+
+%Definicion comando \code: poen el texto en fuente monoespaciada con fondo gris 
+%al estilo del codigo de stack overflow
+\definecolor{light-gray}{gray}{0.95} 
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -27,6 +62,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -70,55 +106,8 @@
 
 \begin_body
 
-\begin_layout Section
-Caracterizaci
-\begin_inset ERT
-status open
+\begin_layout Standard
 
-\begin_layout Plain Layout
-
-
-\backslash
-'on de amplificadores operacionales
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-como la ganancia es ~70, con el Vin=1Vpp que dice la entrada, la salida
- seria ~70Vpp -> satura.
- necesito usar tensiones del orden de los milivolts (por ejemplo si quiero
- Vout=20Vpp puedo entrar con Vin=300mVpp.
-\end_layout
-
-\begin_layout Itemize
-PERO! como Vin es tan chico, empiezan a pesar mucho:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Vio (input offset): segun la hoja de datos, 0.15mV -> esto no (0.15mV*70 =
- 0.0105V, despreciable frente a los 10V
-\end_layout
-
-\begin_layout Itemize
-Ib: segun la hoja de datos, 300nA, pero como R3 es muy grande (98K) tengo
- 29mV -> me genera un offset de ~2V
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-si corrijo en Spice con esos 29mV, la senial sale bien.
- si no, queda montada sobre una continua, que no es lo que quiero y ademas
- satura antes.
-\end_layout
-
-\begin_layout Itemize
-frecuencia de la singularidad = BWP/Gi = 238kHz.
- se verifica en Spice =D
 \end_layout
 
 \end_body
