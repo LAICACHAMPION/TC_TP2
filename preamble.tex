@@ -1,0 +1,50 @@
+\documentclass[english]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{float}
+\usepackage{graphicx}
+%%%Todo lo de arriba viene de lyx y no se que hace
+
+\usepackage{subfiles}						%MULTIARCHIVOS, NO BORRAR
+\graphicspath{{Ej1/Informe/Imagenes/}}	%donde voy a buscar los archivos 
+										%(relativo al archivo en el que estoy escribiendo)
+
+\usepackage{makecell}					%Para emprolijar celdas de tablas
+\usepackage{amsmath}
+\usepackage{upgreek}					%puedo usar \uptau que es como \tau pero con mas rulito
+\usepackage{steinmetz}
+\usepackage{mathtools}
+\usepackage{placeins}
+\usepackage[textwidth=14cm]{geometry}	%texto ocupa mas ancho de pagina
+\usepackage{xcolor}						%se usa en \code
+\usepackage[american]{circuitikz}		%dibujar esquematicos y diagramas
+\usepackage[parfill]{parskip}			%pone espacio entre parrafos
+\setlength{\parindent}{10pt}			%cuanta sangria al principio de un parrafo
+\usepackage{indentfirst}				%pone sangria al primer parrafo de una seccion
+\usepackage{babel}
+
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\DeclarePairedDelimiter\abs{\lvert}{\rvert} %
+\makeatletter	%magia de categoria de caracteres en Tex, ignorar
+\let\oldabs\abs 
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother	%magia de categoria de caracteres en Tex, ignorar
+
+%Definicion comando \parsum: hace re piola el simbolo de la suma en paralelo
+\newcommand{\parsum}{\mathbin{\!/\mkern-5mu/\!}} 
+
+%Definicion comando \code: poen el texto en fuente monoespaciada con fondo gris 
+%al estilo del codigo de stack overflow
+\definecolor{light-gray}{gray}{0.95} 
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+
+%cambia las palabras que estan en ingles a castellano
+\AtBeginDocument{\renewcommand\contentsname{Índice}}
+\AtBeginDocument{\renewcommand\figurename{Figura}}
+
