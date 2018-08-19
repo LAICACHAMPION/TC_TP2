@@ -1,4 +1,3 @@
-\documentclass[english]{article}
 
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
@@ -7,8 +6,15 @@
 %%%Todo lo de arriba viene de lyx y no se que hace
 
 \usepackage{subfiles}						%MULTIARCHIVOS, NO BORRAR
-\graphicspath{{Ej1/Informe/Imagenes/}}	%donde voy a buscar los archivos 
-										%(relativo al archivo en el que estoy escribiendo)
+
+%donde voy a buscar los archivos de imagenes 
+\graphicspath{{Ej1/Informe/imagenes/}{Ej1/Informe/}
+			  {Ej2/Informe/imagenes/}{Ej2/Informe/}
+			  {Ej3/Informe/imagenes/}{Ej3/Informe/}
+			  {Ej4/Informe/imagenes/}{Ej4/Informe/}
+			  {Ej5/Informe/imagenes/}{Ej5/Informe/}
+			  {Ej6/Informe/imagenes/}{Ej6/Informe/}}	
+										
 
 \usepackage{makecell}					%Para emprolijar celdas de tablas
 \usepackage{amsmath}
@@ -22,7 +28,6 @@
 \usepackage[parfill]{parskip}			%pone espacio entre parrafos
 \setlength{\parindent}{10pt}			%cuanta sangria al principio de un parrafo
 \usepackage{indentfirst}				%pone sangria al primer parrafo de una seccion
-\usepackage{babel}
 
 
 % Swap the definition of \abs* and \norm*, so that \abs
@@ -47,4 +52,3 @@
 %cambia las palabras que estan en ingles a castellano
 \AtBeginDocument{\renewcommand\contentsname{Índice}}
 \AtBeginDocument{\renewcommand\figurename{Figura}}
-
