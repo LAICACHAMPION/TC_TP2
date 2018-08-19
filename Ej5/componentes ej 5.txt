@@ -1,0 +1,46 @@
+
+------------FALTA---------
+
+
+R7	POTE	500K LOG	volumen
+BATERIA			1
+hembra jack audio 	2
+adaptadores		2
+conector de bateria	1
+
+
+--------------LISTOOO------------------
+
+R1	47K
+R2	47K	
+R3	10K
+R4	100K
+R5	10K	
+R6	1K
+R8	1MEG
+Rp-POTE	10K
+
+RPOTE 		50K LOG		feedback
+
+47k	2
+10k	3
+1meg	1
+100k	1
+1k	1
+
+
+
+C1	1u
+C2	1u
+C3	1u
+C4	1n
+C5	1u
+
+1u	4
+1n	1
+
+
+D1 D2
+SOCALO
+LM741
+

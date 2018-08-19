@@ -1,0 +1,144 @@
+Added Component: Designator=1meg(RES400)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C1(CAP200)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C2(CAP200)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C3(CAP200)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C4(CAP200)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C5(CAP200)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D1(DO-35)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Code_JEDEC"; Value = "DO-204-AH"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer Link"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.fairchildsemi.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.fairchildsemi.com/ds/1N%2F1N4148.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "1997"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Diode, Axial; Body 3.8 x 1.9 mm (LxDia. max), Lead Dia. 0.53 mm (max)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "DO-35"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=D2(DO-35)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Code_JEDEC"; Value = "DO-204-AH"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer Link"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.fairchildsemi.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.fairchildsemi.com/ds/1N%2F1N4148.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "1997"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Diode, Axial; Body 3.8 x 1.9 mm (LxDia. max), Lead Dia. 0.53 mm (max)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "DO-35"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=R1(RES400)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R2(RES400)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R3(RES400)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R4(RES400)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R5(RES400)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R6(RES400)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R7(RES400)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R_lineal(POTENCIOMETRO)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R_log(POTENCIOMETRO)
+Add component. Clean all parameters for all variants
+Added Component: Designator=(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=U?(DIP8)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Vcc+(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=Vin(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=Net_1 Pin=-1
+Added Pin To Net: NetName=GND Pin=-2
+Added Pin To Net: NetName=GND Pin=1meg-1
+Added Pin To Net: NetName=Net1meg_2 Pin=1meg-2
+Added Pin To Net: NetName=NetC1_1 Pin=C1-1
+Added Pin To Net: NetName=Net1meg_2 Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C2-1
+Added Pin To Net: NetName=NetC2_2 Pin=C2-2
+Added Pin To Net: NetName=NetC3_1 Pin=C3-1
+Added Pin To Net: NetName=NetC3_2 Pin=C3-2
+Added Pin To Net: NetName=GND Pin=C4-1
+Added Pin To Net: NetName=Net_1 Pin=C4-2
+Added Pin To Net: NetName=NetLabel1 Pin=C5-1
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=GND Pin=D1-2
+Added Pin To Net: NetName=GND Pin=D2-1
+Added Pin To Net: NetName=NetD1_1 Pin=D2-2
+Added Pin To Net: NetName=NetC1_1 Pin=R1-1
+Added Pin To Net: NetName=NetLabel1 Pin=R1-2
+Added Pin To Net: NetName=GND Pin=R2-1
+Added Pin To Net: NetName=NetC1_1 Pin=R2-2
+Added Pin To Net: NetName=NetR3_1 Pin=R3-1
+Added Pin To Net: NetName=NetC2_2 Pin=R3-2
+Added Pin To Net: NetName=NetR4_1 Pin=R4-1
+Added Pin To Net: NetName=NetC3_1 Pin=R4-2
+Added Pin To Net: NetName=NetC3_2 Pin=R5-1
+Added Pin To Net: NetName=NetD1_1 Pin=R5-2
+Added Pin To Net: NetName=NetD1_1 Pin=R6-1
+Added Pin To Net: NetName=Net_1 Pin=R6-2
+Added Pin To Net: NetName=NetR7_1 Pin=R7-1
+Added Pin To Net: NetName=Net_1 Pin=R7-2
+Added Pin To Net: NetName=NetR4_1 Pin=R_lineal-1
+Added Pin To Net: NetName=NetR4_1 Pin=R_lineal-2
+Added Pin To Net: NetName=NetR3_1 Pin=R_lineal-3
+Added Pin To Net: NetName=GND Pin=R_log-1
+Added Pin To Net: NetName=GND Pin=R_log-2
+Added Pin To Net: NetName=NetR7_1 Pin=R_log-3
+Added Pin To Net: NetName=NetR4_1 Pin=U?-2
+Added Pin To Net: NetName=NetC1_1 Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-4
+Added Pin To Net: NetName=NetC3_1 Pin=U?-6
+Added Pin To Net: NetName=NetLabel1 Pin=U?-7
+Added Pin To Net: NetName=GND Pin=Vcc+-1
+Added Pin To Net: NetName=NetLabel1 Pin=Vcc+-2
+Added Pin To Net: NetName=GND Pin=Vin-1
+Added Pin To Net: NetName=Net1meg_2 Pin=Vin-2
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component 1meg R8
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C1 1uF
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C2 1uF
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C3 1uF
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C4 1n
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C5 1uF
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component D1 Diode 1N4148
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component D2 Diode 1N4148
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R1 47k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R2 47k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R3 10k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R4 100k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R5 10k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R6 1k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R7 10k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R_lineal POTE
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R_log POTE
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component  Header 2
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component U? LM741
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component Vcc+ Header 2
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component Vin Header 2
+Added Room: Name=pedal_hard_clipping

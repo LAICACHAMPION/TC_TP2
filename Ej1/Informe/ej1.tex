@@ -1,0 +1,61 @@
+
+
+\documentclass[../../main.tex]{subfiles}
+
+
+\begin{document}
+\section{An\'alisis matem\'atico}
+\subsection{Circuito A}
+
+\begin{figure}[H]
+\centering
+
+\input{imagenes/circuito_1a.tex}
+
+\caption{Esquematico del circuito A}
+\end{figure}
+
+
+\subsubsection{Caso $A_{vol}$ infinito}
+
+Como $A_{vol}$ lo consideramos infinito entonces $V_{i}=0$ \big( tierra virtual \big).Por ende $i_{3}=0$ y $i_{2}=-i_{1}$.
+\begin{gather}
+V_{out}=-\frac{i_{1}}{R_{2}}\label{eq=CircuitoA6}\\
+i_{1}=\frac{V_{in}}{R_{1}}\label{eq=CircuitoA7}
+\end{gather}
+Reemplazando \ref{eq=CircuitoA7} en \ref{eq=CircuitoA6} y operando algebraicamente se obtine:
+\begin{equation}
+\frac{V_{out}}{V_{in}}= -\frac{R_{2}}{R_{1}} \label{eq=CircuitoAideal}
+\end{equation}
+
+
+\subsubsection{Caso $A_{vol}$ finito}
+
+
+\begin{gather}
+V_{out}= -V_{i}\cdot A_{vol}\label{eq=CircuitoA1}\\
+i_{1}=\frac{V_{in}-V{i}}{R_{1}}\label{eq=CircuitoA2}\\
+i_{2}=\frac{V_{out}-V_{i}}{R_{2}}\label{eq=CircuitoA3}\\
+i_{3}=\frac{-V_{i}}{R_{3}}\label{eq=CircuitoA4}\\
+i_{1}+i_{2}+i_{3}=0\label{eq=CircuitoA5}
+\end{gather}
+
+Reemplazando \ref{eq=CircuitoA1},\ref{eq=CircuitoA2},\ref{eq=CircuitoA3},\ref{eq=CircuitoA4} en \ref{eq=CircuitoA5}, se obtiene:
+
+
+$$\frac{V_{in}}{R_{1}} + \frac{V_{out}}{R_{2}}+\frac{V_{out}}{A_{vol}}\cdot \bigg( \frac{1}{R_{1}} + \frac{1}{R_{2}} + \frac{1}{R_{3}} \bigg) = 0$$
+
+Operando algebraicamente, se obtiene:
+
+\begin{equation}
+\frac{V_{out}}{V_{in}}= - \frac{A_{vol} \cdot R_{2} \cdot R_{3}}{A_{vol}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }\label{eq=gananciaAfinito}
+\end{equation}
+Observacion
+
+$$ \lim_{A_{vol}\to\infty} \big( \ref{eq=gananciaAfinito} \big) = -\frac{R_{2}}{R_{1}} $$
+La expresion se redujo a la ganancia del circuito, con el apmlificador operacional ideal\\ \big(\ref{eq=CircuitoAideal}\big).
+
+
+
+ 
+\end{document}
