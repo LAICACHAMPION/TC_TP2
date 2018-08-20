@@ -1,4 +1,4 @@
-\documentclass[english]{article}
+\documentclass[spanish]{article}
 
 \makeatletter 
 \def\input@path{{../../}} 
@@ -7,23 +7,42 @@
 
 \begin{document}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque aliquam facilisis lacus sit amet porttitor. Aliquam in nisi eu nisl accumsan blandit. Vestibulum accumsan dictum justo vitae fringilla. Sed quis felis porta, lacinia urna ut, lobortis mauris. Nullam blandit elementum nulla placerat eleifend. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc egestas suscipit sollicitudin. Quisque venenatis, massa at congue gravida, mauris mauris feugiat dui, at egestas mi justo vitae mi. Morbi finibus, ante at efficitur molestie, nibh elit imperdiet mi, eu laoreet dolor quam nec diam. Donec finibus iaculis tristique. Donec mi turpis, tempus vitae ligula in, tincidunt sagittis elit. Aenean a lectus id enim bibendum commodo non a nibh.
+\tableofcontents
+\newpage
 
 
-\let\oldinput=\input 		%backup del comando input
-\def\input#1{\oldinput{Ej1/Informe/#1}}	%aclara donde encontrar cualquier include proximo
 
-\subfile{ej1.tex}	%incluyo nuevo archivo
+%hago backup del comando \input actual, y lo cambio para que cambie el path de buqueda de nuevos archivos
+%esto va a afectar a los includes de este archivo y a los del archivo del subfile, pero solo cuando compilo desde aca. Si compilo desde el subfile este cambio no sucede entonces sigue andando.
+\let\oldinput=\input 	
+\def\input#1{\oldinput{Ej1/Informe/#1}}	
+%agrego el archivo y despues restauro al comando original
+\subfile{ej1.tex}
+\let\input=\oldinput
 
-\let\input=\oldinput	%vuelvo al comando original
+\let\oldinput=\input 	
+\def\input#1{\oldinput{Ej2/Informe/#1}}	
+%\subfile{ej2.tex}
+\let\input=\oldinput
 
-%\input{Ej2/Informe/ej2.tex}
+\let\oldinput=\input 	
+\def\input#1{\oldinput{Ej3/Informe/#1}}	
+%\subfile{ej3.tex}
+\let\input=\oldinput
 
-%\input{Ej3/Informe/ej3.tex}
+\let\oldinput=\input 	
+\def\input#1{\oldinput{Ej4/Informe/#1}}	
+%\subfile{ej4.tex}
+\let\input=\oldinput
 
-%\input{Ej4/Informe/ej4.tex}
+\let\oldinput=\input 	
+\def\input#1{\oldinput{Ej5/Informe/#1}}	
+\subfile{ej5.tex}
+\let\input=\oldinput
 
-%\input{Ej5/Informe/ej5.tex}
+\let\oldinput=\input 	
+\def\input#1{\oldinput{Ej6/Informe/#1}}	
+%\subfile{ej6.tex}
+\let\input=\oldinput
 
-%\input{Ej6/Informe/ej6.tex}
 \end{document}

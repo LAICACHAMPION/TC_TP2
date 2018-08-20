@@ -1,1 +1,114 @@
+\documentclass[../../main.tex]{subfiles}
 
+
+\begin{document}
+
+\section{Distorsi\'on}
+
+\subsection{Consideraciones de dise\~no} \label{ssec:ej5_consideraciones_disenio}
+
+\begin{itemize}
+	\item La entrada sera una señal de audio (20Hz a 20KHz) de amplitud menor o igual a 300mV (dentro de esta categoria caen la mayor\'ia de los micr\'ofonos de guitarra el\'ectrica).
+	\item La salida debe ser adecuada para un equipo de audio (sin continua, tensi\'on ).
+	\item La fuente de alimentaci\'on debe ser de 9V no partida. De usar un AC ADAPTER, se debe considerar que suele tener un ripple no deseado producto de la conversi\'on no ideal de alterna a continua.
+	\item La salida se conectar\'a a un amplificador de guitarra con impedancia de entrada $Z_{in}$ mayor o igual a $200K\Omega$\todo{Zin: hay amplis con Zin mucho mas baja, tipo 44K. Nos falta hacer las cuentas que onda en ese caso, pero creo que nos jode}. Esto es el caso en la mayor\'ia de los amplificadores de guitarra, como por ejemplo la serie Mustang GT de Fender y la serie Cube de Roland, los cuales tienen $Z_{in} = 1M\Omega$, o el Fender Rumble para bajo, con $Z_in = 202K\Omega$ 
+	\item La se\~nal de entrada provendr\'a de una guitarra el\'ectrica con imepdancia de salida menor a quinchimil millones de ohms.\todo[inline]{Buscar Zout guitarras}	
+\end{itemize}
+
+
+\subsection{Dise\~no del circuito}
+El circuito cuenta con tres secciones: de alimentaci\'on, de amplificaci\'on, y de clipping. Cada una puede analizarse independientemente tomando los recaudos necesarios.
+
+\subsubsection{Caracter\'isticas del amplificador}
+\subsubsection{Secci\'on de alimentaci\'on}
+
+\begin{figure}[H]	%esquematico seccion alimentacion
+	\centering
+	\includegraphics[scale=1]{imagenes/esquematico_alimentacion.png}
+	\caption{Esquem\'atico secci\'on de alimentaci\'on}
+	\label{fig:ej5_esquematico_alimentacion}
+\end{figure}
+
+Las dos resistencias crean un divisor resistivo con el cual se obtienen nodos 9V, 4.5V, y 0V. Esto funciona correctamente siempre que la corriente que circula por ambas resistencias no sea significativamente distinta, ya que en caso contrario la tension que deber\'ia ser de 4.5V va a tomar otro valor.
+La funci\'on del capacitor es eliminar cualquier ruido o ripple presente en la tensi\'on de entrada. El ripple es producto del m\'etodo de funcionamiento de los transformadores de alterna a continua (anexo). Una fuente de ruido es ~~~\todo{describir minimamente ac->dc y como genera ripple y poner en el anexo, y poner una fuente de ruido si amerita.}
+
+\subsubsection{Secci\'on de clipping}
+
+\begin{figure}[H]	%esquematico seccion clipping
+	\centering
+	\includegraphics[scale=1]{imagenes/esquematico_clipping.png}
+	\caption{Esquem\'atico secci\'on de clipping}
+	\label{fig:ej5_esquematico_clipping}
+\end{figure}
+
+\todo[inline] {Tomi aca quizas te podes tirar la definicion de distorsion de mate 5, y decir que tanto la etapa de amplificacion como la de clipping modifican la senial, pero solo la de clipping la distorsiona propiamente dicho}
+Esta secci\'on del circuito distorsiona la se\~nal recortando abruptamente cualquier pico que se exceda del rango $\pm$0.7V (si no se excede, no se modifica). El proceso se conoce como clipping (ver figura \ref{fig:ej5_diode_clipping}). Este cambio genera un aumento en los arm\'onicos de alta frecuencia ya que la se\~nal tiende a la forma de una cuadrada. Se decidi\'o usar clipping sim\'etrico.
+
+\begin{figure}		%diode clipping (a)simetrico
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[scale=.8]{imagenes/diode_clipping_symmetrical.png}
+		\caption{}
+		\label{fig:ej5_diode_clipping_sym}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[scale=.8]{imagenes/diode_clipping_asymmetrical.png}
+		\caption{ }
+		\label{fig:ej5_diode_clipping_asym}
+	\end{subfigure}
+	\caption{Dos tipos de clipping con diodos: sim\'etrico (\ref{fig:ej5_diode_clipping_sym}) y asim\'etrico (\ref{fig:ej5_diode_clipping_asym})}
+	\label{fig:ej5_diode_clipping}
+\end{figure}
+
+\subsubsection{Secci\'on de amplificaci\'on}
+
+\begin{figure}[H]	%esquematico seccion amplificacion
+	\centering
+	\includegraphics[scale=1]{imagenes/esquematico_amplificacion.png}
+	\caption{Esquem\'atico secci\'on de amplificai\'on}
+	\label{fig:ej5_esquematico_amplificacion}
+\end{figure}
+
+Dado que la alimentaci\'on no es partida, se alimenta el amplificador con Vcc$^-=0$V y Vcc$^+=$9V, lo cual genera la necesidad de montar la se\~nal de audio sobre una continua de 4.5V. Para lograr esto, se conecta la entrada a 4.5V, poniendo el capacitor $C_1$ para que solo pase la tensi\'on alterna de la se\~nal y no la continua que se le suma \todo{Redaccion}. Dado que se quiere que este capacitor afecte lo minimo posible a cualquier frecuencia que no sea continua, se eligi\'o un valor alto de capacidad: $1\mu F$. En el peor de los casos, tiene un impedancia no despreciable (~800$\Omega$ a 20Hz), pero para XXXXXXXXXXXX
+
+Para no amplificar la componente continua agregada de la se\~nal, se utiliza el capacitor $C_2$. Se puede ver el efecto analizando la funci\'on transferencia del amplificador: 	\todo{escribir deduccion trasnferencia y mandar al anexo. esta bien considerarlo ideal en todos los casos en los que trabajamos? analizar BWP}
+
+\begin{equation}
+	H_{amp}(s)=\frac{V_B}{V_A} = 1+\frac{R_4}{R_3 + R_9 + X_{C_2}}
+	\label{eq:ej5_transferencia_opamp_con_C}
+\end{equation}
+
+en donde se consider\'o ideal al amplificador. Para continua, $X_{C_2} = \frac{1}{sC_2} = \infty \Rightarrow \abs{H_{amp}(0)} = 1$, por lo tanto no se amplifica. Para alterna, idealmente $X_{C_2} \ll R_3+R_9$, entonces:
+
+\begin{equation}
+	\abs{H_{amp}(s)} \approx 1+\frac{R_4}{R_3+R_9}
+	\label{eq:ej5_transferencia_opamp_ideal}
+\end{equation}
+
+donde se ve que la transferencia queda determinada por $R_4$, $R_3$ y $R_9$ y es independiente de la frecuencia entrante (ver figura \ref{fig:ej5_transferencia_opamp}). 
+
+Sin embargo, este resultado viene de asumir un modelo de amplificador ideal en el cual no se considera el slew rate (SR), o maxima taza de cambio de tensi\'on de salida.
+Se considera el que amplificador tiene un comportamiento lineal si \[SR \geqslant G\cdot A\cdot 2\pi\cdot f\] siendo $G$ la ganancia (en este caso $1+\frac{R_4}{R_3+R_9}$ si despreciamos los efectos de $C_2$), $A$ la amplitud de la se\~nal, y $f$ su frecuencia. Para considerar el peor caso, basta tomar $G = 1+\frac{R_4}{R_3}=11$ y $A=0.3V$ (ver secci\'on \ref{ssec:ej5_consideraciones_disenio}), y sabiendo que SR = 0.5V/$\mu$s se puede obtener la m\'axima frecuencia en la cual el comportamiento se considera lineal:
+\[5\cdot 10^5 V/s\geqslant 11\cdot 0.3V \cdot 2\pi f\]
+\[\Rightarrow 24.1KHz \geqslant f\]
+
+El SR no afecta el desempe\~no del pedal como instrumento ya que sus efectos se notan solo en frecuencias fuera del rango audible.
+
+
+$R_4$ y $R_3$ controlan la m\'axima ganancia del amplificador. La funci\'on del potenci\'ometro $R_9$ es permitirle al usuario tener control sobre el nivel de distorsi\'on variando la ganancia \todo{agregar referencia a donde expliquemos que mas ampificaci\'on implica mas distorsi\'on}, pero sin permitirle aumentarla tanto que el amplificador sature.
+
+\begin{figure}
+	\includegraphics[scale=.4]{imagenes/bode_opamp_simulacion_300mv.png}
+	\missingfigure{hacer lindo en matlab la superposicion de lo calculado, lo simulado, y lo medido}
+	\caption{Transferencia del amplificador}
+	\label{fig:ej5_transferencia_opamp}
+\end{figure}
+
+
+\subsection{Simulaciones}
+
+\subsection{Mediciones}
+
+\end{document}
