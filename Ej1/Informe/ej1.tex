@@ -4,6 +4,8 @@
 
 
 \begin{document}
+
+\section{Introducci\'on}
 \section{An\'alisis matem\'atico}
 \subsection{Circuito A}
 
@@ -55,7 +57,20 @@ Observacion
 $$ \lim_{A_{vol}\to\infty} \big( \ref{eq=gananciaAfinito} \big) = -\frac{R_{2}}{R_{1}} $$
 La expresion se redujo a la ganancia del circuito, con el apmlificador operacional ideal\\ \big(\ref{eq=CircuitoAideal}\big).
 
+\subsubsection{Caso $A_{vol}$  con polo dominante}
+
+\begin{equation}
+A_{vol }=\frac{A}{1+\frac{s}{W_{p}}}\label{eq=AvolWp}\\
+\end{equation} 
+
+Reemplazando \big(\ref{eq=AvolWp}\big) en  \big(\ref{eq=gananciaAfinito}\big)  se obtiene:
+
+\begin{equation}
+\frac{V_{out}}{V_{in}}= - \frac{\frac{A}{1+\frac{s}{W_{p}}} \cdot R_{2} \cdot R_{3}}{\frac{A}{1+\frac{s}{W_{p}}}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }
+\end{equation}
 
 
- 
+
+
+
 \end{document}
