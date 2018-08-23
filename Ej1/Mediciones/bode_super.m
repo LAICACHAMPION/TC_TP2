@@ -1,7 +1,7 @@
 clear all;
 close all;
 a=csvread('x01.csv');
-b=csvread('tst.csv');
+b=csvread('x1.csv');
 c=csvread('x10.csv');
 freca=a(:,1).*1000;
 frecb=b(:,1).*1000;
