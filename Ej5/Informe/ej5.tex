@@ -18,7 +18,7 @@ A modo de delimitar un marco teórico y notacional a partir del cual se presenta
 \end{itemize}
 
 De la definición anterior se desprende que un amplificador operacional ideal cuya entrada $V_d$ = $V^{\text{+}}$ - $V^{\text{-}}$ no supere los valores de saturación característicos y que tenga comportamiento lineal en amplitud y en fase podrá ser clasificado como un amplificador puro y por lo tanto comprenderá un sistema no distorsionante. \par
-La distorsión de tipo clipping consiste en el establecimiento de un valor de tensión "techo" o límite, el cual la señal de entrada no podrá sobrepasar en su forma original (sufrirá distorsión). En general, la distorsión será en amplitud, de modo que la salida del sistema y(t) tenderá a valores de tensión cercanos a los del valor techo en aquellos casos en los que la entrada x(t) supere dicho valor. Cabe destacar que en el caso del pedal implementado, el valor techo utilizado será una cota del módulo de la señal de entrada tal que si T es el valor techo, 
+La distorsión de tipo clipping consiste en el establecimiento de un valor de tensión "techo" o límite, el cual la señal de entrada no podrá sobrepasar en su forma original (sufrirá distorsión). En general, la distorsión será en amplitud, de modo que la salida del sistema y(t) tenderá a valores de tensión cercanos a los del valor techo en aquellos casos en los que la entrada x(t) supere dicho valor. Cabe destacar que en el caso del pedal implementado, el valor techo utilizado será una cota del módulo de la señal de entrada tal que si T es el valor techo,  $|x(t)|\le T$ . Este tipo de clipping se llama clipping simétrico.
 De esta forma,  se puede diferenciar entre dos tipos de clipping, a saber:  \par
 
 \begin{enumerate}
@@ -75,20 +75,44 @@ Antes de comenzar con el diseño, se definen las asumpciones iniciales sobre las
 
 
 \subsection{Dise\~no del circuito}
-El circuito cuenta con tres secciones: de alimentaci\'on, de amplificaci\'on, y de clipping. Cada una puede analizarse independientemente tomando los recaudos necesarios.
+
+El circuito con el cual se impondrá la distorsión, con los valores todavía sin definir, es:
+
+\begin{figure}[H]	%esquemático sección alimentación
+	\centering
+	\includegraphics[scale=1]{imagenes/Circuito_consigna.png}
+	\caption{Circuito de distorsión de clipping a implementar para el pedal de guitarra.}
+	\label{fig:ej5_Circuito_consigna}
+\end{figure}
+
+Este circuito cuenta con tres secciones notables a saber: 
+\begin{enumerate}
+\item Alimentación.
+\item Amplificación.
+\item Clipping.
+\end{enumerate}
+La numeración de las secciones se corresponde con la imagen anterior. Cada una puede analizarse independientemente tomando los recaudos necesarios.
 
 \subsubsection{Caracter\'isticas del amplificador}
 \subsubsection{Secci\'on de alimentaci\'on}
 
-\begin{figure}[H]	%esquematico seccion alimentacion
+Con el objetivo de minimizar tanto el espacio ocupado por el pedal como la cantidad de baterías requeridas por el usuario para utilizarlo, se busca que el amplificador operacional (opamp) requerido para amplificar la señal de entrada sea alimentado únicamente por una batería en el extremo Vcc+, mientras que el otro extremo de alimentación esté conectado directamente a tierra, de esta manera se "ahorra" una batería, que en este caso en particular será de 9 volts por el tipo de señal con el que se trata. \par 
+El problema de este tipo de alimentación es que si la señal de entrada oscila alrededor del 0V, el opamp saturará cuando se rodee estos valores, por lo que la señal será completamente distorsionada de una manera no deseada. Como solución, se plantea montar a la señal de entrada sobre una continua de 4.5 V, por lo que si la señal original cumple con las consideraciones de diseño mencionadas en la sección anterior, el opamp no se saturará si se lograse evitar amplificar la continua sobre la cual se la monta. \par
+Es así como para la alimentación se propone el siguiente sub-circuito:
+
+\begin{figure}[H]	%esquemático sección alimentación
 	\centering
 	\includegraphics[scale=1]{imagenes/esquematico_alimentacion.png}
 	\caption{Esquem\'atico secci\'on de alimentaci\'on}
 	\label{fig:ej5_esquematico_alimentacion}
 \end{figure}
 
-Las dos resistencias crean un divisor resistivo con el cual se obtienen nodos 9V, 4.5V, y 0V. Esto funciona correctamente siempre que la corriente que circula por ambas resistencias no sea significativamente distinta, ya que en caso contrario la tension que deber\'ia ser de 4.5V va a tomar otro valor.
-La funci\'on del capacitor es eliminar cualquier ruido o ripple presente en la tensi\'on de entrada. El ripple es producto del m\'etodo de funcionamiento de los transformadores de alterna a continua (anexo). Una fuente de ruido es ~~~\todo{describir minimamente ac->dc y como genera ripple y poner en el anexo, y poner una fuente de ruido si amerita.}
+
+En el caso en que $R_1$ = $R_2$, las dos resistencias crean un divisor resistivo con el cual se obtienen nodos 9V, 4.5V, y 0V. Esto funciona correctamente siempre que la corriente que circula por ambas resistencias no sea significativamente distinta, ya que en caso contrario la tensión que debería ser de 4.5V va a tomar otro valor. 
+\todo{explicar un poquito mejor esto de las corrientes porque no es a prueba de dummies (no aprobó la prueba "Tommy entender")}
+La función del capacitor es eliminar cualquier ruido o ripple presente en la tensi\'on de entrada. El ripple es producto del m\'etodo de funcionamiento de los transformadores de alterna a continua (anexo). Una fuente de ruido es ~~~\todo{describir minimamente ac->dc y como genera ripple y poner en el anexo, y poner una fuente de ruido si amerita.}\par
+Otra causa de ripple para la fuente de continua se dará en aquellos casos en los que el opamp demande corriente abruptamente, en cuyo caso, dado que la batería no es ideal, no podrá mantener la tensión completamente constante. Este problema se soluciona con el agregado del capacitor $C_5$, que acumulará carga podrá aportar tensión cuando aparezca el riple, manteniendo la tensión continua. Es claro ver que la impedancia del camino a tierra que produce $C_5$ disminuye cuanta más alta sea la frecuencia, por lo que fluctuaciones más grandes en tensión irán directamente a tierrra en vez de influir en el resto del circuito.\par
+Dado que los cambios en la demanda de corriente por parte del opamp pueden ser significativamente abruptos, se busca un capacitor que pueda acumular una carga acorde (alta capacitancia, en nuestro caso 1$\mu$F). 
 
 \subsubsection{Secci\'on de clipping}
 
@@ -99,7 +123,8 @@ La funci\'on del capacitor es eliminar cualquier ruido o ripple presente en la t
 	\label{fig:ej5_esquematico_clipping}
 \end{figure}
 
-Esta secci\'on del circuito distorsiona la se\~nal recortando abruptamente cualquier pico que se exceda del rango $\pm$0.7V (si no se excede, no se modifica). El proceso se conoce como clipping (ver figura \ref{fig:ej5_diode_clipping}). Este cambio genera un aumento en los arm\'onicos de alta frecuencia ya que la se\~nal tiende a la forma de una cuadrada. Se decidi\'o usar clipping sim\'etrico.
+Esta secci\'on del circuito distorsiona la se\~nal recortando abruptamente cualquier pico que se exceda del rango $\pm$0.6V (si no se excede, no se modifica). Este proceso, explicado en al introducción, se conoce como clipping (ver figura \ref{fig:ej5_diode_clipping}).
+El efecto de clipping genera un aumento en los arm\'onicos de alta frecuencia ya que la se\~nal tiende a la forma de una cuadrada en sus picos más altos. Como se mencionó en la introducción, se decidi\'o usar clipping sim\'etrico al elegir acotar el módulo de la señal de entrada por T = 0.6V.
 
 \begin{figure}		%diode clipping (a)simetrico
 	\centering
