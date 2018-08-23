@@ -1,0 +1,41 @@
+Removed Pin From Net: NetName=GND Pin=-2
+Removed Pin From Net: NetName=Net_1 Pin=C4-2
+Removed Pin From Net: NetName=Net_1 Pin=R6-2
+Removed Pin From Net: NetName=Net_1 Pin=R7-2
+Removed Pin From Net: NetName=GND Pin=R_log-1
+Removed Pin From Net: NetName=GND Pin=R_log-2
+Added Component: Designator=P?(HDR1X3)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=P?-3
+Added Pin To Net: NetName=Net_1 Pin=U?-2
+Added Pin To Net: NetName=Net_2 Pin=-2
+Added Pin To Net: NetName=Net_2 Pin=R3-1
+Added Pin To Net: NetName=Net_2 Pin=R4-1
+Added Net: Name=Net_2
+Added Pin To Net: NetName=NetC4_2 Pin=C4-2
+Added Pin To Net: NetName=NetC4_2 Pin=P?-1
+Added Pin To Net: NetName=NetC4_2 Pin=R6-2
+Added Net: Name=NetC4_2
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component 1meg R8
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C1 1uF
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C2 1uF
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C3 1uF
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C4 1n
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component C5 1uF
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component D1 Diode 1N4148
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component D2 Diode 1N4148
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component P? Header 3
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R1 47k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R2 47k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R3 10k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R4 100k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R5 10k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component R6 1k
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component  Header 2
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component U? LM741
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component Vcc+ Header 2
+Added Member To Class: ClassName=pedal_hard_clipping Member=Component Vin Header 2
+Added Room: Name=pedal_hard_clipping
