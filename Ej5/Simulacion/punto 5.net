@@ -1,0 +1,30 @@
+* C:\Users\mlste\Documents\ITBA\6 Cuatrimestre\TC\TC_TP2\Ej5\Simulacion\punto 5.asc
+R1 V+ vcc+ 47k
+R2 0 V+ 47k
+R3 N001 V- 10k
+R4 opamp_out V- 100k
+R5 diode pre_diode 10k
+C1 V+ Vin 1µ
+C2 N001 0 1µ
+C3 opamp_out pre_diode 1µ
+R6 signal_out diode 1k
+C4 signal_out 0 1n
+D1 diode 0 1N4148
+D2 0 diode 1N4148
+R7 signal_out 0 500K
+R8 Vin 0 1Meg
+C5 vcc+ 0 1µF
+V2 vcc+ 0 9
+V1 Vin 0 SINE(0 0.3 {f}) AC 2
+XU1 V+ V- vcc+ 0 opamp_out LM741
+R9 0 N001 1 meg
+.model D D
+.lib C:\Users\mlste\Documents\LTspiceXVII\lib\cmp\standard.dio
+.inc "opamp varios\LM741.MOD"
+.inc "1N4148\1n4148.sub"
+.ac dec 20 10 40k
+;.wave "audio\guitarsampleoutput.wav" 16 44100 signal_out
+.param f=50k
+.param T {1/f}
+.backanno
+.end
