@@ -19,6 +19,7 @@ w=[1:2:800000];
 opt.FreqUnits = 'Hz';
 [mag,phase,wout] =bode(H,w,opt);
 mag=squeeze(mag);
+phase=squeeze(phase);
 wout=squeeze(wout);
 mag=20*log10(mag);
 frec=wout./(2*pi);
@@ -27,7 +28,7 @@ frec=wout./(2*pi);
 
 
 
-semilogx(freca,gaina);
+semilogx(freca,gaina,'-o');
 
 hold on;
 semilogx(frec,mag);
