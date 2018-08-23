@@ -5,6 +5,8 @@
 
 \section{Pedal de Distorsión}
 
+\subsection{Introducción}
+
 Se busca implementar un pedal de distorsión para guitarra eléctrica. La distorsión a implementar ser\'a de tipo clipping, utilizando diodos para efectuar tal distorsión.
 Las señales de audio se manejan con niveles de tensión, que representan directamente la onda de entrada, en nuestro caso proveniente de una guitarra eléctrica. Es luego de la conversión de esta onda sonora a una eléctrica que se realizan los cambios de tensión que darán los efectos distorsionantes deseados al sonido.  La señal eléctrica ser\'a nuevamente convertida a audio y ser\'a la salida de cualquier dispositivo reproductor de audio de elección que caiga dentro de las consideraciones que se enumerarán en la subsección "Consideraciones de dise\~no".  	\par
 \todo[inline] {Malu acá podríamos tirar el link a la subsección mencionada que no se cómo ponerlo. Cuando leas esto please enseñame también.}
@@ -16,16 +18,59 @@ A modo de delimitar un marco teórico y notacional a partir del cual se presenta
 \end{itemize}
 
 De la definición anterior se desprende que un amplificador operacional ideal cuya entrada $V_d$ = $V^{\text{+}}$ - $V^{\text{-}}$ no supere los valores de saturación característicos y que tenga comportamiento lineal en amplitud y en fase podrá ser clasificado como un amplificador puro y por lo tanto comprenderá un sistema no distorsionante. \par
-La distorsión de tipo clipping consiste en el establecimiento de un valor de tensión "techo" o límite, el cual la señal de entrada no podrá sobrepasar en su forma original (sufrirá distorsión). En general, la distorsión será en amplitud, de modo que la salida del sistema y(t) tenderá a valores de tensión cercanos a aquellos del valor techo en aquellos casos en los que la entrada x(t) supere dicho valor. El término  
+La distorsión de tipo clipping consiste en el establecimiento de un valor de tensión "techo" o límite, el cual la señal de entrada no podrá sobrepasar en su forma original (sufrirá distorsión). En general, la distorsión será en amplitud, de modo que la salida del sistema y(t) tenderá a valores de tensión cercanos a los del valor techo en aquellos casos en los que la entrada x(t) supere dicho valor. Cabe destacar que en el caso del pedal implementado, el valor techo utilizado será una cota del módulo de la señal de entrada tal que si T es el valor techo, 
+De esta forma,  se puede diferenciar entre dos tipos de clipping, a saber:  \par
 
+\begin{enumerate}
+
+\item \underline{\textbf{Hard-Clipping}}: El valor techo del clipping no podrá ser excedido por la señal de salida, y en caso de que la señal de entrada sea superior al valor techo, la señal de salida adoptará el valor constante del techo. Matemáticamente: \par
+	%hard clipping expresión matemática.
+	 \begin{equation}
+    	 \label{eq:aqui-le-mostramos-como-hacerle-la-llave-grande}
+  	   y(t) = \left\{
+	  	    \begin{array}{ll}
+		 					T      & \mathrm{si\ } x(t) \ge T \\
+			 				x(t) & \mathrm{si\ } -T \le x \le T \\
+			 				-T     & \mathrm{si\ } x(t) \le -T
+	     	 \end{array}
+	     	\right.
+ 	\end{equation}
+\par
+De esta definición se muestra el efecto de clipping sobre una senoidal:
+
+\begin{figure}[H]	%ejemplo hard clipping
+	\centering
+	\includegraphics[scale=1]{imagenes/hard_clipping_grafico_tipico.png}
+	\caption{Ejemplo de hard-clipping}
+	\label{fig:ej5_hard_clipping_grafico_tipico}
+\end{figure}
+
+\item \underline{\textbf{Soft-Clipping}}: El valor techo del clipping podrá ser levemente excedido de manera tal que la transición entre el valor que adoptaría la señal de entrada sin distorsión y el que deberá adoptar la señal de salida sea más suave. Matemáticamente: \par
+
+\begin{figure}[H]	%ejemplo soft clipping
+	\centering
+	\includegraphics[scale=0.4]{imagenes/soft_clipping_grafico_tipico.png}
+	\caption{Ejemplo de soft-clipping}
+	\label{fig:ej5_soft_clipping_grafico_tipico}
+\end{figure}
+
+
+\begin{figure}[H]	%soft clipping vs hard clipping
+	\centering
+	\includegraphics[scale=0.2]{imagenes/hard_clipping_vs_soft_clipping.png}
+	\caption{Soft-clipping vs. Hard-clipping}
+	\label{fig:ej5_hard_clipping_vs_soft_clipping}
+\end{figure}
+
+\end{enumerate}
 \subsection{Consideraciones de dise\~no} \label{ssec:ej5_consideraciones_disenio}
-
+Antes de comenzar con el diseño, se definen las asumpciones iniciales sobre las zcuales se comenzará con el diseño del circuito. Estas asumpciones son elegidas de forma tal que se pueda abarcar un gran espectro de las guitarras y aplificadores comerciales.\par
 \begin{itemize}
 	\item La entrada ser\'a una señal de audio (20Hz a 20KHz) de amplitud menor o igual a 300mV pico a pico (dentro de esta categoria caen la mayor\'ia de los micr\'ofonos de guitarra el\'ectrica). La entrada en principio tendrá offset nulo.
 	\item La salida debe ser adecuada para un equipo de audio, por lo que tampoco tendrá tensión de offset continuo.
 	\item La fuente de alimentaci\'on debe ser de 9V no partida. De usar un AC ADAPTER, se debe considerar que suele tener un ripple no deseado producto de la conversi\'on no ideal de alterna a continua.
 	\item La salida se conectar\'a a un amplificador de guitarra con impedancia de entrada $Z_{in}$ mayor o igual a $200K\Omega$\todo{Zin: hay amplis con Zin mucho mas baja, tipo 44K. Nos falta hacer las cuentas que onda en ese caso, pero creo que nos jode}. Esto es el caso en la mayor\'ia de los amplificadores de guitarra, como por ejemplo la serie Mustang GT de Fender y la serie Cube de Roland, los cuales tienen $Z_{in} = 1M\Omega$, o el Fender Rumble para bajo, con $Z_in = 202K\Omega$ 
-	\item La se\~nal de entrada provendr\'a de una guitarra el\'ectrica con imepdancia de salida menor a quinchimil millones de ohms.\todo[inline]{Buscar Zout guitarras}	
+	\item La se\~nal de entrada provendr\'a de una guitarra el\'ectrica con impedancia de salida menor a quinchimil millones de ohms.\todo[inline]{Buscar Zout guitarras}	
 \end{itemize}
 
 
