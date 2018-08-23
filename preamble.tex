@@ -1,8 +1,9 @@
 
 \usepackage[T1]{fontenc}
-\usepackage[latin9]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{float}
 \usepackage{graphicx}
+
 %%%Todo lo de arriba viene de lyx y no se que hace
 
 \usepackage{subfiles}						%MULTIARCHIVOS, NO BORRAR
@@ -16,8 +17,10 @@
 			  {Ej6/Informe/imagenes/}{Ej6/Informe/}}	
 										
 
+\usepackage{nomencl}					%Para introducir nomenclaturas/definciones
 \usepackage{makecell}					%Para emprolijar celdas de tablas
 \usepackage{amsmath}
+\usepackage{amssymb}					%simbolos matematicos
 \usepackage{upgreek}					%puedo usar \uptau que es como \tau pero con mas rulito
 \usepackage{steinmetz}
 \usepackage{mathtools}
@@ -48,6 +51,13 @@
 %al estilo del codigo de stack overflow
 \definecolor{light-gray}{gray}{0.95} 
 \newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+
+%TODOs
+\usepackage[colorinlistoftodos]{todonotes}
+
+%
+\usepackage{subcaption}
+
 
 %cambia las palabras que estan en ingles a castellano
 \AtBeginDocument{\renewcommand\contentsname{Índice}}

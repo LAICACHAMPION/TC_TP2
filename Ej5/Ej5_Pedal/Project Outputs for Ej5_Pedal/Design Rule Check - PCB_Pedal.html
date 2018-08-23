@@ -1,0 +1,487 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD17\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">22/08/2018</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12:26:48</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc" class="file"><acronym title="C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc">C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">49</td></tr>
+</table>
+</td>
+</table><a name="IDHMIKMJ2MFGC0ITYDZ5OWLAQ4LPUG5MLLP1D0ZOFMWAEDWUUYY2AK"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMEENNI4IOKPOIUORHX5FQUTDDL01IC5OA4APNWJMSDHLEU3L0UD">Clearance Constraint (Gap=0.3mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUYU44SHTZLIWJBYPBEXDA3UKNIPNOHUGBBKZK2BWYKNF1452D1GJ">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUBQH3F353PASM0HHUW5GXWLJWOU03NAXTKLS3KCGX31HFBA4I4VF">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">28</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDN5J5OHZTBOFCEVMHIN3SS5FB5M2RNRIKIRIEPUCEUXPADKREN2AG">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWAHM4XL3XODXG0RJK2QQSSFYGBXKUNSVDCBOIMC14RJDVZE1IX3P">Width Constraint (Min=0.6mm) (Max=0.9mm) (Preferred=0.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQUO2KBBLQOULFDRVSUMAEZBK3EJMR1QLIH2YFJIV1NLFOS2B4XAP">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEJ53TAZV1LXYO04KUKZWUZJ0BNHXBQR2PX2DWAPCFKTJFG0ELGZ">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQ232CM1B4OMKFEMMULX0QDDNZJEFKRRSNLBQYRB12RECY12IS0CM">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3LXOD30F2QPZMELOAEYOZJXFHHPFDBB2RKZTMTNG4M40XDISTJMN">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXWZSJGWNV4NOLGU2PGLGMBKQQETM0OH3UUQFBGKUNIDWSELB0YBE">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJZJFEK3D1A2WI3ZZGRFQU2B05IUEIHLCPC4KHSCE5H43ENSKN4PK">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLUSMS0GJ0WATBMWQCPFZ3UIFGEZURKEC1NQMY0CTAUMPJ4MBHC1O">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHCTOU2NJ2EJACOWEAS3JXTVOLGYE5IWGM4EVHNKZKFRHZ025GONN">Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping'))</a></td>
+<td class="column2">19</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3ZMQQD5ZRUBUMFQZI02JAA1V3EBSMXRUMM04YDJ0DNCVF04YJW0F">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">49</td>
+</tr>
+</table><br><a name="IDUBQH3F353PASM0HHUW5GXWLJWOU03NAXTKLS3KCGX31HFBA4I4VF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37295mil|Location2.X=37538.527mil|Location1.Y=42190mil|Location2.Y=42528.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37295mil|Location2.X=37538.527mil|Location1.Y=42190mil|Location2.Y=42528.527mil|Absolute=True">Un-Routed Net Constraint: Net NetR4_1 Between Pad R4-1(98.171mm,-21.844mm) on Multi-Layer And Pad R_lineal-1(102.616mm,-14.986mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36541mil|Location2.X=37538.527mil|Location1.Y=42461mil|Location2.Y=42529mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36541mil|Location2.X=37538.527mil|Location1.Y=42461mil|Location2.Y=42529mil|Absolute=True">Un-Routed Net Constraint: Net NetR4_1 Between Pad U?-2(78.994mm,-14.986mm) on Multi-Layer And Pad R_lineal-1(102.616mm,-14.986mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37471.473mil|Location2.X=38315mil|Location1.Y=42190mil|Location2.Y=42628.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37471.473mil|Location2.X=38315mil|Location1.Y=42190mil|Location2.Y=42628.527mil|Absolute=True">Un-Routed Net Constraint: Net NetR3_1 Between Pad R_lineal-2(102.616mm,-12.446mm) on Multi-Layer And Pad R3-1(122.301mm,-21.844mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35670mil|Location2.X=36075mil|Location1.Y=42570mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35670mil|Location2.X=36075mil|Location1.Y=42570mil|Location2.Y=42660mil|Absolute=True">Un-Routed Net Constraint: Net NetC4_2 Between Pad C4-2(56.896mm,-12.192mm) on Multi-Layer And Pad R6-2(65.405mm,-11.684mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34286.473mil|Location2.X=35740mil|Location1.Y=42446.473mil|Location2.Y=42640mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34286.473mil|Location2.X=35740mil|Location1.Y=42446.473mil|Location2.Y=42640mil|Absolute=True">Un-Routed Net Constraint: Net NetC4_2 Between Pad Out-1(21.717mm,-15.367mm) on Multi-Layer And Pad C4-2(56.896mm,-12.192mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32740mil|Location2.X=33025mil|Location1.Y=42345mil|Location2.Y=42420mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32740mil|Location2.X=33025mil|Location1.Y=42345mil|Location2.Y=42420mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad 1meg-1(-17.526mm,-17.78mm) on Multi-Layer And Pad R2-1(-12.065mm,-17.907mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35486.473mil|Location2.X=35740mil|Location1.Y=42311.709mil|Location2.Y=42440mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35486.473mil|Location2.X=35740mil|Location1.Y=42311.709mil|Location2.Y=42440mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad D2-1(52.197mm,-18.79mm) on Multi-Layer And Pad C4-1(56.896mm,-17.272mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35336.473mil|Location2.X=35553.527mil|Location1.Y=42311.709mil|Location2.Y=42658.291mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35336.473mil|Location2.X=35553.527mil|Location1.Y=42311.709mil|Location2.Y=42658.291mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad D1-2(48.387mm,-11.69mm) on Multi-Layer And Pad D2-1(52.197mm,-18.79mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37961.473mil|Location2.X=38490mil|Location1.Y=42370mil|Location2.Y=42538.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37961.473mil|Location2.X=38490mil|Location1.Y=42370mil|Location2.Y=42538.527mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Vcc+-1(115.062mm,-14.732mm) on Multi-Layer And Pad C2-1(126.746mm,-17.272mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32611.472mil|Location2.X=32810mil|Location1.Y=42350mil|Location2.Y=42928.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32611.472mil|Location2.X=32810mil|Location1.Y=42350mil|Location2.Y=42928.527mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Vin-1(-20.828mm,-4.826mm) on Multi-Layer And Pad 1meg-1(-17.526mm,-17.78mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36541mil|Location2.X=37200mil|Location1.Y=42261mil|Location2.Y=42640mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36541mil|Location2.X=37200mil|Location1.Y=42261mil|Location2.Y=42640mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U?-4(78.994mm,-20.066mm) on Multi-Layer And Pad C5-2(93.98mm,-12.192mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34286.473mil|Location2.X=35403.527mil|Location1.Y=42591.236mil|Location2.Y=42713.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34286.473mil|Location2.X=35403.527mil|Location1.Y=42591.236mil|Location2.Y=42713.527mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Out-3(21.717mm,-10.287mm) on Multi-Layer And Pad D1-2(48.387mm,-11.69mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37130mil|Location2.X=38028.527mil|Location1.Y=42471.473mil|Location2.Y=42640mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37130mil|Location2.X=38028.527mil|Location1.Y=42471.473mil|Location2.Y=42640mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C5-2(93.98mm,-12.192mm) on Multi-Layer And Pad Vcc+-1(115.062mm,-14.732mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35670mil|Location2.X=36609mil|Location1.Y=42261mil|Location2.Y=42440mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35670mil|Location2.X=36609mil|Location1.Y=42261mil|Location2.Y=42440mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C4-1(56.896mm,-17.272mm) on Multi-Layer And Pad U?-4(78.994mm,-20.066mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32955mil|Location2.X=34353.527mil|Location1.Y=42345mil|Location2.Y=42713.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32955mil|Location2.X=34353.527mil|Location1.Y=42345mil|Location2.Y=42713.527mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R2-1(-12.065mm,-17.907mm) on Multi-Layer And Pad Out-3(21.717mm,-10.287mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32955mil|Location2.X=33050mil|Location1.Y=42745mil|Location2.Y=43015mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32955mil|Location2.X=33050mil|Location1.Y=42745mil|Location2.Y=43015mil|Absolute=True">Un-Routed Net Constraint: Net NetC1_1 Between Pad R2-2(-12.065mm,-7.747mm) on Multi-Layer And Pad C1-1(-11.43mm,-2.667mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36541mil|Location2.X=37040mil|Location1.Y=42190mil|Location2.Y=42429mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36541mil|Location2.X=37040mil|Location1.Y=42190mil|Location2.Y=42429mil|Absolute=True">Un-Routed Net Constraint: Net NetC1_1 Between Pad U?-3(78.994mm,-17.526mm) on Multi-Layer And Pad R1-1(89.916mm,-21.844mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32955mil|Location2.X=36609mil|Location1.Y=42361mil|Location2.Y=42815mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32955mil|Location2.X=36609mil|Location1.Y=42361mil|Location2.Y=42815mil|Absolute=True">Un-Routed Net Constraint: Net NetC1_1 Between Pad R2-2(-12.065mm,-7.747mm) on Multi-Layer And Pad U?-3(78.994mm,-17.526mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=38245mil|Location2.X=38490mil|Location1.Y=42570mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=38245mil|Location2.X=38490mil|Location1.Y=42570mil|Location2.Y=42660mil|Absolute=True">Un-Routed Net Constraint: Net NetC2_2 Between Pad R3-2(122.301mm,-11.684mm) on Multi-Layer And Pad C2-2(126.746mm,-12.192mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36841mil|Location2.X=37365mil|Location1.Y=42361mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36841mil|Location2.X=37365mil|Location1.Y=42361mil|Location2.Y=42660mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_1 Between Pad U?-6(86.614mm,-17.526mm) on Multi-Layer And Pad R4-2(98.171mm,-11.684mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34000mil|Location2.X=36909mil|Location1.Y=42361mil|Location2.Y=42505mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34000mil|Location2.X=36909mil|Location1.Y=42361mil|Location2.Y=42505mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_1 Between Pad C3-1(14.478mm,-15.621mm) on Multi-Layer And Pad U?-6(86.614mm,-17.526mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34000mil|Location2.X=35900mil|Location1.Y=42190mil|Location2.Y=42705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34000mil|Location2.X=35900mil|Location1.Y=42190mil|Location2.Y=42705mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_2 Between Pad C3-2(14.478mm,-10.541mm) on Multi-Layer And Pad R5-1(60.96mm,-21.844mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35486.473mil|Location2.X=35900mil|Location1.Y=42590mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35486.473mil|Location2.X=35900mil|Location1.Y=42590mil|Location2.Y=42660mil|Absolute=True">Un-Routed Net Constraint: Net NetD1_1 Between Pad D2-2(52.197mm,-11.69mm) on Multi-Layer And Pad R5-2(60.96mm,-11.684mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35336.473mil|Location2.X=35553.527mil|Location1.Y=42311.709mil|Location2.Y=42658.291mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35336.473mil|Location2.X=35553.527mil|Location1.Y=42311.709mil|Location2.Y=42658.291mil|Absolute=True">Un-Routed Net Constraint: Net NetD1_1 Between Pad D1-1(48.387mm,-18.79mm) on Multi-Layer And Pad D2-2(52.197mm,-11.69mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35830mil|Location2.X=36075mil|Location1.Y=42190mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35830mil|Location2.X=36075mil|Location1.Y=42190mil|Location2.Y=42660mil|Absolute=True">Un-Routed Net Constraint: Net NetD1_1 Between Pad R5-2(60.96mm,-11.684mm) on Multi-Layer And Pad R6-1(65.405mm,-21.844mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36841mil|Location2.X=37040mil|Location1.Y=42461mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36841mil|Location2.X=37040mil|Location1.Y=42461mil|Location2.Y=42660mil|Absolute=True">Un-Routed Net Constraint: Net NetLabel1 Between Pad U?-7(86.614mm,-14.986mm) on Multi-Layer And Pad R1-2(89.916mm,-11.684mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36970mil|Location2.X=37200mil|Location1.Y=42370mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36970mil|Location2.X=37200mil|Location1.Y=42370mil|Location2.Y=42660mil|Absolute=True">Un-Routed Net Constraint: Net NetLabel1 Between Pad R1-2(89.916mm,-11.684mm) on Multi-Layer And Pad C5-1(93.98mm,-17.272mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36970mil|Location2.X=38028.527mil|Location1.Y=42571.473mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36970mil|Location2.X=38028.527mil|Location1.Y=42571.473mil|Location2.Y=42660mil|Absolute=True">Un-Routed Net Constraint: Net NetLabel1 Between Pad R1-2(89.916mm,-11.684mm) on Multi-Layer And Pad Vcc+-2(115.062mm,-12.192mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJZJFEK3D1A2WI3ZZGRFQU2B05IUEIHLCPC4KHSCE5H43ENSKN4PK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32755.601mil|Location2.X=32766.851mil|Location1.Y=43102.865mil|Location2.Y=43114.115mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32755.601mil|Location2.X=32766.851mil|Location1.Y=43102.865mil|Location2.Y=43114.115mil|Absolute=True">Silk To Silk Clearance Constraint: (0.243mm &lt; 0.254mm) Between Text "Vin" (-21.933mm,-0.165mm) on Top Overlay And Text "C1" (-17.628mm,-0.533mm) on Top Overlay Silk Text to Silk Clearance [0.243mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32948.133mil|Location2.X=32955.799mil|Location1.Y=42855.67mil|Location2.Y=42863.336mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=32948.133mil|Location2.X=32955.799mil|Location1.Y=42855.67mil|Location2.Y=42863.336mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "1meg" (-18.428mm,-5.474mm) on Top Overlay And Text "R2" (-12.967mm,-6.109mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDHCTOU2NJ2EJACOWEAS3JXTVOLGYE5IWGM4EVHNKZKFRHZ025GONN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=32698.937mil|Location1.Y=0mil|Location2.Y=43048.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=32698.937mil|Location1.Y=0mil|Location2.Y=43048.937mil|Absolute=True">Room Definition: Between Small Component Vin-Header 2 (-20.828mm,-4.826mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=38048.937mil|Location1.Y=0mil|Location2.Y=42658.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=38048.937mil|Location1.Y=0mil|Location2.Y=42658.937mil|Absolute=True">Room Definition: Between Small Component Vcc+-Header 2 (115.062mm,-14.732mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=36909mil|Location1.Y=0mil|Location2.Y=42657.598mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=36909mil|Location1.Y=0mil|Location2.Y=42657.598mil|Absolute=True">Room Definition: Between DIP Component U?-LM741 (78.994mm,-12.446mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=37558.937mil|Location1.Y=0mil|Location2.Y=42648.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=37558.937mil|Location1.Y=0mil|Location2.Y=42648.937mil|Absolute=True">Room Definition: Between Small Component R_lineal-Header 2 (102.616mm,-14.986mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=36085mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=36085mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True">Room Definition: Between Small Component R6-1k (65.405mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=35910mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=35910mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True">Room Definition: Between Small Component R5-10k (60.96mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=37375mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=37375mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True">Room Definition: Between Small Component R4-100k (98.171mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=38325mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=38325mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True">Room Definition: Between Small Component R3-10k (122.301mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=33035mil|Location1.Y=0mil|Location2.Y=42815mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=33035mil|Location1.Y=0mil|Location2.Y=42815mil|Absolute=True">Room Definition: Between Small Component R2-47k (-12.065mm,-17.907mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=37050mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=37050mil|Location1.Y=0mil|Location2.Y=42660mil|Absolute=True">Room Definition: Between Small Component R1-47k (89.916mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=34373.937mil|Location1.Y=0mil|Location2.Y=42733.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=34373.937mil|Location1.Y=0mil|Location2.Y=42733.937mil|Absolute=True">Room Definition: Between Small Component Out-Header 3 (21.717mm,-15.367mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=35561.339mil|Location1.Y=0mil|Location2.Y=42658.291mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=35561.339mil|Location1.Y=0mil|Location2.Y=42658.291mil|Absolute=True">Room Definition: Between Small Component D2-Diode 1N4148 (52.197mm,-15.24mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=35411.339mil|Location1.Y=0mil|Location2.Y=42658.291mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=35411.339mil|Location1.Y=0mil|Location2.Y=42658.291mil|Absolute=True">Room Definition: Between Small Component D1-Diode 1N4148 (48.387mm,-15.24mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=37218.937mil|Location1.Y=0mil|Location2.Y=42658.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=37218.937mil|Location1.Y=0mil|Location2.Y=42658.937mil|Absolute=True">Room Definition: Between Small Component C5-1uF (93.98mm,-14.732mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=35758.937mil|Location1.Y=0mil|Location2.Y=42658.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=35758.937mil|Location1.Y=0mil|Location2.Y=42658.937mil|Absolute=True">Room Definition: Between Small Component C4-1n (56.896mm,-14.732mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=34088.937mil|Location1.Y=0mil|Location2.Y=42723.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=34088.937mil|Location1.Y=0mil|Location2.Y=42723.937mil|Absolute=True">Room Definition: Between Small Component C3-1uF (14.478mm,-13.081mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=38508.937mil|Location1.Y=0mil|Location2.Y=42658.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=38508.937mil|Location1.Y=0mil|Location2.Y=42658.937mil|Absolute=True">Room Definition: Between Small Component C2-1uF (126.746mm,-14.732mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=33068.937mil|Location1.Y=0mil|Location2.Y=43033.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=33068.937mil|Location1.Y=0mil|Location2.Y=43033.937mil|Absolute=True">Room Definition: Between Small Component C1-1uF (-13.97mm,-2.667mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7%C2%B0 Cuatrimestre\Teor%C3%ADa de Circuitos\Trabajos Pr%C3%A1cticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=32820mil|Location1.Y=0mil|Location2.Y=42820mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=0mil|Location2.X=32820mil|Location1.Y=0mil|Location2.Y=42820mil|Absolute=True">Room Definition: Between Small Component 1meg-R8 (-17.526mm,-17.78mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
