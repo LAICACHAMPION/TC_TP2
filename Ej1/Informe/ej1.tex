@@ -4,28 +4,46 @@
 
 
 \begin{document}
+\section{OpAmp}
+\subsection{Introducci\'on}
+Se analizaron dos circuitos con Amplificadores operacionales. El primero es un circuito inversor, cuya salida es opuesta a la entrada y  la aplifica o atenua, de a cuerdo a como se configure. El segundo es no inversor, igual que el primero, atenua o amplifica la señal de entrada, pero no la invierte.
+El objetivo es evaluar las caracteristicas lineales y no lineales de los amplificadores operacionales. Tambien la respuesta en frecuencia y la respuesta  distintos valores de tensiones de entrada.
 
-\section{Introducci\'on}
-Se construyo dos circuitos con Amplificadores operacionales. El primero es un circuito inversor, cuya salida es opuesta a la entrada y se la aplifica o atenua, de a cuerdo a como se lo configure. El segundo es no inversor, igual que el primero, atenua o amplifica la señal de entrada, pero no la invierte.
-El objetivo es comparar tres modelos del Amplificador Operacional, el modelo ideal, con Avol finito y con Avol dependiendo de la frecuencia. Para ello se comparo la respuesta en frecuencia de los ciruitos mensionados, con la respuesta en frecuencia simulada en LTspice y la simulacion matematica en Matlab.
 
+\subsection{Circuito inversor}
+\todo{algo desir alog}
 
-\section{An\'alisis de los circuitos}
-
-\subsection{Circuito A}
 
 \begin{figure}[H]
 \centering
 
 \input{imagenes/circuito_1a.tex}
 
-\caption{Esquematico del circuito A}
+\caption{Esquematico del circuito Inversor}
 \end{figure}
+
+Los valores de las resistencias utilizados fueron los indicados en la Tabla \ref{tab=vResistencias}.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Caso & $R_{1}=R_{3}$ & $R_{2}$ & $R_{4}$\\
+\hline \hline
+1 & $5 K\Omega $ &  $50 K\Omega $ &  $20 K\Omega $ \\ \hline
+2 & $5 K\Omega $ &  $5 K\Omega $ &  $20 K\Omega $ \\ \hline
+3 & $50 K\Omega $ &  $5 K\Omega $ &  $100 K\Omega $ \\ \hline
+\end{tabular}
+\caption{Valores de resistensias.} 
+\label{tab=vResistencias}
+\end{center}
+\end{table}
+
 
 
 \subsubsection{Caso $A_{vol}$ infinito}
 
-Como $A_{vol}$ lo consideramos infinito entonces $V_{i}=0$ \big( tierra virtual \big).Por ende $i_{3}=0$ y $i_{2}=-i_{1}$.
+Como $A_{vol}$ lo consideramos infinito, $V_{i}=0$ \big( tierra virtual \big).Por ende $i_{3}=0$ e $i_{2}=-i_{1}$, Ademas no circula corriente por la entrada del   amplificador operacional.
 \begin{gather}
 V_{out}=-\frac{i_{1}}{R_{2}}\label{eq=CircuitoA6}\\
 i_{1}=\frac{V_{in}}{R_{1}}\label{eq=CircuitoA7}
@@ -38,6 +56,7 @@ Reemplazando \ref{eq=CircuitoA7} en \ref{eq=CircuitoA6} y operando algebraicamen
 
 \subsubsection{Caso $A_{vol}$ finito}
 
+Como $A_{vol}$  lo consideramos finito, $V^{+}\neq V^{-}$ . Se considera que no circula corriente por  los terminales de entrada del amplificador operacional, devido a la alta impedancia que hay entre ellos.
 
 \begin{gather}
 V_{out}= -V_{i}\cdot A_{vol}\label{eq=CircuitoA1}\\
@@ -74,8 +93,26 @@ Reemplazando \big(\ref{eq=AvolWp}\big) en  \big(\ref{eq=gananciaAfinito}\big)  s
 \frac{V_{out}}{V_{in}}= - \frac{\frac{A}{1+\frac{s}{W_{p}}} \cdot R_{2} \cdot R_{3}}{\frac{A}{1+\frac{s}{W_{p}}}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }
 \end{equation}
 
+Llamo $K= R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2}$
 
 
+\begin{equation}
+\frac{V_{out}}{V_{in}}=- \frac{A \cdot  R_{2} \cdot  R_{3} }{A \cdot R_{1} \cdot  R_{3} + K }  \cdot \frac{1}{1 +\frac {S}{\frac{W_{p}  \cdot \big( A \cdot R_{1} \cdot R_{3} + K \big) }{K}}} \label{eq=poloDominante}
+\end{equation}
+
+ Despejando se obtiene la frecuencia de corte del circuito:
+\begin{equation}
+f_{P}=\left( \frac {A \cdot R_{2} \cdot R_{3} + K}{K}\right)  \cdot \frac{W_{P}}{2\cdot \pi}
+\end{equation}
+
+\textit{Observacion:}  la ecuacion \big(\ref{eq=poloDominante} \big) posee la misma forma que la funcion transferencia de un pasabajos.
+
+
+
+
+
+
+\subsection{Circuito no inversor}
 
 
 \end{document}

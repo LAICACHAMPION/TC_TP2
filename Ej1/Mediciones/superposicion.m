@@ -33,4 +33,5 @@ semilogx(freca,gaina,'-o');
 hold on;
 semilogx(frec,mag);
 semilogx(medido(:,1),medido(:,2));
+
 hold off;
