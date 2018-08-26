@@ -1,0 +1,19 @@
+* C:\Users\Sony\Documents\GitHub\TC_TP2\Ej1\simulacion_a.asc
+XU1 0 N001 VCC -VCC Vout LM324
+V1 VCC 0 15
+V2 0 -VCC 15
+V3 Vin 0 AC 1
+R1 N001 Vin {Res1}
+R2 Vout N001 {Res2}
+R3 0 N001 {Res3}
+R4 0 Vout {Res4}
+;tran 3 startup
+.lib LM324.ti.lib
+.ac dec 100 100000 10000000
+.param Res1=50000
+.param Res2=5000
+.param Res3=Res1
+.param Res4=100000
+;dc V3 -1.5 2 0.01
+.backanno
+.end
