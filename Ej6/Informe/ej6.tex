@@ -1,1 +1,46 @@
+\documentclass[../../main.tex]{subfiles}
 
+\usepackage{gensymb}
+\usepackage{textcomp}
+\begin{document}
+
+\section{Sensor de Temperatura}
+
+\subsection{Introducción}
+
+Se implementará un sensor de temperatura utilizando el circuito integrado LM35, un circuito integrado cuya tensión de salida varía linealmente con la temperatura. \par
+Según la datasheet del integrado mencionado anteriormente del fabricante Texas Instruments ''LM35 Precision Centigrade Temperature Sensors'', con última revisión en diciembre de 2017, el integrado ofrece un rango de medición asegurada de entre -55\celsius y 150\celsius, con una variación de 10mV/\celsius, siendo el 0\celsius correspondiente a 0V. \par
+Se busca implementar a partir de estos valores, un sensor de temperatura capaz de medir con máxima excursión entre 35°C y 45°C, con 0V correspondiendo a 35\celsius y 5V a 45\celsius.\par
+A partir del circuito se podrá utilizar un conversor analógico-digital para lograr manipular la información de temperatura como se requiera. \par
+Se tuvo como prioridad minimizar la cantidad de componentes utilizados, garantizar la confiabilidad y precisión de los valores que el circuito devuelva. Se tuvo en cuenta la protección del circuito receptor de la señal, haciendo que la señal de salida no sobre pase el intervalo [-1;6] volts.
+
+\subsection{Análisis del LM35 y condiciones a tener en cuenta}
+
+Según la datasheet mencionada anteriormente, deben mencionarse ciertas consideraciones a tener en cuenta: 
+\begin{itemize}
+\item El error máximo del LM35 para medir temperatura es de 0.5\celsius, por lo que el circuito derivado a partir de él no podrá asegurar un error menor a este mismo.
+\item La tensión de alimentación para el LM35 será de entre -0.2 V y 35 V como valores máximos, 4V  y 30 V como valores típicos.
+\item La máxima temperatura de juntura es 150\celsius, la cual no se contradice con el rango de valores elegidos para el circuito implementado. La máxima temperatura de juntura es la máxima temperatura que la juntura del semiconductor interno puede tolerar manteniendo al LM35 en estado operativo.
+\item La corriente de entrada del LM35 será baja, de 60$\mu$A máximo.
+\item La corriente de salida del LM35 tomará un valor máximo de 10mA.
+\item El LM35 tiene una impedancia de salida baja, de 0.1$\ohm$.
+\end{itemize}
+
+Es importante hacer notar que una baja impedancia de salida se corresponde con un circuito emisor de señal como es el caso de un sensor de temperatura. Esto es así porque si la señal emitida en tensión deberá ser recibida por otro circuito que interpretará o modificará la señal recibida, y si la impedancia de entrada del circuito receptor fuera más baja que la de salida del emisor, entonces
+siendo z1 la impedancia de salida del emisor, i1 la corriente que circula por la misma, y z2 la impedancia de entrada del receptor con su corriente i2, por divisor de corriente:
+i2 = $\frac{z_{2}}{z_{1}\text{+}z_{2}}$ i\par
+Donde i es la corriente de entrada. Si se asume que la potencia se mantiene constante en el traspaso entre los dos circuitos,
+se aprecia de aquí que si |z2|«|z1| y 1«|z1|, entonces $\frac{z_{2}}{z_{1}\text{+}z_{2}}=\frac{1}{\frac{z_{1}}{z_{2}}\text{+}1}\approx\frac{1}{z_{1}}$, con lo cual la corriente resultante sería i2 « i, y al mantenerse la potencia, la tensión de salida del circuito emisor original sería equivalente a la tensión de entrada del circuito receptor, por lo que la señal sería recibida correctamente en valor.  \par
+Es por esto que se intentará obtener una impedancia de entrada de nuestro circuito adaptador mucho mayor a la impedancia de salida de 0.1$\ohm$ del LM35.
+
+
+\subsection{Cambio de rango operacional}
+
+El LM35 puede ser representado matemáticamente con una transformación lineal de grados celsius a tensión en volts\par 
+TL35: c$\epsilon$ [-55; 150] -> v$\epsilon$[-0.55; 1.5] / TL35(c) = 0.01$\cdot$c . 
+El circuito a implementar pretende ser una transformación lineal\par
+TLSENSOR: c$\epsilon$ [35;45] -> v $\epsilon$ [0;5].
+
+Se busca el cambio de base que transforme TL35 a TLSENSOR.
+
+\end{document}

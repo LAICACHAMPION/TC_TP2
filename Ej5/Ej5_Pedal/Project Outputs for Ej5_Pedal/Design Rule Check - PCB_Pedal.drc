@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\Tomas\Desktop\ITBA\7° Cuatrimestre\Teoría de Circuitos\Trabajos Prácticos\TC_TP2\Ej5\Ej5_Pedal\PCB_Pedal.PcbDoc
-Date     : 22/08/2018
-Time     : 12:26:48
+Date     : 24/08/2018
+Time     : 13:45:22
 
 Processing Rule : Clearance Constraint (Gap=0.3mm) (All),(All)
 Rule Violations :0
@@ -10,35 +10,7 @@ Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Un-Routed Net Constraint ( (All) )
-   Violation between Un-Routed Net Constraint: Net NetR4_1 Between Pad R4-1(98.171mm,-21.844mm) on Multi-Layer And Pad R_lineal-1(102.616mm,-14.986mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetR4_1 Between Pad U?-2(78.994mm,-14.986mm) on Multi-Layer And Pad R_lineal-1(102.616mm,-14.986mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetR3_1 Between Pad R_lineal-2(102.616mm,-12.446mm) on Multi-Layer And Pad R3-1(122.301mm,-21.844mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC4_2 Between Pad C4-2(56.896mm,-12.192mm) on Multi-Layer And Pad R6-2(65.405mm,-11.684mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC4_2 Between Pad Out-1(21.717mm,-15.367mm) on Multi-Layer And Pad C4-2(56.896mm,-12.192mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad 1meg-1(-17.526mm,-17.78mm) on Multi-Layer And Pad R2-1(-12.065mm,-17.907mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad D2-1(52.197mm,-18.79mm) on Multi-Layer And Pad C4-1(56.896mm,-17.272mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad D1-2(48.387mm,-11.69mm) on Multi-Layer And Pad D2-1(52.197mm,-18.79mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad Vcc+-1(115.062mm,-14.732mm) on Multi-Layer And Pad C2-1(126.746mm,-17.272mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad Vin-1(-20.828mm,-4.826mm) on Multi-Layer And Pad 1meg-1(-17.526mm,-17.78mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad U?-4(78.994mm,-20.066mm) on Multi-Layer And Pad C5-2(93.98mm,-12.192mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad Out-3(21.717mm,-10.287mm) on Multi-Layer And Pad D1-2(48.387mm,-11.69mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad C5-2(93.98mm,-12.192mm) on Multi-Layer And Pad Vcc+-1(115.062mm,-14.732mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad C4-1(56.896mm,-17.272mm) on Multi-Layer And Pad U?-4(78.994mm,-20.066mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net GND Between Pad R2-1(-12.065mm,-17.907mm) on Multi-Layer And Pad Out-3(21.717mm,-10.287mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC1_1 Between Pad R2-2(-12.065mm,-7.747mm) on Multi-Layer And Pad C1-1(-11.43mm,-2.667mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC1_1 Between Pad U?-3(78.994mm,-17.526mm) on Multi-Layer And Pad R1-1(89.916mm,-21.844mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC1_1 Between Pad R2-2(-12.065mm,-7.747mm) on Multi-Layer And Pad U?-3(78.994mm,-17.526mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC2_2 Between Pad R3-2(122.301mm,-11.684mm) on Multi-Layer And Pad C2-2(126.746mm,-12.192mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC3_1 Between Pad U?-6(86.614mm,-17.526mm) on Multi-Layer And Pad R4-2(98.171mm,-11.684mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC3_1 Between Pad C3-1(14.478mm,-15.621mm) on Multi-Layer And Pad U?-6(86.614mm,-17.526mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetC3_2 Between Pad C3-2(14.478mm,-10.541mm) on Multi-Layer And Pad R5-1(60.96mm,-21.844mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetD1_1 Between Pad D2-2(52.197mm,-11.69mm) on Multi-Layer And Pad R5-2(60.96mm,-11.684mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetD1_1 Between Pad D1-1(48.387mm,-18.79mm) on Multi-Layer And Pad D2-2(52.197mm,-11.69mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetD1_1 Between Pad R5-2(60.96mm,-11.684mm) on Multi-Layer And Pad R6-1(65.405mm,-21.844mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetLabel1 Between Pad U?-7(86.614mm,-14.986mm) on Multi-Layer And Pad R1-2(89.916mm,-11.684mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetLabel1 Between Pad R1-2(89.916mm,-11.684mm) on Multi-Layer And Pad C5-1(93.98mm,-17.272mm) on Multi-Layer 
-   Violation between Un-Routed Net Constraint: Net NetLabel1 Between Pad R1-2(89.916mm,-11.684mm) on Multi-Layer And Pad Vcc+-2(115.062mm,-12.192mm) on Multi-Layer 
-Rule Violations :28
+Rule Violations :0
 
 Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
 Rule Violations :0
@@ -59,41 +31,44 @@ Processing Rule : Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)
 Rule Violations :0
 
 Processing Rule : Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)
-Rule Violations :0
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.254mm) Between Text "R2" (-12.586mm,-7.506mm) on Top Overlay And Pad C1-1(-11.557mm,-5.334mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (0.118mm < 0.254mm) Between Text "1meg" (-18.682mm,-7.506mm) on Top Overlay And Pad C1-2(-16.637mm,-5.334mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.118mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.254mm) Between Text "C3" (6.896mm,-0.546mm) on Top Overlay And Pad R5-1(8.382mm,1.778mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (0.07mm < 0.254mm) Between Text "R_lineal" (-3.137mm,10.757mm) on Top Overlay And Pad R5-2(8.382mm,11.938mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0.07mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.254mm) Between Text "D1" (6.325mm,-9.449mm) on Top Overlay And Pad C3-1(8.001mm,-7.747mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.254mm) Between Text "Vin" (-22.581mm,-2.438mm) on Top Overlay And Pad R1-1(-18.796mm,-0.508mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.254mm) Between Text "R4" (-5.08mm,4.978mm) on Top Overlay And Pad R_lineal-1(-2.032mm,5.842mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.254mm) Between Text "R_lineal" (-3.137mm,10.757mm) on Top Overlay And Pad R3-1(-1.016mm,11.43mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.254mm) Between Text "C2" (-10.262mm,10.008mm) on Top Overlay And Pad R3-2(-11.176mm,11.43mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]
+Rule Violations :9
 
 Processing Rule : Silk to Silk (Clearance=0.254mm) (All),(All)
-   Violation between Silk To Silk Clearance Constraint: (0.243mm < 0.254mm) Between Text "Vin" (-21.933mm,-0.165mm) on Top Overlay And Text "C1" (-17.628mm,-0.533mm) on Top Overlay Silk Text to Silk Clearance [0.243mm]
-   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "1meg" (-18.428mm,-5.474mm) on Top Overlay And Text "R2" (-12.967mm,-6.109mm) on Top Overlay Silk Text to Silk Clearance [0mm]
-Rule Violations :2
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "1meg" (-18.682mm,-7.506mm) on Top Overlay And Arc (-16.637mm,-5.334mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "R2" (-12.586mm,-7.506mm) on Top Overlay And Arc (-11.557mm,-5.334mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "D1" (6.325mm,-9.449mm) on Top Overlay And Arc (8.001mm,-7.747mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "1meg" (-18.682mm,-7.506mm) on Top Overlay And Track (-16.637mm,-6.604mm)(-11.557mm,-6.604mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "R2" (-12.586mm,-7.506mm) on Top Overlay And Track (-16.637mm,-6.604mm)(-11.557mm,-6.604mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "D1" (6.325mm,-9.449mm) on Top Overlay And Track (6.731mm,-7.747mm)(6.731mm,-2.667mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "C1" (-17.755mm,-3.2mm) on Top Overlay And Track (-16.764mm,-1.524mm)(-10.668mm,-1.524mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (0.043mm < 0.254mm) Between Text "C1" (-17.755mm,-3.2mm) on Top Overlay And Track (-16.764mm,-1.524mm)(-16.764mm,0.508mm) on Top Overlay Silk Text to Silk Clearance [0.043mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "R4" (-5.08mm,4.978mm) on Top Overlay And Track (-3.302mm,4.572mm)(-3.302mm,9.652mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (0.179mm < 0.254mm) Between Text "R4" (-5.08mm,4.978mm) on Top Overlay And Track (-3.302mm,4.572mm)(-0.762mm,4.572mm) on Top Overlay Silk Text to Silk Clearance [0.179mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "C2" (-10.262mm,10.008mm) on Top Overlay And Track (-9.906mm,11.43mm)(-9.144mm,11.43mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "R_lineal" (-3.137mm,10.757mm) on Top Overlay And Track (-3.048mm,11.43mm)(-2.286mm,11.43mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "R_lineal" (-3.137mm,10.757mm) on Top Overlay And Track (-9.144mm,12.446mm)(-3.048mm,12.446mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "C2" (-10.262mm,10.008mm) on Top Overlay And Track (-9.144mm,10.414mm)(-9.144mm,12.446mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "C2" (-10.262mm,10.008mm) on Top Overlay And Track (-9.144mm,10.414mm)(-3.048mm,10.414mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (0.116mm < 0.254mm) Between Text "R_lineal" (-3.137mm,10.757mm) on Top Overlay And Track (-9.144mm,10.414mm)(-3.048mm,10.414mm) on Top Overlay Silk Text to Silk Clearance [0.116mm]
+   Violation between Silk To Silk Clearance Constraint: (Collision < 0.254mm) Between Text "R_lineal" (-3.137mm,10.757mm) on Top Overlay And Track (-3.048mm,10.414mm)(-3.048mm,12.446mm) on Top Overlay Silk Text to Silk Clearance [0mm]
+   Violation between Silk To Silk Clearance Constraint: (0.077mm < 0.254mm) Between Text "D2" (10.63mm,-9.563mm) on Top Overlay And Text "C4" (13.5mm,-10.198mm) on Top Overlay Silk Text to Silk Clearance [0.077mm]
+Rule Violations :18
 
 Processing Rule : Net Antennae (Tolerance=0mm) (All)
 Rule Violations :0
-
-Processing Rule : Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping'))
-   Violation between Room Definition: Between Small Component Vin-Header 2 (-20.828mm,-4.826mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component Vcc+-Header 2 (115.062mm,-14.732mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between DIP Component U?-LM741 (78.994mm,-12.446mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component R_lineal-Header 2 (102.616mm,-14.986mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component R6-1k (65.405mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component R5-10k (60.96mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component R4-100k (98.171mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component R3-10k (122.301mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component R2-47k (-12.065mm,-17.907mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component R1-47k (89.916mm,-21.844mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component Out-Header 3 (21.717mm,-15.367mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component D2-Diode 1N4148 (52.197mm,-15.24mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component D1-Diode 1N4148 (48.387mm,-15.24mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component C5-1uF (93.98mm,-14.732mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component C4-1n (56.896mm,-14.732mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component C3-1uF (14.478mm,-13.081mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component C2-1uF (126.746mm,-14.732mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component C1-1uF (-13.97mm,-2.667mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-   Violation between Room Definition: Between Small Component 1meg-R8 (-17.526mm,-17.78mm) on Top Layer And Room pedal_hard_clipping (Bounding Region = (0mm, 0mm, 50.8mm, 25.4mm) (InComponentClass('pedal_hard_clipping')) 
-Rule Violations :19
 
 Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
 Rule Violations :0
 
 
-Violations Detected : 49
+Violations Detected : 27
 Time Elapsed        : 00:00:01

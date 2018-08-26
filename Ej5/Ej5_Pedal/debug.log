@@ -258,3 +258,28 @@
 [0822/235022:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {D1D1BAFB-8421-4E26-984D-5388B5EC3E32}\BrowserCache to C:\ProgramData\Altium\Altium Designer {D1D1BAFB-8421-4E26-984D-5388B5EC3E32}\old_BrowserCache_000
 [0822/235022:ERROR:cache_creator.cc(129)] Unable to create cache
 [0823/130556:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/132839:ERROR:backend_impl.cc(2020)] Corrupt Index file
+[0824/132839:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
+[0824/132839:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {D1D1BAFB-8421-4E26-984D-5388B5EC3E32}\BrowserCache to C:\ProgramData\Altium\Altium Designer {D1D1BAFB-8421-4E26-984D-5388B5EC3E32}\old_BrowserCache_000
+[0824/132839:ERROR:cache_creator.cc(129)] Unable to create cache
+[0824/141531:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141721:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141726:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141731:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141736:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141739:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141741:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141742:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141742:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141744:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/141746:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150425:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150430:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150435:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150438:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150440:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150441:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150441:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150441:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150443:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
+[0824/150445:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
