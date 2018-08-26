@@ -2,8 +2,10 @@
 
 \usepackage{gensymb}
 \usepackage{textcomp}
-\begin{document}
+\usepackage[colorlinks=true]{hyperref}
 
+\begin{document}
+\
 \section{Sensor de Temperatura}
 
 \subsection{Introducción}
@@ -15,6 +17,7 @@ A partir del circuito se podrá utilizar un conversor analógico-digital para lo
 Se tuvo como prioridad minimizar la cantidad de componentes utilizados, garantizar la confiabilidad y precisión de los valores que el circuito devuelva. Se tuvo en cuenta la protección del circuito receptor de la señal, haciendo que la señal de salida no sobre pase el intervalo [-1;6] volts.
 
 \subsection{Análisis del LM35 y condiciones a tener en cuenta}
+\label{condiciones} 	%marker para link a esta seccion
 
 Según la datasheet mencionada anteriormente, deben mencionarse ciertas consideraciones a tener en cuenta: 
 \begin{itemize}
@@ -27,20 +30,106 @@ Según la datasheet mencionada anteriormente, deben mencionarse ciertas consider
 \end{itemize}
 
 Es importante hacer notar que una baja impedancia de salida se corresponde con un circuito emisor de señal como es el caso de un sensor de temperatura. Esto es así porque si la señal emitida en tensión deberá ser recibida por otro circuito que interpretará o modificará la señal recibida, y si la impedancia de entrada del circuito receptor fuera más baja que la de salida del emisor, entonces
-siendo z1 la impedancia de salida del emisor, i1 la corriente que circula por la misma, y z2 la impedancia de entrada del receptor con su corriente i2, por divisor de corriente:
-i2 = $\frac{z_{2}}{z_{1}\text{+}z_{2}}$ i\par
-Donde i es la corriente de entrada. Si se asume que la potencia se mantiene constante en el traspaso entre los dos circuitos,
-se aprecia de aquí que si |z2|«|z1| y 1«|z1|, entonces $\frac{z_{2}}{z_{1}\text{+}z_{2}}=\frac{1}{\frac{z_{1}}{z_{2}}\text{+}1}\approx\frac{1}{z_{1}}$, con lo cual la corriente resultante sería i2 « i, y al mantenerse la potencia, la tensión de salida del circuito emisor original sería equivalente a la tensión de entrada del circuito receptor, por lo que la señal sería recibida correctamente en valor.  \par
+siendo z1 la impedancia de salida del emisor y z2 la impedancia de entrada del receptor, por divisor de tensión:
+$V_o$ = $\frac{z_{2}}{z_{1}\text{+}z_{2}}$ $V_i$\par
+Donde $V_i$ es la tensión de entrada y $V_o$ la de salida. Si se asume que la potencia se mantiene constante en el traspaso entre los dos circuitos, se aprecia de aquí que si |z1|«|z2| y 1«|z2|, entonces $\frac{z_{2}}{z_{1}\text{+}z_{2}}\approx 1$, con lo cual la tensión de salida del circuito emisor original sería equivalente a la tensión de entrada del circuito receptor, por lo que la señal sería recibida correctamente en valor. \par
 Es por esto que se intentará obtener una impedancia de entrada de nuestro circuito adaptador mucho mayor a la impedancia de salida de 0.1$\ohm$ del LM35.
-
 
 \subsection{Cambio de rango operacional}
 
-El LM35 puede ser representado matemáticamente con una transformación lineal de grados celsius a tensión en volts\par 
-TL35: c$\epsilon$ [-55; 150] -> v$\epsilon$[-0.55; 1.5] / TL35(c) = 0.01$\cdot$c . 
-El circuito a implementar pretende ser una transformación lineal\par
-TLSENSOR: c$\epsilon$ [35;45] -> v $\epsilon$ [0;5].
+El comportamiento del LM35 puede ser representado matemáticamente con una transformación lineal de grados celsius a tensión en volts\par 
+$TL_{35}$: c$\epsilon$ [-55; 150] -> v$\epsilon$[-0.55; 1.5] / $TL_{35}$(c) = 0.01$\cdot$c. 
+El circuito a implementar pretende utilizar una transformación lineal\par
+$TL_{cambio}$: $v_1\epsilon$ [0.35;0,45] -> $v_2\epsilon$ [0;5] de forma tal que 
+$TL_{cambio}(TL_{35}(c))= TL_{sensor}(c)$ donde $TL_{sensor}: c\epsilon [0.35;0,45] -> v_2\epsilon[0;5]$ será la transformación total del circuito.
 
-Se busca el cambio de base que transforme TL35 a TLSENSOR.
+Así, se deberá resolver el siguiente sistema de ecuaciones:
+
+	 \begin{equation}
+  	   \left\{
+	  	    \begin{array}{ll}
+		 					0 = m\mathrm{\cdot}0.35 + b \\
+			 				5 = m\mathrm{\cdot}0.45 + b \\
+	     	 \end{array}
+	     	\right.
+ 	\end{equation}
+
+Que tiene como solución m=50 $\cap$ b = -17.5.
+
+Para realizar la transformación lineal sobre la salida del LM35, se decidió utilizar un opamp con realimentación negativa, dispuesto de la siguiente manera:
+
+\begin{figure}[H]	%y = mx +b en circuito
+	\centering
+	\includegraphics[scale=1.3]{imagenes/adder.png}
+	\caption{Cambio de rango operacional en circuito}
+	\label{fig:ej6_adder}
+\end{figure}
+
+El cual se resolverá por superposición (suponemos que el opamp está operando en su zona lineal) para mostrar que cumple con la necesidad de la multiplicación y la resta necesarias:
+\begin{itemize}
+\item Pasivamos la fuente Vi1, dejando un no inversor:
+\begin{figure}[H]	%vi1 pasivada
+	\centering
+	\includegraphics[scale=1.3]{imagenes/adder_pasivo_vi1.png}
+	\caption{Vi1 pasivada}
+	\label{fig:ej6_adder_pasivo_vi1}
+\end{figure}
+Entonces Vout' = $(1+\frac{R2(R1+R3)}{R1R3})\cdot$Vi2
+
+\item Pasivamos la fuente Vi2, dejando un inversor:
+\begin{figure}[H]	%vi2 pasivada
+	\centering
+	\includegraphics[scale=1.3]{imagenes/adder_pasivo_vi2.png}
+	\caption{Vi2 pasivada}
+	\label{fig:ej6_adder_pasivo_vi2}
+\end{figure}
+
+Entonces Vout'' = $-\frac{R2}{R1}\cdot$Vi1
+\item Obtenemos la salida como la superposición de los dos estados calculados anteriormente:\par
+Vout = Vout' + Vout'' = $(1+\frac{R2(R1+R3)}{R1R3})\cdot$Vi2 $-\frac{R2}{R1}\cdot$Vi1\par
+
+Si Vi1 es una entrada continua positiva de valor Vs+ y Vi2 es la salida del LM35, entonces, para cumplir con y = mx + b y la solución al sistema de ecuaciones mencionada anteriormente: \par
+	 \begin{equation}
+  	   \left\{
+	  	    \begin{array}{ll}
+		 					50 = 1+\mathrm{\frac{R2(R1+R3)}{R1R3}}\\
+			 				-17,5 = \mathrm{-\frac{R2}{R1}\cdot}Vs+ \\
+	     	 \end{array}
+	     	\right.
+ 	\end{equation}
+
+ 	
+ 	Por lo que como Vs+ será la alimentación del LM35 y dados los requerimientos del mismo se podrá alimentar en el rango recomendado con cualquier valor de tensión de entre 4V y 30V, si se elige Vs+ = 12V, \par
+
+ 	Y el sistema queda 
+
+\end{itemize}
+\subsection{Protección del circuito a conectar}
+
+Dado que el nuevo sensor a implementar será utilizado para alguna aplicación en concreto, deberá ser conectado a un segundo circuito ''receptor'' que utilice la información de la temperatura actual, por ejemplo un conversor analógico-digital. Es por esta razón que se prohibirán tensiones de salida que puedan resultar peligrosas para el receptor. Se garantiza que la salida, por ende, no será superior a 6V ni inferior a -1V. \par
+Para lograr lo anterior, se utilizará un diodo Zener, que hará clipping asimétrico a la señal de salida (ver pedal de distorsión o ej5 para mayor información sobre clipping).\par
+Los \underline{diodos Zener} suelen usarse para protección de circuitos y pueden ser representados por su curva característica:
+
+\begin{figure}[H]	%curva diodo zener
+	\centering
+	\includegraphics[scale=0.5]{imagenes/zener_diode_curva.png}
+	\caption{Curva característica del diodo Zener}
+	\label{fig:ej6_zener_diode_curva}
+\end{figure}
+
+De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_z$, la demanda de corriente por parte del diodo aumentará exponencialmente. Es aquí cuando recordamos una de las condiciones de la subsección \nameref{condiciones}: La corriente de salida del LM35 tomará un valor máximo de 10mA. Esto deberá ser tenido en cuenta cuando se presente la implementación final del circuito. \par
+De esta manera, se buscará que los valores de $V_f$ y $V_z$ sean tales que la demanda de corriente sea tan alta luego de los mismos que la tensión tenga que caer a estos valores para que se logre suplir. De esta manera, se muestra gráficamente la tensión de salida en función de la tensión de entrada:
+
+\begin{figure}[H]	%curva diodo zener
+	\centering
+	\includegraphics[scale=0.5]{imagenes/zener_diode_efecto.png}
+	\caption{Efecto del diodo Zener sobre la entrada}
+	\label{fig:ej6_zener_diode_efecto}
+\end{figure}
+
+Así es como se observa que $V_f$ = -0.7V y $V_z$$\approx$6V. Cabe destacar que el valor de $V_z$ es aproximado a 6V porque el valor no podrá ser excedido en absoluto como restricción de protección, por lo que $V_z<6V$.
+
+\subsection{Implementación del circuito}
+
 
 \end{document}
