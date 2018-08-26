@@ -84,32 +84,65 @@ La expresion se redujo a la ganancia del circuito, con el apmlificador operacion
 \subsubsection{Caso $A_{vol}$  con polo dominante}
 
 \begin{equation}
-A_{vol }=\frac{A}{1+\frac{s}{W_{p}}}\label{eq=AvolWp}\\
+A_{vol }=\frac{A_{0}}{1+\frac{s}{W_{p}}}\label{eq=AvolWp}\\
 \end{equation} 
 
 Reemplazando \big(\ref{eq=AvolWp}\big) en  \big(\ref{eq=gananciaAfinito}\big)  se obtiene:
 
 \begin{equation}
-\frac{V_{out}}{V_{in}}= - \frac{\frac{A}{1+\frac{s}{W_{p}}} \cdot R_{2} \cdot R_{3}}{\frac{A}{1+\frac{s}{W_{p}}}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }
+\frac{V_{out}}{V_{in}}= - \frac{\frac{A_{0}}{1+\frac{s}{W_{p}}} \cdot R_{2} \cdot R_{3}}{\frac{A_{0}}{1+\frac{s}{W_{p}}}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }
 \end{equation}
 
-Llamo $K= R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2}$
+Llamando $K= R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2}$
 
 
 \begin{equation}
-\frac{V_{out}}{V_{in}}=- \frac{A \cdot  R_{2} \cdot  R_{3} }{A \cdot R_{1} \cdot  R_{3} + K }  \cdot \frac{1}{1 +\frac {S}{\frac{W_{p}  \cdot \big( A \cdot R_{1} \cdot R_{3} + K \big) }{K}}} \label{eq=poloDominante}
+\frac{V_{out}}{V_{in}}=- \frac{A_{0} \cdot  R_{2} \cdot  R_{3} }{A_{0} \cdot R_{1} \cdot  R_{3} + K }  \cdot \frac{1}{1 +\frac {S}{\frac{W_{p}  \cdot \big( A_{0} \cdot R_{1} \cdot R_{3} + K \big) }{K}}} \label{eq=poloDominante}
 \end{equation}
 
  Despejando se obtiene la frecuencia de corte del circuito:
 \begin{equation}
-f_{P}=\left( \frac {A \cdot R_{2} \cdot R_{3} + K}{K}\right)  \cdot \frac{W_{P}}{2\cdot \pi}
+f_{P}=\left( \frac {A_{0} \cdot R_{1} \cdot R_{3} + K}{K}\right)  \cdot \frac{W_{P}}{2\cdot \pi}  \label{eq=fCorte}
 \end{equation}
 
 \textit{Observacion:}  la ecuacion \big(\ref{eq=poloDominante} \big) posee la misma forma que la funcion transferencia de un pasabajos.
 
 
 
+El amplificador operacional utilizado fue el LM324 de ON Semiconductor, de la hoja de datos se obtuvieron las siguientes cararacteristicas del integrado:
 
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+$A_{0}$ & $f_{P}$ \\
+\hline \hline
+$10\cdot 10^{4}$& $ 12Hz $ \\ \hline
+
+\end{tabular}
+\caption{Caracteristicas del LM324} 
+\label{tab=lm324Carac}
+\end{center}
+\end{table}
+Donde $A_{0}$ es la ganancia del amplificador operacional a lazo abierto y  $f_{P}$ es la frecuencia de corte a lazo abierto. A partir de las tablas \ref{tab=vResistencias} y \ref{tab=lm324Carac} y de ecuación  \ref{eq=poloDominante}, se calcularon las caracteristicas de las tres configuraciones del circuito analizadas.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Caso &Ganancia ideal & Ganancia $A_{vol}$ finito & Frecuencia de corte\\
+\hline \hline
+1 & $-10$ & -9,997 & 54,7$KHz$ \\ \hline
+2 & $-1$ &  $-0,999 $ &  386$KHz$  \\ \hline
+3 & $-0,1$ &- 0,099 &960$KHz$\\ \hline
+\end{tabular}
+\caption{Ganancia y frecuencia de corte del circuito.La ganancias es en veces.} 
+\label{tab=gananciayFrecCorte}
+\end{center}
+\end{table}
+
+Acontinuacion se graficaran los tres casos del circuito inversor, comparando $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
 
 
 \subsection{Circuito no inversor}
