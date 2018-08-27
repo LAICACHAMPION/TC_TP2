@@ -14,7 +14,7 @@ Se implementará un sensor de temperatura utilizando el circuito integrado LM35,
 Según la datasheet del integrado mencionado anteriormente del fabricante Texas Instruments ''LM35 Precision Centigrade Temperature Sensors'', con última revisión en diciembre de 2017, el integrado ofrece un rango de medición asegurada de entre -55\celsius y 150\celsius, con una variación de 10mV/\celsius, siendo el 0\celsius correspondiente a 0V. \par
 Se busca implementar a partir de estos valores, un sensor de temperatura capaz de medir con máxima excursión entre 35°C y 45°C, con 0V correspondiendo a 35\celsius y 5V a 45\celsius.\par
 A partir del circuito se podrá utilizar un conversor analógico-digital para lograr manipular la información de temperatura como se requiera. \par
-Se tuvo como prioridad minimizar la cantidad de componentes utilizados, garantizar la confiabilidad y precisión de los valores que el circuito devuelva. Se tuvo en cuenta la protección del circuito receptor de la señal, haciendo que la señal de salida no sobre pase el intervalo [-1;6] volts.
+Se tuvo como prioridad minimizar la cantidad de componentes utilizados, garantizar la confiabilidad y precisión de los valores que el circuito devuelva. Se tuvo en cuenta la protección del circuito receptor de la señal, haciendo que la señal de salida no sobrepase el intervalo [-1;6] volts.
 
 \subsection{Análisis del LM35 y condiciones a tener en cuenta}
 \label{condiciones} 	%marker para link a esta seccion
@@ -36,7 +36,7 @@ Donde $V_i$ es la tensión de entrada y $V_o$ la de salida. Si se asume que la p
 Es por esto que se intentará obtener una impedancia de entrada de nuestro circuito adaptador mucho mayor a la impedancia de salida de 0.1$\ohm$ del LM35.
 
 \subsection{Cambio de rango operacional}
-
+\label{cambioRango} 	%marker para link a esta seccion
 El comportamiento del LM35 puede ser representado matemáticamente con una transformación lineal de grados celsius a tensión en volts\par 
 $TL_{35}$: c$\epsilon$ [-55; 150] -> v$\epsilon$[-0.55; 1.5] / $TL_{35}$(c) = 0.01$\cdot$c. 
 El circuito a implementar pretende utilizar una transformación lineal\par
@@ -99,9 +99,17 @@ Si Vi1 es una entrada continua positiva de valor Vs+ y Vi2 es la salida del LM35
  	\end{equation}
 
  	
- 	Por lo que como Vs+ será la alimentación del LM35 y dados los requerimientos del mismo se podrá alimentar en el rango recomendado con cualquier valor de tensión de entre 4V y 30V, si se elige Vs+ = 12V, \par
+ 	Por lo que como Vs+ será la alimentación del LM35 y dados los requerimientos del mismo se podrá alimentar en el rango recomendado con cualquier valor de tensión de entre 4V y 30V, si se elige Vs+ = 7V, \par
 
- 	Y el sistema queda 
+ El sistema queda definido como:
+ 		 \begin{equation}
+  	   \left\{
+	  	    \begin{array}{ll}
+		 					\mathrm{R2} = \frac{35\, \mathrm{R1}}{2\, \mathrm{Vs+}} = \frac{5\, \cdot\mathrm{R1}}{2}\\
+			 				\mathrm{R3} = \frac{5\, \mathrm{R1}}{14\, \mathrm{Vs+} - 5} = \frac{5\, \cdot\mathrm{R1}}{93}\\
+	     	 \end{array}
+	     	\right.
+ 	\end{equation}
 
 \end{itemize}
 \subsection{Protección del circuito a conectar}
@@ -129,7 +137,30 @@ De esta manera, se buscará que los valores de $V_f$ y $V_z$ sean tales que la d
 
 Así es como se observa que $V_f$ = -0.7V y $V_z$$\approx$6V. Cabe destacar que el valor de $V_z$ es aproximado a 6V porque el valor no podrá ser excedido en absoluto como restricción de protección, por lo que $V_z<6V$.
 
+\subsection{Calibración del sensor}
+
+Debido al uso de fuentes no ideales y a los requerimientos de corriente de los opamps que generan ripple para la fuente, la tensión Vs+ de alimentación para el LM35 no necesariamente administrará el valor fijo de tensión antes designado de 7V, sino que será un valor cercano al anterior. \par
+Es por esto que los valores de resistencias que se elijan de antemano no convergerán precisamente al offset y a la escala requeridas previamente (valores de m y b). De aquí que es necesario un proceso de calibración del sensor para su correcto funcionamiento.\par
+El proceso de calibración, por ende, requerirá de ajustar los valores de resistencia de la sección \nameref{cambioRango}. \par
+Como tanto R2 como R3 dependen de R1 y R2 a su vez también depende de Vs+, es posible lograr variar R1 a modo tal que el sensor quede calibrado en sus constantes de escalamiento correctamente. Es por esta razón que R1 ahora quedará expresada como la combinación de un potenciómetro y un valor fijo de resistencia en serie, de la siguiente manera:
+
+\begin{figure}[H]	%R1 en función de un potenciómetro.
+	\centering
+	\includegraphics[scale=2]{imagenes/nueva_disposicion_r1.png}
+	\caption{Expresión de R1 como combinación de potenciómetro en serie con resistencia fija.}
+	\label{fig:ej6_nueva_disposicion_r1}
+\end{figure}
+
+A su vez, una fuente externa se utilizará para calibrar el circuito, que simulará el input por parte del LM35. La señal a utilizar puede ser cualquiera que permita ajustar tanto la escala como la tensión de offset. Se elige una señal triangular para la calibrar. \par
+
+\textbf{\underline{Método de calibración:}} 
 \subsection{Implementación del circuito}
 
+\begin{figure}[H]	%circuito total
+	\centering
+	\includegraphics[scale=1.2]{imagenes/combinacion_circuito.png}
+	\caption{Circuito propuesto como sensor}
+	\label{fig:ej6_combinacion_circuito}
+\end{figure}
 
 \end{document}
