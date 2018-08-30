@@ -139,21 +139,32 @@ Así es como se observa que $V_f$ = -0.7V y $V_z$$\approx$6V. Cabe destacar que 
 
 \subsection{Calibración del sensor}
 
-Debido al uso de fuentes no ideales y a los requerimientos de corriente de los opamps que generan ripple para la fuente, la tensión Vs+ de alimentación para el LM35 no necesariamente administrará el valor fijo de tensión antes designado de 7V, sino que será un valor cercano al anterior. \par
+Debido al uso de fuentes no ideales y a los requerimientos de corriente de los opamps que generan ripple para la fuente, la tensión Vs+ de alimentación para el LM35 no necesariamente administrará el valor fijo de tensión antes designado de 7V, sino que será un valor cercano al anterior, y por lo tanto la relación entre resistencias mencionadas en la sección \nameref{cambioRango} que se elija previamente a la implementación no será exacta. \par
+Además, se sabe que los valores de resistencia nominales no coinciden exactamente con los valores de resistencias reales de los componentes a la hora de realizar el circuito, y caerán dentro de un cierto rango centrado en su valor nominal definido por su tolerancia. \par
 Es por esto que los valores de resistencias que se elijan de antemano no convergerán precisamente al offset y a la escala requeridas previamente (valores de m y b). De aquí que es necesario un proceso de calibración del sensor para su correcto funcionamiento.\par
 El proceso de calibración, por ende, requerirá de ajustar los valores de resistencia de la sección \nameref{cambioRango}. \par
-Como tanto R2 como R3 dependen de R1 y R2 a su vez también depende de Vs+, es posible lograr variar R1 a modo tal que el sensor quede calibrado en sus constantes de escalamiento correctamente. Es por esta razón que R1 ahora quedará expresada como la combinación de un potenciómetro y un valor fijo de resistencia en serie, de la siguiente manera:
+Para facilitar el proceso de calibración, se buscará poder ajustar los valores de offset y de escalamiento independientemente uno del otro. Se observa que R3 solo participa del escalamiento y tanto R2 como R1 participan del desplazamiento en offset como del escalamiento también, pero que una de las dos queda en función de la otra. Es así como se plantea que al ajustar R3 y R2 o R1 exlusivamente con potenciómetros, se podrá configurar el escalamiento y el offset de manera cuasi-independiente. \par
+Es por esta razón que R2 y R3 ahora quedarán expresadas como la combinación de un potenciómetro y un valor fijo de resistencia en serie, de la siguiente manera:
 
 \begin{figure}[H]	%R1 en función de un potenciómetro.
 	\centering
-	\includegraphics[scale=2]{imagenes/nueva_disposicion_r1.png}
-	\caption{Expresión de R1 como combinación de potenciómetro en serie con resistencia fija.}
-	\label{fig:ej6_nueva_disposicion_r1}
+	\includegraphics[scale=2]{imagenes/nueva_disposicion_rs.png}
+	\caption{Expresión de R2 yR3 como combinación de potenciómetros en serie con resistencias fijas.}
+	\label{fig:ej6_nueva_disposicion_rs}
 \end{figure}
 
 A su vez, una fuente externa se utilizará para calibrar el circuito, que simulará el input por parte del LM35. La señal a utilizar puede ser cualquiera que permita ajustar tanto la escala como la tensión de offset. Se elige una señal triangular para la calibrar. \par
 
 \textbf{\underline{Método de calibración:}} 
+Se conecta la salida del circuito a un osciloscopio.  
+Se presiona el switch de calibrado que permite imponer una fuente distinta a la del LM35 para calibrar. La fuente deberá generar una señal triangular (rampa con duty cycle del 50\%) de altura 150mV, con un offset de +350mV. Se mide con el osciloscopio la señal de entrada, ajustando el trigger a comodidad.\par 
+Luego, se seguirán los siguientes pasos:
+\begin{enumerate}
+	\item Modificar el valor del potenciómetro que conforma la resistencia R2 hasta alcanzar un offset nulo en la señal de salida.
+	\item Modificar el valor del potenciómetro que conforma la resistencia R3 hasta que la salida del osciloscopio sea una señal de amplitud 5V.
+	\item El sensor ya estará calibrado, y por ende se deberá presionar el switch para que la señal de entrada sea la del LM35 y desconectar el osciloscopio. 
+\end{enumerate}
+
 \subsection{Implementación del circuito}
 
 \begin{figure}[H]	%circuito total
@@ -162,5 +173,7 @@ A su vez, una fuente externa se utilizará para calibrar el circuito, que simula
 	\caption{Circuito propuesto como sensor}
 	\label{fig:ej6_combinacion_circuito}
 \end{figure}
+
+
 
 \end{document}
