@@ -18,30 +18,23 @@ vernier = 0.000976563
 vernier = 0.000488281
 Gmin = 5.98328
 Gmin = 0
-Gmin stepping failed
-
-Starting source stepping with srcstepmethod=0
-Source Step = 3.0303%
-Source Step = 33.3333%
-Source Step = 63.6364%
-Source Step = 93.9394%
-Source stepping succeeded in finding the operating point.
+Gmin stepping succeeded in finding the operating point.
 
 
-Date: Tue Aug 14 17:28:53 2018
-Total elapsed time: 0.483 seconds.
+Date: Thu Aug 30 13:37:39 2018
+Total elapsed time: 0.078 seconds.
 
 tnom = 27
 temp = 27
-method = modified trap
-totiter = 5217
-traniter = 3513
-tranpoints = 1730
-accept = 1612
-rejected = 118
+method = trap
+totiter = 1548
+traniter = 0
+tranpoints = 0
+accept = 0
+rejected = 0
 matrix size = 28
-fillins = 52
+fillins = 43
 solver = Normal
-Matrix Compiler1: 3.65 KB object code size  2.9/10.5/[1.1]
-Matrix Compiler2: 3.18 KB object code size  0.9/1.0/[0.8]
+Matrix Compiler1:     165 opcodes
+Matrix Compiler2:     226 opcodes  0.5/[0.5]/0.7
 
