@@ -142,8 +142,23 @@ Caso &Ganancia ideal & Ganancia $A_{vol}$ finito & Frecuencia de corte\\
 \end{center}
 \end{table}
 
-Acontinuacion se graficaran los tres casos del circuito inversor, comparando $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
+Acontinuacion se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con  $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
 
+\todo{graficos de las 3 respuestas en frecuencias}
+
+El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) = \frac {Ganancia A_{vol}(w) -Ganancia A_{vol} inifinito} {Ganancia A_{vol} (w)}$, de esta manera se obtuvieron los siguientes graficos:
+
+\todo{graficos de las 3 error relativo}
+
+Como se observa en los tres graficos ... el error una decada antes del polo dominante es menor que el xx \% , por ende utilizando el Amplificador Operacional a una frecuencia menor que una decada antes de la frecuecia de corte, se lo puede considerar como ideal, con un error del xx\%.
+
+\subsubsection{Alinealidades del Amplificador Operacional}
+En esta seccion se analizaran las alinealidades del Amplificador operacional
+\begin{itemize}  
+\item Saturacion, los amplificadores operacionales poseen alimentacion ( $+-V_{cc}$ ) externa para asi poder aplificar. Por ende la salida del amplificador no puede superar a la alimentacion. Si la señal de entrada fuera tal que aplificada superara la alimentacion, el amplificador operacional entrega a la salida $+ o -V_{cc}$. No todos los amplificadores operacionales saturan en $+-V_{cc}$, generalmnete lo hacen por devajo de dichas tensiones y no necesariamente saturan a la misma tension, por ejemplo un Amplificador operacional es alimnetado con +- 10 v, y la saturacion se da a los -8 v y a los 9v. 
+\item Slew Rate, es la tasa de cambio de la tension en funcion del tiempo. Los amplificadores Operacionales poseen un slew rate maximo, a partir del cual no pueden seguir la señal de entrada y la salida se distorciona. Para señales senoidales, la relacion entre la frecuencia de entrada, la ganancia y el slew rate es $ SlewRate_{max}=G  \cdot A \cdot 2 \cdot \pi \cdot f $, donde $ G $ es la ganancia del circuito, $ A $ es la amplitud de la señal de entrada y $f$ es la frecuencia de la señal.  
+\item Crossover Distortion, los amplificadores operacionales clase b y AB (ejemplo el LM324), poseen la caracteristica que la salida se encuentra en 0 v, cuando la tension de entrada del operacional se encuentra entre -0,7 v y 0,7v.
+\end{itemize}
 
 \subsection{Circuito no inversor}
 
