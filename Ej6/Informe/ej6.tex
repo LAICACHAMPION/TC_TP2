@@ -3,9 +3,9 @@
 \usepackage{gensymb}
 \usepackage{textcomp}
 \usepackage[colorlinks=true]{hyperref}
-
+\usepackage{pdfpages}
 \begin{document}
-\
+
 \section{Sensor de Temperatura}
 
 \subsection{Introducción}
@@ -199,4 +199,11 @@ Siguiendo los pasos del método de calibración de la sección \nameref{Calibrat
 De esta manera, se demuestra que el escalamiento y = 50 *x -17.5 se cumple con el circuito obtenido y el método de calibración es adecuado. \par
 Se procedió a medir la temperatura con un tester del paniol y el LM35 con el osciloscopio y se verificó que las salidas coincidían.\par
 Las ventajas del circuito implementado son predominantes en su bajo coste, ya que se utilizan pocas resistencias y un sólo integrado, en detrimento de la falta de independencia entre los presets y el factor que ajustan a la hora de calibrar. 
+
+\subsection{Datasheet}
+
+Se proporciona una datasheet del nuevo sensor con los datos más importantes. Esta datasheet fue basada en la datasheet del LM35 de Texas Instruments mencionada anteriormente:
+
+\includepdf[pages=-]{datasheet.pdf}
+
 \end{document}
