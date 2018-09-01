@@ -113,7 +113,7 @@ Si Vi1 es una entrada continua positiva de valor Vs+ y Vi2 es la salida del LM35
 
 \end{itemize}
 \subsection{Protección del circuito a conectar}
-
+\label{Protect}
 Dado que el nuevo sensor a implementar será utilizado para alguna aplicación en concreto, deberá ser conectado a un segundo circuito ''receptor'' que utilice la información de la temperatura actual, por ejemplo un conversor analógico-digital. Es por esta razón que se prohibirán tensiones de salida que puedan resultar peligrosas para el receptor. Se garantiza que la salida, por ende, no será superior a 6V ni inferior a -1V. \par
 Para lograr lo anterior, se utilizará un diodo Zener, que hará clipping asimétrico a la señal de salida (ver pedal de distorsión o ej5 para mayor información sobre clipping).\par
 Los \underline{diodos Zener} suelen usarse para protección de circuitos y pueden ser representados por su curva característica:
@@ -138,13 +138,14 @@ De esta manera, se buscará que los valores de $V_f$ y $V_z$ sean tales que la d
 Así es como se observa que $V_f$ = -0.7V y $V_z$$\approx$6V. Cabe destacar que el valor de $V_z$ es aproximado a 6V porque el valor no podrá ser excedido en absoluto como restricción de protección, por lo que $V_z<6V$.
 
 \subsection{Calibración del sensor}
-
-Debido al uso de fuentes no ideales y a los requerimientos de corriente de los opamps que generan ripple para la fuente, la tensión Vs+ de alimentación para el LM35 no necesariamente administrará el valor fijo de tensión antes designado de 7V, sino que será un valor cercano al anterior, y por lo tanto la relación entre resistencias mencionadas en la sección \nameref{cambioRango} que se elija previamente a la implementación no será exacta. \par
-Además, se sabe que los valores de resistencia nominales no coinciden exactamente con los valores de resistencias reales de los componentes a la hora de realizar el circuito, y caerán dentro de un cierto rango centrado en su valor nominal definido por su tolerancia. \par
+\label{Calibration}
+Debido al uso de fuentes no ideales y a los requerimientos de corriente de los opamps que generan ripple para la fuente, la tensión Vs+ de alimentación para el LM35 no necesariamente administrará el valor fijo de tensión antes designado de 7V, sino que será un valor cercano al anterior, y por lo tanto la relación entre resistencias mencionadas en la subsección \nameref{cambioRango} que se elija previamente a la implementación no será exacta. \par
+Además, se sabe que los valores de resistencia nominales no necesariamente coinciden con los valores de resistencias reales de los componentes a la hora de realizar el circuito, y caerán dentro de un cierto rango centrado en su valor nominal definido por su tolerancia. \par
 Es por esto que los valores de resistencias que se elijan de antemano no convergerán precisamente al offset y a la escala requeridas previamente (valores de m y b). De aquí que es necesario un proceso de calibración del sensor para su correcto funcionamiento.\par
-El proceso de calibración, por ende, requerirá de ajustar los valores de resistencia de la sección \nameref{cambioRango}. \par
-Para facilitar el proceso de calibración, se buscará poder ajustar los valores de offset y de escalamiento independientemente uno del otro. Se observa que R3 solo participa del escalamiento y tanto R2 como R1 participan del desplazamiento en offset como del escalamiento también, pero que una de las dos queda en función de la otra. Es así como se plantea que al ajustar R3 y R2 o R1 exlusivamente con potenciómetros, se podrá configurar el escalamiento y el offset de manera cuasi-independiente. \par
-Es por esta razón que R2 y R3 ahora quedarán expresadas como la combinación de un potenciómetro y un valor fijo de resistencia en serie, de la siguiente manera:
+El proceso de calibración, por ende, requerirá de ajustar los valores de resistencia de la subsección \nameref{cambioRango}. \par
+Se observa que no se podrá ajustar los valores de offset y de escalamiento independientemente uno del otro, ya que si bien R3 solo participa del escalamiento, tanto R2 como R1 afectan al offset como así también al escalamiento, por lo que no se podrá alterar a R2 sin alterar al offset.\par
+Es por esta razón que el método de calibración será necesariamente iterativo. Se obtiene así un método iterativo que converja al resultado esperado con el grado de error de calibración que requiera la persona que realice el ajuste. \par
+Para lograr el calibrado y hacer R2 y R3 variables dentro de cierto rango, R2 y R3 ahora quedarán expresadas como la combinación de un potenciómetro y un valor fijo de resistencia en serie, de la siguiente manera:
 
 \begin{figure}[H]	%R1 en función de un potenciómetro.
 	\centering
@@ -153,16 +154,23 @@ Es por esta razón que R2 y R3 ahora quedarán expresadas como la combinación d
 	\label{fig:ej6_nueva_disposicion_rs}
 \end{figure}
 
-A su vez, una fuente externa se utilizará para calibrar el circuito, que simulará el input por parte del LM35. La señal a utilizar puede ser cualquiera que permita ajustar tanto la escala como la tensión de offset. Se elige una señal triangular para la calibrar. \par
+Una fuente externa se utilizará para calibrar el circuito, que simulará el input por parte del LM35. Se elige una fuente externa y no el LM35 para tener un rango de tensiones con el operar en vez de un único valor acorde a la temperatura actual determinada por el sensor. La señal a utilizar puede ser cualquiera que permita ajustar tanto la escala como la tensión de offset, pero se elige una rampa para la calibrar por su sencillez a la hora de determinar valor medio, amplitud y desplazamiento vertical.\par
 
 \textbf{\underline{Método de calibración:}} 
+
 Se conecta la salida del circuito a un osciloscopio.  
-Se presiona el switch de calibrado que permite imponer una fuente distinta a la del LM35 para calibrar. La fuente deberá generar una señal triangular (rampa con duty cycle del 50\%) de altura 150mV, con un offset de +350mV. Se mide con el osciloscopio la señal de entrada, ajustando el trigger a comodidad.\par 
-Luego, se seguirán los siguientes pasos:
+Se posiciona al switch de calibración en aquella posición que permite imponer una señal distinta a la del LM35 para calibrar. La fuente deberá generar una rampa (sawtooth signal) con duty cycle del 100\%, con LoLevel de 350mV y HiLevel de 450 mV. La frecuencia de esta señal deberá ser baja, eligiéndose a comodidad en un valor del orden de los 100 Hz. Se mide con el osciloscopio la señal de entrada, ajustando el trigger a comodidad.\par 
+
+El método de calibración propuesto buscará lograr una suerte de cuasi-independencia entre R2 y R3. Se tratará a R2 como la resistencia que maneja al offset y R3 como la que manejará al escalamiento. Para el caso en el cual no se pueda seguir recurriendo a R2 para modificar al offset (es decir, el preset de R2 ha llegado a su límite), se podrá utilizar a R3 para acomodar a la señal. \par
+Se seguirán los siguientes pasos:
 \begin{enumerate}
-	\item Modificar el valor del potenciómetro que conforma la resistencia R2 hasta alcanzar un offset nulo en la señal de salida.
-	\item Modificar el valor del potenciómetro que conforma la resistencia R3 hasta que la salida del osciloscopio sea una señal de amplitud 5V.
-	\item El sensor ya estará calibrado, y por ende se deberá presionar el switch para que la señal de entrada sea la del LM35 y desconectar el osciloscopio. 
+	\item En el osciloscopio, se ajustará la escala vertical para lograr que se logren visualizar correctamente las dos señales. Tener en cuenta que la señal de salida estará finalmente situada entre los $0V$ y los $5V$, por lo que si se tiene que ajustar la escala en cualquier momento de la calibración, se deberá hacerlo.
+	\item Se utilizará la base temporal del osciloscopio: La rampa de entrada y de salida se posicionarán de forma tal que las señales se corten en el extremo derecho de la pantalla y tengan su continuación en el extremo izquierdo de la pantalla sin saltos. Puesto de otra forma, se busca que el intervalo temporal del display de la señal sea un múltiplo natural del período de la señal. 
+	\item Se pondrá en display el average de la señal usando las opciones de Quick Measure del osciloscopio. 
+	\item Se modificará R2 (ajustando el preset) de manera tal que el valor medio o average de la señal de salida sea de $2.5V$. En el caso en que esto sea imposible porque se ha llegado al límite del preset, se podrá utilizar R3 para lograr que el valor medio o average de la señal de salida sea de $2.5V$.
+	\item Se modificará R3 (ajustando el preset) de manera tal que o el extremo inferior de la señal de salida termine en 0V o el extremo superior termine en $5V$. Si no se puede seguir modificando a R3 porque se ha llegado al límite del preset, se da por terminado el paso.
+	\item Si en el paso anterior tanto el extremo inferior coincide con los $0V$ y el superior con los $5V$, la calibración ha terminado. De lo contrario, se volverá al paso 4. 
+	
 \end{enumerate}
 
 \subsection{Implementación del circuito}
@@ -174,6 +182,22 @@ Luego, se seguirán los siguientes pasos:
 	\label{fig:ej6_combinacion_circuito}
 \end{figure}
 
+Se hace notar que el switch físico que se utilizó es de tres posiciones en vez de dos porque el paniol no contaba con uno de dos. Además, deberá estar posicionado hacia el lado opuesto a la fuente de calibración para poder utilizarla, en el centro para apagar el circuito y en el otro extremo para utilizar al LM35 como input.
+El diodo zener utilizado fue uno de Vz = 5.6 Volts, por lo que el circuito podrá devolver valores mayores a $5V$ y menores a $0V$ (pero que no salgan del intervalo de protección mencionado en la subsección \nameref{Protect}). Estos valores, que corresponderían a temperaturas fuera del intervalo [$0V$,$5V$], podrán ser interpretadas o filtradas por el conversor análogico digital que se utilice en conexión con el sensor de temperatura.
+   
+\subsection{Mediciones y conclusión}
 
+Siguiendo los pasos del método de calibración de la sección \nameref{Calibration}, se logró ajustar al circuito:
+
+\begin{figure}[H]	%circuito total
+	\centering
+	\includegraphics[scale=0.4]{imagenes/sensor_calibrado.png}
+	\caption{Circuito calibrado}
+	\label{fig:ej6_sensor_calibrado}
+\end{figure}
+
+De esta manera, se demuestra que el escalamiento y = 50 *x -17.5 se cumple con el circuito obtenido y el método de calibración es adecuado. \par
+Se procedió a medir la temperatura con un tester del paniol y el LM35 con el osciloscopio y se verificó que las salidas coincidían.\par
+Las ventajas del circuito implementado son predominantes en su bajo coste, ya que se utilizan pocas resistencias y un sólo integrado, en detrimento de la falta de independencia entre los presets y el factor que ajustan a la hora de calibrar. 
 
 \end{document}
