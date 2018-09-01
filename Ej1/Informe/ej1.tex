@@ -3,6 +3,9 @@
 \documentclass[../../main.tex]{subfiles}
 
 
+
+\graphicspath{ {imagenes/} }
+
 \begin{document}
 \section{OpAmp}
 \subsection{Introducci\'on}
@@ -144,14 +147,24 @@ Caso &Ganancia ideal & Ganancia $A_{vol}$ finito & Frecuencia de corte\\
 
 Acontinuacion se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con  $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
 
-\todo{graficos de las 3 respuestas en frecuencias}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{real_ideal_mag_inv}
+\caption{Compración del modulo de la respuesta en frecuencia de los tres casos}
+\end{figure}
 
-El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) = \frac {Ganancia A_{vol}(w) -Ganancia A_{vol} inifinito} {Ganancia A_{vol} (w)}$, de esta manera se obtuvieron los siguientes graficos:
+\todo{poner graficos de fase?}
 
-\todo{graficos de las 3 error relativo}
+El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) = \frac {\mid Ganancia A_{vol}(w) -Ganancia A_{vol} inifinito \mid} {\mid Ganancia A_{vol} (w) \mid }$, de esta manera se obtuvieron los siguientes graficos:
 
-Como se observa en los tres graficos ... el error una decada antes del polo dominante es menor que el xx \% , por ende utilizando el Amplificador Operacional a una frecuencia menor que una decada antes de la frecuecia de corte, se lo puede considerar como ideal, con un error del xx\%.
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{error_inv}
+\caption{Error relativo porcentual, de izquierda a derecha Caso 1, Caso 2 y Caso 3} \label{fig=errorInv}
+\end{figure}
 
+
+Como se observa en los tres graficos de la figura \ref{fig=errorInv}, el error una decada antes del polo dominante es menor que el 1 \% , por ende utilizando el Amplificador Operacional a una frecuencia menor que una decada antes de la frecuecia de corte, se lo puede considerar como ideal.
 \subsubsection{Alinealidades del Amplificador Operacional}
 En esta seccion se analizaran las alinealidades del Amplificador operacional
 \begin{itemize}  
@@ -159,6 +172,116 @@ En esta seccion se analizaran las alinealidades del Amplificador operacional
 \item Slew Rate, es la tasa de cambio de la tension en funcion del tiempo. Los amplificadores Operacionales poseen un slew rate maximo, a partir del cual no pueden seguir la señal de entrada y la salida se distorciona. Para señales senoidales, la relacion entre la frecuencia de entrada, la ganancia y el slew rate es $ SlewRate_{max}=G  \cdot A \cdot 2 \cdot \pi \cdot f $, donde $ G $ es la ganancia del circuito, $ A $ es la amplitud de la señal de entrada y $f$ es la frecuencia de la señal.  
 \item Crossover Distortion, los amplificadores operacionales clase b y AB (ejemplo el LM324), poseen la caracteristica que la salida se encuentra en 0 v, cuando la tension de entrada del operacional se encuentra entre -0,7 v y 0,7v.
 \end{itemize}
+
+\subsubsection{Dc sweep}
+El dc sweep consiste en variar la tensión de entrada (corriente continua) del circuito y observar la salida. En este caso se varió la entrada entre $\pm V_{cc}$($\pm 15 v$). Dicho procedimiento se realizó de la siguiente manera, en la entrada se inyecto una rampa  cuya  tensión variaba entre$\pm V_{cc}$ y de periodo 60 segundos, y la salida se midió con el osciloscopio. Luego se exportaron los datos del osciloscopio en formato CSV y se supepuso la informacion en el siguiente grafico.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{dc_sweep_inv}
+\caption{Dc Sweep Medido} \label{fig=dcInv}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.1\textwidth]{dc_sweep_inv_sim}
+\caption{Dc Sweep Simulado, el grafico negro corresponde al Caso 1, el azul al Caso 2 y el rojo al Caso 3} \label{fig=dcInvSim}
+\end{figure}
+
+La figura \ref{fig=dcInv}, es la superposición de los dc sweep medidos de los tres casos. En ella se manifiesta fenómeno de la saturación del amplificador operacional, en dos de los tres casos analizados. Dependiendo de la ganancia del circuito (pendiente de la recta), la saturación se da a distintitas tensiones de entrada, a mayor ganancia (Caso 1) satura a menor tensión que el circuito de menor ganancia (Caso 2). Como se alimentó con $\pm V_{cc}$ el circuito 3 no se logró llegar a la saturación. Para lograrlo se tendría que haber realizado el dc sweep con tensiones del orden de 150 V.
+Tanto en la figura \ref{fig=dcInv} como en la figura \ref{fig=dcInvSim},  se observa que la saturación se da a tensiones en módulo menores que VCC. Sin embargo la medición y la simulación no coinciden, esto se puede deber a que el modelo utilizado no se ajusta al amplificador operacional que se usó en el circuito.
+
+\subsubsection{Respuesta en frecuencia}
+
+La ecuación \ref{eq=poloDominante} es la función transferencia del circuito, como la parte real del polo es negativa el sistema es bibo-estable y para hallar la respuesta en frecuencia vasta con reemplazar s=i2pif. El sistema corresponde a un circuito pasa bajos de primer orden, por ende se esperaría que las frecuencias una década menor que la frecuencia de corte no se vean atenuadas y frecuencias una década superiores a la frecuencias de corte, se vean atenuadas. En cuanto a la fase debería variar entre $180^{\circ}$, una década antes de la frecuencia de corte, y$90^{\circ}$ grados una década después de la frecuencia de corte, pasando por los $135^{\circ}$ en la frecuencia de corte.
+\\
+En la medición de la respuesta en frecuencias se tuvieron que tener en cuenta las alinealidades ya mencionadas. Para que el crossover distortion no afecte las mediciones, a la señal de excitación se la monto sobre una tensión continua, tal que la señal de entrada no cruce por cero. Esto provocó que la amplitud de la señal tenga que ser menor que la esperada para que no se sature la salida. Otro factor importante a tener en cuenta es el slew rate. En base a esto la tensión de entrada quedo limitada de la siguiente manera.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{slew-rate-inv}
+\caption{Tension de entrada,slew rate} \label{fig=srInv}
+\end{figure}
+
+El grafico \ref{fig=srInv}, muestra la máxima tensión de entrada en cada caso, sin embargo únicamente tiene en cuenta el slew rate, entonces de acuerdo al offset de la señal se limitara la amplitud para que no haya saturación.
+\\
+Teniendo en cuenta los factores mencionados se midió la respuesta en frecuencia del circuito.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-1_mag_inv}
+\caption{Magnitud}\label{fig=magInvC1}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-1_fase_inv}
+\caption{Fase}
+\end{subfigure}
+\caption{Caso 1 - superposición respuesta en  frecuencia medida, simulada, calculada}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{montecarlo_inv_c1}
+\caption{Montecarlo Caso-1} \label{fig=mcInvC1}
+\end{figure}
+
+
+De la figura \ref{fig=magInvC1}, obtuvimos la frecuencia de corte del circuito,a la cual la caida de la ganancia es de 3dB. Dicha frecuencia de corte es $47KHz$, la cual es distinta a la calculada teoricamente en la tabla \ref{tab=gananciayFrecCorte}. Sin embargo, se puede aceptar dicha frecuencia de corte, devido a que los componentes tienen tolerancias, tal como se observa en el Montecarlo (grafico  \ref{fig=mcInvC1} ) la frecuencia de corte pertenece al intervalo marcado en el grafico.
+
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-2_mag_inv}
+\caption{Magnitud}\label{fig=magInvC2}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-2_fase_inv}
+\caption{Fase}
+\end{subfigure}
+\caption{Caso 2 - superposición respuesta en  frecuencia medida, simulada, calculada}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{montecarlo_inv_c2}
+\caption{Montecarlo Caso-2} \label{fig=mcInvC2}
+\end{figure}
+
+\todo{desir alguna reflexion mas al respecto}
+De la figura \ref{fig=magInvC2}, obtuvimos la frecuencia de corte del circuito,a la cual la caida de la ganancia es de 3dB. Dicha frecuencia de corte es $430KHz$, la cual es distinta a la calculada teoricamente en la tabla \ref{tab=gananciayFrecCorte}. Sin embargo, se puede aceptar dicha frecuencia de corte, devido a que los componentes tienen tolerancias, tal como se observa en el Montecarlo (grafico  \ref{fig=mcInvC2} ) la frecuencia de corte pertenece al intervalo marcado en el grafico.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-3_mag_inv}
+\caption{Magnitud}\label{fig=magInvC3}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-3_fase_inv}
+\caption{Fase} \label{fig=fasInvC3}
+\end{subfigure}
+\caption{Caso 3 - superposición respuesta en  frecuencia medida, simulada, calculada}
+\end{figure}
+
+En la figura \ref{fig=magInvC3}, se observa un sobrepico, cercano a la frecuencia de corte, en la medicion y la simulacion, sin embargo éste no se observa en los calculos. Suponemos que este fenomeno se deve a la baja ganancia del circuito, lo que amplia su ancho de banda haciendo que el polo domianante del  
+$A_{vol}$ se acerque a un polo secundario, provocando el sobrepico.
+La diferencia que se observa entre lo simulado y lo medio, se debio a que se tuvo que cambiar de modelo en Ltspice, puesto que el que se utilizo en los otros casos, posee un unico polo del $A_{vol}$ .
+Tambien se puede ver el fenomeno de los dos polos, en la fase.Tal como se observa en el grafico \ref{fig=fasInvC3}, la fase medida y simulada varian entre  $180^{\circ}$ y $0^{\circ}$, lo que implica la existencia de dos polos.
+
+\subsubsection{Impedancia de entrada}
+
+
+
+\subsubsection{Observaciones del circuito}
+Si la $R_{3}$ valiese cero, $V^{+}$ y $V^{-}$, valen lo mismo independientemente de la frecuencia y de la tensión de entrada.De acuerdo a la ecuacion $V_{out}=A_{vol}(V^{+}-V^{-})$, la salida del OpAmp seria cero. Esto mismo se puede ver haciendo el limite tendiendo a cero de $R_{3}$ de la ecuación \ref{eq=poloDominante}, la salida del es cero independientemente de la entrada.
+\\
+La función de la $R_{4}$ de cargar al circuito, sin embargo no puede tener cualquier valo. Como la salida del circuito tiene una tensión $V_{o}$ independiente de la carga, si se conecta una resistencia de valor pequeño la corriente debería aumentar para así mantener la salida. En principio esa resistencia podría ser tan pequeña como se desee, entonces la corriente debería aumentar para mantener la tensión. Sin embargo los OpAmp reales tienen una máxima corriente de salida $i_{max}$, entonces se debe cumplir $R_{4}> \frac {V_{o}}{ i_{max}}$.
+
+
+
 
 \subsection{Circuito no inversor}
 
