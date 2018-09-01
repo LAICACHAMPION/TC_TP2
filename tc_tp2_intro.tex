@@ -8,6 +8,21 @@ En el presente informe se busca caracterizar el comportamiento de los amplificad
 
 El amplificador operacional, com\'unmente denominado \textit{op amp}, es un componente activo que cumple la funci\'on de amplificar en su salida lo m\'aximo posible la diferencia de potencial entre sus entradas positiva y negativa. Retroalimentando la salida al terminal positivo o negativo, pueden construirse circuitos que realicen operaciones matem\'aticas de gran utilidad como por ejemplo suma, multiplicaci\'on por una constante, derivaci\'on e integraci\'on. Otra aplicaci\'on que se puede mencionar de este componente es en dise\~no de filtros. \par
 
+\begin{figure}
+	\centering
+	
+	\begin{circuitikz} \draw
+	(0,0) node[op amp] (opamp) {}
+	(opamp.+) node[left] {$V^+$}
+	(opamp.-) node[left] {$V^-$}
+	(opamp.out) node[right] {$V_{out}$}
+	(opamp.up) ++ (0,.5) node[above]{$V_{CC} ^+$} -- (opamp.up)
+	(opamp.down) ++ (0,-.5) node[below]{$V_{CC} ^-$} -- (opamp.down)
+	;\end{circuitikz}
+	
+	\caption{Amplificador operactional con entrada inversora $V^-$, entrada no inversora $V^+$, salida $V_{out}$, alimentaci\'on positiva $V_{CC} ^+$ y alimentaci\'on negativa $V_{CC} ^-$}
+\end{figure}
+
 \todo[inline]{dibujito lindo de un opamp que tenga bien indicado que es cada terminal. Decir que as\'i le vamos a decir a los terminales en todo el tp}
 
 La ecuaci\'on fundamental de un operacional ideal es:
@@ -41,7 +56,7 @@ Si bien la respuesta en frecuencia de un \textit{op amp} no presenta un \'unico 
 
 
 \subsection{Alimentaci\'on y saturaci\'on}
-Como ya se mencion\'o, el amplificador operacional es un componente activo. Para que funcione se lo debe alimentar por $V_{cc}^+$ y $V_{cc}^-$ con una tensi\'on continua indicada en la hoja de datos del componente, que suele ser de alrededor de $\pm 15V$. En funci\'on del valor de $V_{cc}$, se deteminar\'a el rango de tensiones que puede tener $V_{out}$, fuera del cual el comportamiento del operacional deja de ser lineal. Este intervalo suele tomarse como $(V_{cc}^-, V_{cc}^+)$, con un cierto margen en ambos extremos (por ejemplo, si $V_{cc}=15V$, no deber\'ia considerarse que el circuito tendr\'a un comportamiento lineal m\'as all\'a de $12V$ o $13V$).
+Como ya se mencion\'o, el amplificador operacional es un componente activo. Para que funcione se lo debe alimentar por $V_{CC} ^+$ y $V_{CC} ^-$ con una tensi\'on continua indicada en la hoja de datos del componente, que suele ser de alrededor de $\pm 15V$. En funci\'on del valor de $V_{CC}$, se deteminar\'a el rango de tensiones que puede tener $V_{out}$, fuera del cual el comportamiento del operacional deja de ser lineal. Este intervalo suele tomarse como $(V_{CC} ^-, V_{CC} ^+)$, con un cierto margen en ambos extremos (por ejemplo, si $V_{CC}=15V$, no deber\'ia considerarse que el circuito tendr\'a un comportamiento lineal m\'as all\'a de $12V$ o $13V$).
 
 \todo[inline]{grafiquito de saturacion vcc y bla}   
 
