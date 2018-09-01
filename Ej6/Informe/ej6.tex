@@ -30,7 +30,7 @@ Según la datasheet mencionada anteriormente, deben mencionarse ciertas consider
 \end{itemize}
 
 Es importante hacer notar que una baja impedancia de salida se corresponde con un circuito emisor de señal como es el caso de un sensor de temperatura. Esto es así porque si la señal emitida en tensión deberá ser recibida por otro circuito que interpretará o modificará la señal recibida, y si la impedancia de entrada del circuito receptor fuera más baja que la de salida del emisor, entonces
-siendo z1 la impedancia de salida del emisor y z2 la impedancia de entrada del receptor, por divisor de tensión:
+siendo z1 la impedancia de salida del emisor y z2 la impedancia de entrada del receptor, basándonos en el teorema de Thevenin, se realiza un divisor de tensión:
 $V_o$ = $\frac{z_{2}}{z_{1}\text{+}z_{2}}$ $V_i$\par
 Donde $V_i$ es la tensión de entrada y $V_o$ la de salida. Si se asume que la potencia se mantiene constante en el traspaso entre los dos circuitos, se aprecia de aquí que si |z1|«|z2| y 1«|z2|, entonces $\frac{z_{2}}{z_{1}\text{+}z_{2}}\approx 1$, con lo cual la tensión de salida del circuito emisor original sería equivalente a la tensión de entrada del circuito receptor, por lo que la señal sería recibida correctamente en valor. \par
 Es por esto que se intentará obtener una impedancia de entrada de nuestro circuito adaptador mucho mayor a la impedancia de salida de 0.1$\ohm$ del LM35.
@@ -65,7 +65,7 @@ Para realizar la transformación lineal sobre la salida del LM35, se decidió ut
 	\label{fig:ej6_adder}
 \end{figure}
 
-El cual se resolverá por superposición (suponemos que el opamp está operando en su zona lineal) para mostrar que cumple con la necesidad de la multiplicación y la resta necesarias:
+El cual se resolverá por superposición (suponemos que el opamp está operando en su zona lineal) para mostrar que efectivamente realiza la transformación requerida:
 \begin{itemize}
 \item Pasivamos la fuente Vi1, dejando un no inversor:
 \begin{figure}[H]	%vi1 pasivada
@@ -88,7 +88,7 @@ Entonces Vout'' = $-\frac{R2}{R1}\cdot$Vi1
 \item Obtenemos la salida como la superposición de los dos estados calculados anteriormente:\par
 Vout = Vout' + Vout'' = $(1+\frac{R2(R1+R3)}{R1R3})\cdot$Vi2 $-\frac{R2}{R1}\cdot$Vi1\par
 
-Si Vi1 es una entrada continua positiva de valor Vs+ y Vi2 es la salida del LM35, entonces, para cumplir con y = mx + b y la solución al sistema de ecuaciones mencionada anteriormente: \par
+Si Vi1 es una entrada continua positiva de valor Vs+ y Vi2 es la salida del LM35, entonces, para cumplir tanto con y = mx + b como con la solución al sistema de ecuaciones mencionada anteriormente: \par
 	 \begin{equation}
   	   \left\{
 	  	    \begin{array}{ll}
@@ -99,7 +99,7 @@ Si Vi1 es una entrada continua positiva de valor Vs+ y Vi2 es la salida del LM35
  	\end{equation}
 
  	
- 	Por lo que como Vs+ será la alimentación del LM35 y dados los requerimientos del mismo se podrá alimentar en el rango recomendado con cualquier valor de tensión de entre 4V y 30V, si se elige Vs+ = 7V, \par
+ 	Por lo que si Vs+ es la alimentación del LM35 y, dado que el mismo se podrá alimentar con cualquier valor de tensión que caiga en el rango recomendado de entre $4V$ y $30V$, si se elige Vs+ = $7V$, \par
 
  El sistema queda definido como:
  		 \begin{equation}
@@ -125,8 +125,8 @@ Los \underline{diodos Zener} suelen usarse para protección de circuitos y puede
 	\label{fig:ej6_zener_diode_curva}
 \end{figure}
 
-De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_z$, la demanda de corriente por parte del diodo aumentará exponencialmente. Es aquí cuando recordamos una de las condiciones de la subsección \nameref{condiciones}: La corriente de salida del LM35 tomará un valor máximo de 10mA. Esto deberá ser tenido en cuenta cuando se presente la implementación final del circuito. \par
-De esta manera, se buscará que los valores de $V_f$ y $V_z$ sean tales que la demanda de corriente sea tan alta luego de los mismos que la tensión tenga que caer a estos valores para que se logre suplir. De esta manera, se muestra gráficamente la tensión de salida en función de la tensión de entrada:
+De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_z$, la demanda de corriente por parte del diodo aumentará exponencialmente. Es aquí cuando recordamos una de las condiciones de la subsección \nameref{condiciones}: La corriente de salida del LM35 tomará un valor máximo de 10mA. Esto deberá ser tenido en cuenta cuando se presente la implementación final del circuito, junto con la salida de corriente máxima del opamp a utilizar para la transformación lineal.\par
+De esta manera, se buscará que los valores de $V_f$ y $V_z$ sean tales que la demanda de corriente sea tan alta luego de los mismos que la tensión de salida no pueda estos valores para que se logre suplir. De esta manera, se muestra gráficamente la tensión de salida en función de la tensión de entrada:
 
 \begin{figure}[H]	%curva diodo zener
 	\centering
@@ -135,7 +135,7 @@ De esta manera, se buscará que los valores de $V_f$ y $V_z$ sean tales que la d
 	\label{fig:ej6_zener_diode_efecto}
 \end{figure}
 
-Así es como se observa que $V_f$ = -0.7V y $V_z$$\approx$6V. Cabe destacar que el valor de $V_z$ es aproximado a 6V porque el valor no podrá ser excedido en absoluto como restricción de protección, por lo que $V_z<6V$.
+Así es como se observa que $V_f$ = -0.7V y $V_z$$\approx$6V. Cabe destacar que el valor de $V_z$ es aproximado a 6V porque el valor no podrá ser excedido en absoluto como restricción de protección, por lo que $V_z<6V$. Se elige un valor $V_z= 5.6V$.
 
 \subsection{Calibración del sensor}
 \label{Calibration}
@@ -192,12 +192,11 @@ Siguiendo los pasos del método de calibración de la sección \nameref{Calibrat
 \begin{figure}[H]	%circuito total
 	\centering
 	\includegraphics[scale=0.4]{imagenes/sensor_calibrado.png}
-	\caption{Circuito calibrado}
+	\caption{Circuito calibrado. CH2:Entrada del circuito con la rampa de calibracion. CH1: Salida del circuito calibrado. }
 	\label{fig:ej6_sensor_calibrado}
 \end{figure}
 
 De esta manera, se demuestra que el escalamiento y = 50 *x -17.5 se cumple con el circuito obtenido y el método de calibración es adecuado. \par
 Se procedió a medir la temperatura con un tester del paniol y el LM35 con el osciloscopio y se verificó que las salidas coincidían.\par
 Las ventajas del circuito implementado son predominantes en su bajo coste, ya que se utilizan pocas resistencias y un sólo integrado, en detrimento de la falta de independencia entre los presets y el factor que ajustan a la hora de calibrar. 
-
 \end{document}
