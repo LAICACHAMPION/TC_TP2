@@ -14,14 +14,16 @@ magMedida=20*log10(c_m(:,3)./c_m(:,2));
 
 maginitud=figure('Name','Bode magitud','NumberTitle','off');
 
-semilogx(c_m(:,1).*1000,magMedida,'LineWidth',4);
+semilogx(c_m(:,1).*1000,magMedida,'-o');
 hold on;
 semilogx(wout,mag,'LineWidth',3);
 semilogx(c_s(:,1),c_s(:,2),'LineWidth',2);
-title(titulo);
-xlabel('Frecuencia (Hz)');
-ylabel('Magnitud (dB)');
-legend('Medición','Calculo','Simulación');
+formataxes(titulo, 'Frecuencia (Hz)', 'Mangnitud (dB)', ... % titulo y ejes
+                    'Medici\''on','Simulaci\''on ','C\''alculo')% legends
+%title(titulo);
+%xlabel('Frecuencia (Hz)');
+%ylabel('Magnitud (dB)');
+%legend('Medición','Calculo','Simulación');
 if guardar=='save'
 saveas(maginitud,strcat(titulo,'_mag','.png'));
 end
@@ -30,15 +32,17 @@ hold off;
 
 fase=figure('Name','Bode fase','NumberTitle','off');
 
-semilogx(c_m(:,1).*1000,c_m(:,4),'LineWidth',4);
+semilogx(c_m(:,1).*1000,c_m(:,4),'-o');
 hold on;
 semilogx(wout,phase,'LineWidth',3);
 semilogx(c_s(:,1),c_s(:,3),'LineWidth',2);
-title(titulo);
+%title(titulo);
 grid on;
-ylabel('Fase (°)');
-xlabel('Frecuencia (Hz)');
-legend('Medición','Calculo','Simulación');
+%ylabel('Fase (°)');
+%xlabel('Frecuencia (Hz)');
+%legend('Medición','Calculo','Simulación');
+formataxes(titulo, 'Frecuencia (Hz)','Fase (°)', ... % titulo y ejes
+                    'Medici\''on','Simulaci\''on ','C\''alculo')% legends
 if guardar=='save'
 saveas(fase,strcat(titulo,'_fase','.png'));
 end
