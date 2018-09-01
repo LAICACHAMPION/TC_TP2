@@ -1,0 +1,59 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+\section{Introducci\'on}
+
+En el presente informe se busca caracterizar el comportamiento de los amplificadores operacionales, tanto de forma anal\'itica como emp\'irica y con la ayuda de \textit{software} de simulaci\'on. Se estudiar\'a c\'omo su presencia afecta la respuesta en frecuencia e impedancia de entrada de varios circuitos, as\'i como sus par\'ametros caracter\'isticos. Por \'ultimo, se dise\~nar\'an dos circuitos de aplicaci\'on que hacen uso de operacionales: un pedal de distorsi\'on y un sensor de temperatura. \par
+
+El amplificador operacional, com\'unmente denominado \textit{op amp}, es un componente activo que cumple la funci\'on de amplificar en su salida lo m\'aximo posible la diferencia de potencial entre sus entradas positiva y negativa. Retroalimentando la salida al terminal positivo o negativo, pueden construirse circuitos que realicen operaciones matem\'aticas de gran utilidad como por ejemplo suma, multiplicaci\'on por una constante, derivaci\'on e integraci\'on. Otra aplicaci\'on que se puede mencionar de este componente es en dise\~no de filtros. \par
+
+\todo[inline]{dibujito lindo de un opamp que tenga bien indicado que es cada terminal. Decir que as\'i le vamos a decir a los terminales en todo el tp}
+
+La ecuaci\'on fundamental de un operacional ideal es:
+
+\[ V_{out} = A_0 \cdot (V^+ - V^-) \]
+
+Como el prop\'osito de este componente es amplificar la diferencia de potencial $V^+ - V^-$, la ganancia a circuito abierto del operacional $A_0$ debe ser lo m\'as grande posible.
+
+
+\subsection{Modelo ideal}
+Si el objetivo de tener un \textit{op amp} en un circuito es amplificar lo m\'aximo posible la diferencia de potencial entre la entrada positiva y la negativa, entonces la primera aproximaci\'on que se puede hacer de su comportamiento es que la amplificaci\'on que se produce es infinita, es decir que $A_0=\infty$. Para que $V_{out}$ no diverja, surge de esta consideraci\'on que $V^- = V^+$. \par
+
+Si bien en la mayor\'ia de los casos estudiados en este trabajol este modelo no ser\'a suficiente para realizar un an\'alsis en profundidad, puede resultar \'util para tener una idea b\'asica del comportamiento del circuito, que en la pr\'actica se cumplir\'a en un cierto rango de frecuencias (por consideraciones que se mencionar\'an luego). \par
+
+Una consecuencia interesante de esta suposici\'on es que si una de las entradas est\'a conectada a tierra, en la otra entrada se replicar\'a este potencial de referencia. De esta forma, se tendr\'a en el circuito lo que se conoce como tierra virtual, ya que existir\'a un punto que si bien no est\'a conectado con tierra, tiene su mismo potencial. \par
+
+\todo[inline]{dibujo de circuito con tierra virtual, el mas boludo de todos ya fue vieja no me importa nada aguante el paco}
+
+Otra de las suposiciones necesarias para considerar al operacional como ideal es que no hay corriente entre $V^+$ y $V^-$, es decir, que la impedancia entre esos dos puntos es infinita. En general, esta suposici\'on no se dejar\'a de lado incluso cuando se admita que la diferencia de potencial no es nula, ya que el valor de esta impedancia est\'a t\'ipicamente en el orden de los $M\Omega$.\par
+
+
+\subsection{Otros modelos}
+
+Si se quisiese mejorar el modelo anterior, la primera correcci\'on que se podr\'ia hacer es tener en cuenta que la ganancia efectivamente no es infinita, si bien su valor suele ser considerablemente grande (t\'ipicamente alrededor de los $100dB$). \par
+
+En algunos casos (por ejemplo, cuando se trabaja en frecuencias de cientos de $kHz$ o superiores, o circuitos retroalimentados con ganancia alta), considerar a $A_0$ constante no llevar\'a a resutados satisfactorios. Es m\'as conveniente recurrir en este caso al modelo de polo dominante.\par
+
+Si bien la respuesta en frecuencia de un \textit{op amp} no presenta un \'unico polo sino varios, en general existir\'a uno en particular que ser\'a el que m\'as visiblemente altere el comportamiento del circuito. Si se quiere tener en cuenta el filtro pasabajos que impone el operacional, entonces se deber\'a reemplazar $A_0$ por $\frac{A_0}{s+\omega_p}$. En esta expresi\'on, $\omega_p$ es la frecuencia angular del polo dominante. El valor que se puede encontrar en la hoja de datos es usualmente el del \textit{bandwidth product}: $BWP=A_0 \cdot \omega_p$. Este par\'ametro permite obtener para una ganancia ideal $G$ constante cu\'al ser\'a el valor de la frecuencia de corte $\omega_p'$ que imponga el operacional, ya que tambi\'en se cumplir\'a que $G \cdot \omega_p' = BWP$.\par
+
+ Esto \'ultimo es, sin embargo, una aproximaci\'on proveniente de asumir que el valor de $A_0$ es constante para todas las frecuencias, lo cual no siempre puede considerarse cierto. Esto se debe a que lo suele preocupar al fabricante de un operacional no es que este valor sea constante, si no que se mantenga lo suficientemente elevado como para que pueda considerarse infinito. \par
+
+
+\subsection{Alimentaci\'on y saturaci\'on}
+Como ya se mencion\'o, el amplificador operacional es un componente activo. Para que funcione se lo debe alimentar por $V_{cc}^+$ y $V_{cc}^-$ con una tensi\'on continua indicada en la hoja de datos del componente, que suele ser de alrededor de $\pm 15V$. En funci\'on del valor de $V_{cc}$, se deteminar\'a el rango de tensiones que puede tener $V_{out}$, fuera del cual el comportamiento del operacional deja de ser lineal. Este intervalo suele tomarse como $(V_{cc}^-, V_{cc}^+)$, con un cierto margen en ambos extremos (por ejemplo, si $V_{cc}=15V$, no deber\'ia considerarse que el circuito tendr\'a un comportamiento lineal m\'as all\'a de $12V$ o $13V$).
+
+\todo[inline]{grafiquito de saturacion vcc y bla}   
+
+
+\subsection{Otros par\'ametros del \textit{op amp}}
+Si bien el modelo tratado hasta ahora es de gran utilidad para simplificar el comportamiento de un operacional, este componente posee tambi\'en otras caracter\'isticas que no est\'an consideradas en el mismo, y que en ciertas circunstancias pueden afectar visiblemente la respuesta de un circuito.\par
+
+Uno de ellos es el \textit{slew rate} o velocidad de subida. Este par\'ametro indica la m\'axima $\frac{\partial V_{out}}{\partial t}$ que soporta el operacional. Si la se\~nal que entra exige una tasa de cambio mayor que el $SR$ del \textit{op amp}, la salida estar\'a deformada y no podr\'a considerarse que se cumple el comportamiento lineal del circuito. Si consideramos que $V_{out}$ es una funci\'on senoidal de amplitud $V_{max}$ y frecuencia $f$, derivando obtenemos que debemos asegurar en todo momento que se cumpla $SR > V_{max} \cdot 2\pi f$. \par
+
+Otra informaci\'on que proporciona el fabricante y que en algunos casos puede resultar relevante son la corriente de \textit{bias} y la tensi\'on de \textit{offset}. Estos par\'ametros indican respectivamente la corriente que circula entre $V^+$ y $V^-$ y la tensi\'on entre ellos. Sus valores normalmente se encuentran en el orden de los $nA$ y de los $mV$. \par
+
+ 
+
+
+\end{document}
