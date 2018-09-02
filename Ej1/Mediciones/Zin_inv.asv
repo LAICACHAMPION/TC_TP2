@@ -1,0 +1,40 @@
+clear all;
+close all;
+
+A0=10e4; %%dato sacado del grafico
+wp=2*pi*12; %%frecuencai da corte obtenida del datasheet
+sr=0.5e6;
+s=tf('s');
+r1=5e3;
+r3=5e3;
+r2=50e3;
+r4=20e3;
+
+H=((r2*r3)+r1*(r3*(Av+1)+r2))/(r3*(Av+1)+r2);
+w=[500*2*pi:10:500000*2*pi];
+
+
+[mag,phase,wout] = bode(H,w);
+mag=squeeze(mag);
+phase=squeeze(phase);
+
+Dm=csvread('circuito_inv_caso1_Zin_100k.csv');
+Ds=csvread('circuito_inv_caso1_Zin_sim.csv');
+R=100000;
+ir=Dm(:,2)-(Dm(:,3).*exp(Dm(:,4).*((1i*pi)/180)));
+ir=ir./R;
+z=(Dm(:,3).*exp(Dm(:,4).*((1i*pi)/180)))./ir;
+figure;
+semilogx(Dm(:,1).*1000,abs(z))
+hold on;
+semilogx(Ds(:,1),10.^(Ds(:,2)./20));
+semilogx(Ds(:,1),10.^(Ds(:,2)./20));
+hold off;
+
+figure
+hold on;
+
+semilogx(Dm(:,1).*1000,angle(z).*(180/pi)+180)
+semilogx(Ds(:,1),Ds(:,3)+360);
+
+hold off;

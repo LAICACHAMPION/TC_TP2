@@ -272,6 +272,72 @@ La diferencia que se observa entre lo simulado y lo medio, se debio a que se tuv
 Tambien se puede ver el fenomeno de los dos polos, en la fase.Tal como se observa en el grafico \ref{fig=fasInvC3}, la fase medida y simulada varian entre  $180^{\circ}$ y $0^{\circ}$, lo que implica la existencia de dos polos.
 
 \subsubsection{Impedancia de entrada}
+\todo{que onda la fase, desir o hacer algo}
+
+Reemplazando las ecuaciones \ref{eq=CircuitoA3} , \ref{eq=CircuitoA4} en \ref{eq=CircuitoA5} y despejando $V_{i}$ de la ecucaión \ref{eq=CircuitoA2} y reemplazando, obtengo la siguiente expresión de la imepedancia de entrada del circuito, con $A_{vol}$ finito.
+
+\begin{equation}
+Z_{in}=\frac{R_{2} R_{3}+ R_{1} (R_{3}(A_{vol} +1)+R_{2} )}{R_{3}(A_{vol}+1)+R_{2}}\label{eq=zInv}
+\end{equation}
+
+La impedancia ideal del circuito es
+
+$$ \lim_{A_{vol}\to\infty} \big( \ref{eq=zInv} \big) =R_{1} $$
+
+Para la medición de la impedancia de entrada del circuito, se colocó un resistencia de $100K \Omega$ en serie a la entrada, se midió la tensión antes y después de ella. De esta manera haciendo la resta fesoria de las tensiones y conociendo la resistencia, se obtuvo la corriente. Luego dividiendo la tensión después de la resistencia por la corriente se halló la impedancia.
+\\
+También se tuvieron las mismas precauciones que en la medición de la respuesta en frecuencia, sobre las alinealidades.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_inv_r_c1}
+\caption{Impedancia}\label{fig=zInvZc1}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_inv_f_c1}
+\caption{Fase} \label{fig=zInvFc1}
+\end{subfigure}
+\caption{Caso 1 - superposición Impedancia de entrada  medida, simulada, calculada}
+\end{figure}
+
+Como se observa en el grafico \ref{fig=zInvZc1} , lo calculado tiene un comportamiento distinto al simulado y medido, esto se debe a que  la ecuación de  impedancia de entrada no tiene en consideración las dos puntas del osciloscopio utilizadas para medir la caída de tensión en la resistencia. Debido a esto, en la simulación se agregaron la puntas del osciloscopio, modeladas como el paralelo de un capacitor de $100uf$ y una resistencia de $1M \Omega $, ya que se midió con las puntas en por uno.
+En cuanto a la fase, se observa en el grafico \ref{fig=zInvFc1}, que se produce un salto de fase en el simulado, dicho salto en realidad no ocurre, debido a que es de $360^{\circ}$.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_inv_r_c2}
+\caption{Impedancia}\label{fig=zInvZc2}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_inv_f_c2}
+\caption{Fase} \label{fig=zInvFc2}
+\end{subfigure}
+\caption{Caso 2 - superposición Impedancia de entrada  medida, simulada, calculada}
+\end{figure}
+
+Tal como el caso anterior, se observa diferencia entre los calculado y lo simulada, medido. Esto se debe también a las puntas. Sin embargo en este caso no se observa sobre pico, esto se debe a que las frecuencias en este caso son mayores y los efectos de las puntas se manifiesta antes.
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_inv_r_c3}
+\caption{Impedancia}\label{fig=zInvZc3}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_inv_f_c3}
+\caption{Fase} \label{fig=zInvFc3}
+\end{subfigure}
+\caption{Caso 3- superposición Impedancia de entrada  medida, simulada, calculada}
+\end{figure}
+
+Tambien, en este caso las puntas alteraron significativamente las mediciones, tal como se observa en el grafico \ref{fig=zInvZc3}, la impedancia de entrada desciende en vez de aumentar.
+
+\todo{desir algo mas, ver que hago con los graficos
+}
+
 
 
 
@@ -284,6 +350,41 @@ La función de la $R_{4}$ de cargar al circuito, sin embargo no puede tener cual
 
 
 \subsection{Circuito no inversor}
+
+\todo{poner imagen del circuito}
+
+\subsubsection{Caso $A_{vol}$ infinito}
+Considerando que a traves de $V^{+}$ y $V^{-}$, no circula corrinte. Devido a  $A_{vol}$ infinito, $V^{+}=V^{-}$.
+\\
+Aplicando la formula de divisor de tención,
+
+\begin{gather}
+V^{+}=V^{-}\\
+\frac {V^{+}} {R_{4}}=\frac{V_{in}}{R_{3}+R_{4}}
+
+\end{gather}
+
+\begin{equation}
+\frac{V_{out}}{V_{in}}= -\frac{R_{2}}{R_{1}} \label{eq=CircuitoAideal}
+\end{equation}
+
+
+
+\subsubsection{Caso $A_{vol}$ finito}
+\subsubsection{Caso $A_{vol}$  con polo dominante}
+\subsubsection{Alinealidades del Amplificador Operacional}
+\subsubsection{Dc sweep}
+\subsubsection{Respuesta en frecuencia}
+\subsubsection{Impedancia de entrada}
+\subsubsection{Observaciones del circuito}
+
+\subsection{Conclusión}
+
+
+
+
+
+
 
 
 \end{document}
