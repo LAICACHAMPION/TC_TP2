@@ -181,16 +181,48 @@ El SR no afecta el desempe\~no del pedal como instrumento ya que sus efectos se 
 
 $R_4$ y $R_3$ controlan la m\'axima ganancia del amplificador. La funci\'on del potenci\'ometro $R_9$ es permitirle al usuario tener control sobre el nivel de distorsi\'on variando la ganancia \todo{agregar referencia a donde expliquemos que mas ampificaci\'on implica mas distorsi\'on}, pero sin permitirle aumentarla tanto que el amplificador sature.
 
-\begin{figure}
+\begin{figure}[H]
 	\includegraphics[scale=.4]{imagenes/bode_opamp_simulacion_300mv.png}
 	\missingfigure{hacer lindo en matlab la superposicion de lo calculado, lo simulado, y lo medido}
 	\caption{Transferencia del amplificador}
 	\label{fig:ej5_transferencia_opamp}
 \end{figure}
 
-
+\subsection{Implementación del circuito y valores elegidos}
+\begin{figure}[H]
+	\includegraphics[scale=.4]{imagenes/circuito_final.png}
+	\caption{Circuito Final con valores}
+	\label{fig:ej5_circuito_final}
+\end{figure}
 \subsection{Simulaciones}
 
+Se busca la respuesta en frecuencia del circuito cuando la amplificación antes de la distorsión es máxima. La amplificación o atenuación de las distintas frecuencias nos darán así una idea de que tan cuadrada la onda resultante resultará. Esto se debe a que a mayor amplificación, el corte en tensión (que es a un valor fijo determinado por los diodos) se realizara en la parte más baja de la senoidal y por ende la parte con mayor pendiente. \par
+En principio, el pedal debería tener una respuesta en frecuecia característica de un filtro pasabanda, siendo las frecuencias mayormente amplificadas aquellas que se encuentran dentro del rango audible (entre 20Hz y 20kHz).\par
+Debe hacerse notar, sin embargo, que el rango de frecuencias fundamentales para una guitarra eléctrica es de 80 Hz a 1.2kHz, pero que sus armónicos más importantes llegan a los 8kHz. Es por esto que la prioridad del circuito diseñado para el pedal será la de amplificar completamente hasta los 10kHz y luego ya se podrá comenzar a atenuar. La frecuencia de corte del pasa-bajos de nuestro circuito, por ende, estará cerca de este último valor.\par
+Para el pasa-altos, la frecuencia de corte estará dada por los 20Hz.
+
+\begin{figure}[H]
+	\includegraphics[scale=.4]{imagenes/Bode_simulacion.png}
+	\caption{Bode simulado para la salida del circuito}
+	\label{fig:ej5_Bode_simulacion}
+\end{figure}
+ 
+Se hace notar que la fase permanece aproximadamente constante en todo el rango de frecuencias de trabajo, por lo que no habrá desfasaje con la señal original para distintas frecuencias y el sonido se conservará "puro". Es decir, el sistema no distorsionará sin los diodos a las frecuencias que caen dentro del rango operativo de una guitarra.
+
+Por otro lado, la salida del opamp antes de pasar por el pasabajos está dada por:
+\begin{figure}[H]
+	\includegraphics[scale=.4]{imagenes/bode_opamp_simulacion_300mv.png}
+	\caption{Bode simulado para la salida del opamp}
+	\label{fig:ej5_bode_opamp_simulacion_300mv}
+\end{figure}
+
 \subsection{Mediciones}
+
+\begin{figure}[H]
+	\includegraphics[scale=.4]{imagenes/Bode_simulacion.png}
+	\caption{Bode simulado}
+	\label{fig:ej5_Bode_simulacion}
+\end{figure}
+
 
 \end{document}
