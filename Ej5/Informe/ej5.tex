@@ -207,7 +207,7 @@ Para el pasa-altos, la frecuencia de corte estará dada por los 20Hz.
 	\label{fig:ej5_Bode_simulacion}
 \end{figure}
  
-Se hace notar que la fase permanece aproximadamente constante en todo el rango de frecuencias de trabajo, por lo que no habrá desfasaje con la señal original para distintas frecuencias y el sonido se conservará "puro". Es decir, el sistema no distorsionará sin los diodos a las frecuencias que caen dentro del rango operativo de una guitarra.
+Se hace notar que la fase permanece aproximadamente constante en todo el rango de frecuencias de trabajo, por lo que no habrá desfasaje con la señal original para distintas frecuencias y el sonido se conservará "puro". Es decir, el sistema no distorsionará sin los diodos a las frecuencias que caen dentro del rango operativo de una guitarra.\par
 
 Por otro lado, la salida del opamp antes de pasar por el pasabajos está dada por:
 \begin{figure}[H]
@@ -218,11 +218,16 @@ Por otro lado, la salida del opamp antes de pasar por el pasabajos está dada po
 
 \subsection{Mediciones}
 
+Los datos a partir de los cuales se construyó el siguiente bode pueden encontrarse en el anexo.
+
 \begin{figure}[H]
-	\includegraphics[scale=.4]{imagenes/Bode_simulacion.png}
-	\caption{Bode simulado}
-	\label{fig:ej5_Bode_simulacion}
+	\includegraphics[scale=.4]{imagenes/bode_mediciones.png}
+	\caption{Bode medido}
+	\label{fig:ej5_bode_mediciones}
 \end{figure}
 
+Se aprecia una respuesta en frecuencia muy similar a la simulada, con una ganancia máxima de 21 dB y un ancho de pasabanda que se corresponde con la simulación, pudiéndose notar que la frecuencia de corte del pasa-altos resulta ser efectivamente un valor no superior a los 80 Hz y para el pasa-bajos la frecuencia de corte está claramente en 10kHz o en un valor superior a esta. 
+
+Sin embargo, se puede observar que el desfasaje no resulta ser la constante aproximada que se había mencionado en las simulaciones, por lo que hay una distorsión en fase no deseada. 
 
 \end{document}
