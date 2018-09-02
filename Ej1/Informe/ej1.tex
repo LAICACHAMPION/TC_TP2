@@ -79,7 +79,7 @@ Operando algebraicamente, se obtiene:
 \begin{equation}
 \frac{V_{out}}{V_{in}}= - \frac{A_{vol} \cdot R_{2} \cdot R_{3}}{A_{vol}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }\label{eq=gananciaAfinito}
 \end{equation}
-Observacion
+\textit{Observacion:}
 
 $$ \lim_{A_{vol}\to\infty} \big( \ref{eq=gananciaAfinito} \big) = -\frac{R_{2}}{R_{1}} $$
 La expresion se redujo a la ganancia del circuito, con el apmlificador operacional ideal\\ \big(\ref{eq=CircuitoAideal}\big).
@@ -355,28 +355,122 @@ La función de la $R_{4}$ de cargar al circuito, sin embargo no puede tener cual
 
 \subsubsection{Caso $A_{vol}$ infinito}
 Considerando que a traves de $V^{+}$ y $V^{-}$, no circula corrinte. Devido a  $A_{vol}$ infinito, $V^{+}=V^{-}$.
-\\
-Aplicando la formula de divisor de tención,
 
 \begin{gather}
-V^{+}=V^{-}\\
-\frac {V^{+}} {R_{4}}=\frac{V_{in}}{R_{3}+R_{4}}
-
+V^{+}=V^{-}\label{eq=niA1} \\
+\frac{V^{+}}{R_{4}} =  \frac{V_{in}}{R_{3}+R_{4}}\label{eq=niA2}\\
+\frac {V^{-}} {R_{1}}=\frac{V_{out}}{R_{1}+R_{2}}\label{eq=niA3}
 \end{gather}
 
+Reemplazando \ref{eq=niA2} , \ref{eq=niA3} en \ref{eq=niA1} y operando, se obriene la ganacia del circuito ideal
+
 \begin{equation}
-\frac{V_{out}}{V_{in}}= -\frac{R_{2}}{R_{1}} \label{eq=CircuitoAideal}
+\frac{V_{out}}{V_{in}}= \frac {R_{4}(R_{1}+R_{2})}{R_{1}(R_{3}+R_{4})} \label{eq=niAideal}
 \end{equation}
 
 
 
+
 \subsubsection{Caso $A_{vol}$ finito}
+Consideramos que la impedancia de entrada del OpAmp es muy alta, por ende no circula corriente entre $V^{+}$ y $V^{-}$.
+
+\begin{equation}
+V_{out}=A_{vol}(V^{+}-V^{-})\label{eq=niAi1} 
+\end{equation}
+
+Reemplazando \ref{eq=niA2} , \ref{eq=niA3} en \ref{eq=niAi1} y operando, se obriene la ganacia del circuito con $A_{vol}$ finito.
+
+\begin{equation}
+ \frac{V_{out}}{V_{in}}=\frac{A_{vol}R_{4}(R_{1}+R_{2})}{(R_{1}+R_{2}+A_{vol}	R_{1})(R_{3}+R_{4})}\label{eq=niAifinito} 
+\end{equation}
+
+\textit{Observacion:}
+
+$$ \lim_{A_{vol}\to\infty} \big( \ref{eq=niAifinito} \big) = \frac {R_{4}(R_{1}+R_{2})}{R_{1}(R_{3}+R_{4})} $$
+La expresión se redujo a la ganancia del circuito con el apmlificador operacional ideal \big( \ref{eq=niAideal} \big).
+
+
 \subsubsection{Caso $A_{vol}$  con polo dominante}
+\begin{equation}
+A_{vol }=\frac{A_{0}}{1+\frac{s}{W_{p}}}\label{eq=AvolWpNi}\\
+\end{equation} 
+Reemplazando \ref{eq=AvolWpNi} en \ref{eq=niAifinito}  y operando, se obtine la ganancia del circuito en funcion de la frecuencia
+
+\begin{equation}
+ \frac{V_{out}}{V_{in}}=\frac{A_{vol}R_{4}(R_{1}+R_{2})}{(R_{1}+R_{2}+A_{vol}	R_{1})(R_{3}+R_{4})}  \frac{1}{1 + \frac{S}{\frac{W_{p}(R_{1}(A_{0})+R_{2})}{R_{1}+R_{2}}}}\label{eq=AvolPoloNi}
+\end{equation}
+
+Despejando se obtiene la frecuencia de corte del circuito:
+
+\begin{equation}
+f_{P}=\frac{W_{p}(R_{1}(A_{0}+1)+R_{2})}{(R_{1}+R_{2})2 \pi } \label{eq=fpNi}
+\end{equation}
+
+A partir de las ecuaciones \ref{eq=AvolPoloNi}y\ref{eq=fpNi}, la tabla \ref{tab=lm324Carac} y de los valores de los componentes, se calculó siguiente tabla.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Caso &Ganancia ideal & Ganancia $A_{vol}$ finito & Frecuencia de corte\\
+\hline \hline
+1 & $8.8$ & 8.799 & 109$KHz$ \\ \hline
+2 & $1.6$ &  $1,599 $ &  600$KHz$  \\ \hline
+3 & $0.733$ &0.733 &1100$KHz$\\ \hline
+\end{tabular}
+\caption{Ganancia y frecuencia de corte del circuito.La ganancias es en veces.} 
+\label{tab=gananciayFrecCorteNi}
+\end{center}
+\end{table}
+Acontinuacion se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con  $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{real_ideal_mag_n}
+\caption{Compración del modulo de la respuesta en frecuencia de los tres casos}
+\end{figure}
+
+El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) = \frac {\mid Ganancia A_{vol}(w) -Ganancia A_{vol} inifinito \mid} {\mid Ganancia A_{vol} (w) \mid }$, de esta manera se obtuvieron los siguientes graficos:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{error_n}
+\caption{Error relativo porcentual, de izquierda a derecha Caso 1, Caso 2 y Caso 3} \label{fig=errorn}
+\end{figure}
+
+Tal como ocurrio en el circuito inversor, se puede usar la aproximacion del OpAmp como ideal cometiendo un erro menor que el $1\%$, a frecuencias una decada por devajo de la frecuencia de corte.
+
+
+
 \subsubsection{Alinealidades del Amplificador Operacional}
+Se tuvieron en consideracion las mismas alinealidades detalladas en el Circuito no inversor
+\todo{ver que hacer, si volarlo o no}
 \subsubsection{Dc sweep}
+La medición del dc sweep se realizó de la misma manera que el circuito inversor, mediante el osciloscopio y el generador de funciones.Tambien se alimento al OpAmp con $\pm 15 v$ y la tension de entrada vario en ese mismo rango.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{dc_sweep_n}
+\caption{Dc Sweep Medido} \label{fig=dcn}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.1\textwidth]{dc_sweep_n_sim}
+\caption{Dc Sweep Simulado, el grafico negro corresponde al Caso 1, el azul al Caso 2 y el rojo al Caso 3} \label{fig=dcnSim}
+\end{figure}
+
+Tal como se observa  en ambas figuras, se observa la saturacion del OpAmp, en los Casos 1 y 2. Esto se deve a su alta ganancias en comparacion a la tension de entrada.Para poder haver observado la saturación del caso 3, la tension de entrada deveria haver sido de  $\pm 25 v$ .
+Tambien se puede observa que la saturación no se da a la misma tension en las tensinoes de salidas positivas y las negativas.
+
+\todo{algo mas}
+
+
 \subsubsection{Respuesta en frecuencia}
 \subsubsection{Impedancia de entrada}
 \subsubsection{Observaciones del circuito}
+En el caso que $R_{3}$ valga cero, la ganancia del circuito se altera de la siguiente manera $ \frac{V_{out}}{V_{in}}=\frac {(R_{1}+R_{2})}{R_{1}}$, en contraposicion al caso del circuito inversor, la salida del OpAmp no es cero, y depende de la tension de entrada y la frecuencia. Tampoco la ganancia del circuito depende de la resistencias $R_{4}$.
+
 
 \subsection{Conclusión}
 

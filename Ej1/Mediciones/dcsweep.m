@@ -1,8 +1,8 @@
 clear all;
 close all;
-D1=csvread('dcsweep_ca_c1.csv');
-D2=csvread('dcsweep_ca_c2.csv');
-D3=csvread('dcsweep_ca_c3.csv');
+D1=csvread('dcsweep_n_c1.csv');
+D2=csvread('dcsweep_n_c2.csv');
+D3=csvread('dcsweep_n_c3.csv');
 D1=D1(:,2:3);
 D2=D2(:,2:3);
 D3=D3(:,2:3);
