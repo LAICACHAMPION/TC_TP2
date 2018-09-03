@@ -1,17 +1,15 @@
 * C:\Users\mlste\Documents\ITBA\6 Cuatrimestre\TC\TC_TP2\Ej3\Simulacion\ej3.asc
-XDUT feedback N002 vcc+ vcc- N004 tl081
+XDUT feedback N002 vcc+ vcc- N003 lf356
 XXD 0 N001 vcc+ vcc- out lf356
-R1 N001 N004 100k
+R1 N001 N003 100k
 C1 out N001 100n
-R3 N003 0 10
+R3 N002 0 10
 R4 feedback 0 10
-R2 feedback feedback 1Meg
-R5 N002 N003 1Meg
 V1 vcc+ 0 15v
 V2 0 vcc- 15v
-R6 out feedback 6k
+R6 out feedback 5k6
 .inc "opamp/tl081.mod"
 .inc "opamp/lf356.mod"
-.tran 0.01
+.tran 20
 .backanno
 .end
