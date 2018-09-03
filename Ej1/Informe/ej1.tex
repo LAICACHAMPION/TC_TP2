@@ -460,14 +460,146 @@ La medición del dc sweep se realizó de la misma manera que el circuito inverso
 \caption{Dc Sweep Simulado, el grafico negro corresponde al Caso 1, el azul al Caso 2 y el rojo al Caso 3} \label{fig=dcnSim}
 \end{figure}
 
-Tal como se observa  en ambas figuras, se observa la saturacion del OpAmp, en los Casos 1 y 2. Esto se deve a su alta ganancias en comparacion a la tension de entrada.Para poder haver observado la saturación del caso 3, la tension de entrada deveria haver sido de  $\pm 25 v$ .
+Tal como se observa  en ambas figuras, la saturacion del OpAmp, en los Casos 1 y 2. Esto se deve a su alta ganancias en comparacion a la tension de entrada.Para poder haver observado la saturación del caso 3, la tension de entrada deveria haver sido de  $\pm 25 v$ .
 Tambien se puede observa que la saturación no se da a la misma tension en las tensinoes de salidas positivas y las negativas.
+A partir de la pendiente de las rectas se puede inferir cual es la ganancia en veces del circuito.
 
 \todo{algo mas}
 
 
 \subsubsection{Respuesta en frecuencia}
+
+La ecuación \ref{eq=AvolPoloNi} es la función transferencia el circuito, como el polo de la función posee su parte real negativa y el grado del denominador es mayor que el numerador el sistema es BIBO estable. Por ende, para hallar la respuesta en frecuencia, vasta reemplazar $S=i2 \pi f$. Dicha función transferencia corresponde a un pasa bajos de primer orden, por ende se esperarían los siguientes comportamientos:
+\begin{itemize}  
+\item La fase varia entre $0^{\circ}$($0.1 f_{P}$) y $-90^{\circ}$($10 f_{P}$).
+\item La magnitud en $f_{P}$ cae 3dB y luego 20 dB por década.
+\end{itemize}  
+
+En la medición de la respuesta en frecuencia se tuvieron en consideración las alinealidades. Para evitar el crossover distorition se agregó un tensión de offset tal que la señal de entrada no pase por 0 v. Además se controló la amplitud de la señal de entrada para evitar la saturación y a medida que aumentaba la frecuencia, dicha amplitud se redujo para evitar el slew rate.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{slew-rate-n}
+\caption{Tension de entrada,slew rate} \label{fig=srn}
+\end{figure}
+
+La figura \ref{fig=srn} muestra la máxima tensión peak-to-peak de entrada, sin que haya slew rate. Sin embargo las mediciones se realizaron con tensiones menores a las indicadas en el gráfico, puesto que en él no se tiene en cuenta la saturación  y el offset.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-1_mag_n}
+\caption{Magnitud}\label{fig=magnC1}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-1_fase_n}
+\caption{Fase}
+\end{subfigure}
+\caption{Caso 1 - superposición respuesta en  frecuencia medida, simulada, calculada}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{montecarlo_n_c1}
+\caption{Montecarlo Caso-1} \label{fig=mcnC1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-2_mag_n}
+\caption{Magnitud}\label{fig=magnC2}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-2_fase_n}
+\caption{Fase}
+\end{subfigure}
+\caption{Caso 2 - superposición respuesta en  frecuencia medida, simulada, calculada}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{montecarlo_n_c2}
+\caption{Montecarlo Caso-1} \label{fig=mcnC2}
+\end{figure}
+
+En los casos 1 y 2, el comportamiento del circuito fue el esperado en cuanto a magnitud y fase. De los gráficos \ref{fig=magnC1} y \ref{fig=magnC2} obtuvimos las frecuencias de corte del circuito 96kHz y 700 kHz respectivamente. Ambas frecuencias no coinciden con las calculadas en la tabla \ref{tab=gananciayFrecCorteNi}. sin embargo dichas frecuencias de corte pertenecen a los intervalos marcados en los gráficos \ref{fig=mcnC1} y \ref{fig=mcnC2} , por ende podemos considerar que la diferencia se debe a la tolerancia de los componentes.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-3_mag_n}
+\caption{Magnitud}\label{fig=magnC3}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{Caso-3_fase_n}
+\caption{Fase}
+\end{subfigure}
+\caption{Caso 3 - superposición respuesta en  frecuencia medida, simulada, calculada}\label{fig=bodeC3}
+\end{figure}
+
+En el caso 3, el comportamiento del circuito no era el esperado, la fase varía entre $0^{\circ}$ y $-180^{\circ}$, y la ganancia cae  40 dB por década, tal como se observa en la figura \ref{fig=bodeC3}. Este comportamiento corresponde a un  pasa bajos de orden 2. Suponemos que esto se debe a que se está manifestando un segundo polo del $A_vol$.
+
 \subsubsection{Impedancia de entrada}
+
+Como no circuila corriente entre los terminales $V^{+}$ y $V^{-}$ del OpAmp, considerandolo ideal , con $A_{vol}$ finito y con polo dominante, la impedancia de entradar es la misma.
+
+\begin{equation}
+Z_{in}=R_{3} + R_{4}
+\end{equation}
+
+Para la medición de la impedancia de entrada se colocó una resistencia de 33K a la entrada del circuito, para los casos 1 y 2, para el caso 3 se utilizó una resistencia de 220 k. Estos valores se eligieron ya que el orden de magnitud coincide con el de la impedancia teórica del circuito.
+\\
+En la medición se tuvieron las mismas precauciones que en la respuesta en frecuencia, en cuanto a las alinealidades.
+
+
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_n_r_c1}
+\caption{Impedancia}\label{fig=znZc1}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_n_f_c1}
+\caption{Fase} \label{fig=znFc1}
+\end{subfigure}
+\caption{Caso 1 - superposición Impedancia de entrada  medida, simulada, calculada}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_n_r_c2}
+\caption{Impedancia}\label{fig=znZc2}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_n_f_c2}
+\caption{Fase} \label{fig=znFc2}
+\end{subfigure}
+\caption{Caso 2 - superposición Impedancia de entrada  medida, simulada, calculada}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_n_r_c3}
+\caption{Impedancia}\label{fig=znZc3}
+\end{subfigure}
+\begin{subfigure}[http]{0.49\textwidth}
+\includegraphics[width=\textwidth]{z_n_f_c3}
+\caption{Fase} \label{fig=znFc3}
+\end{subfigure}
+\caption{Caso 3 - superposición Impedancia de entrada  medida, simulada, calculada}
+\end{figure}
+
+En los tres casos se observa el mismo comportamiento, la impedancia en vez de mantenerse constante, tal como muestra el cálculo, decrece, como lo indica la simulación y lo medido. Esto se debe a que los cálculos no tienen en cuenta las puntas del osciloscopio (se midió con puntas por 10), que la simulación si las tiene. Las puntas se modelaron como el paralelo de una resistencia de 10M y un capacitor de 10pf. A pesar de la baja capacidad de la punta, a medida que la frecuencia aumenta la impedancia de la punta disminuye y como se conectaron en paralelo con el circuito, a medida que disminuía bajaba la impedancia.
+
+
 \subsubsection{Observaciones del circuito}
 En el caso que $R_{3}$ valga cero, la ganancia del circuito se altera de la siguiente manera $ \frac{V_{out}}{V_{in}}=\frac {(R_{1}+R_{2})}{R_{1}}$, en contraposicion al caso del circuito inversor, la salida del OpAmp no es cero, y depende de la tension de entrada y la frecuencia. Tampoco la ganancia del circuito depende de la resistencias $R_{4}$.
 

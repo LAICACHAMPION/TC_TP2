@@ -19,7 +19,7 @@ hold on;
 semilogx(wout,mag,'LineWidth',3);
 semilogx(c_s(:,1),c_s(:,2),'LineWidth',2);
 formataxes(titulo, 'Frecuencia (Hz)', 'Mangnitud (dB)', ... % titulo y ejes
-                    'Medici\''on','Simulaci\''on ','C\''alculo')% legends
+                    'Medici\''on','C\''alculo','Simulaci\''on ')% legends
 %title(titulo);
 %xlabel('Frecuencia (Hz)');
 %ylabel('Magnitud (dB)');
@@ -41,8 +41,8 @@ grid on;
 %ylabel('Fase (°)');
 %xlabel('Frecuencia (Hz)');
 %legend('Medición','Calculo','Simulación');
-formataxes(titulo, 'Frecuencia (Hz)','Fase (°)', ... % titulo y ejes
-                    'Medici\''on','Simulaci\''on ','C\''alculo')% legends
+formataxes(titulo, 'Frecuencia (Hz)','Fase ($\circ$)', ... % titulo y ejes
+                    'Medici\''on','C\''alculo','Simulaci\''on ')% legends
 if guardar=='save'
 saveas(fase,strcat(titulo,'_fase','.png'));
 end
