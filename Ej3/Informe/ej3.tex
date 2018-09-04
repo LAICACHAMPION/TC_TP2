@@ -3,6 +3,30 @@
 
 \section{Medici\'on corriente de bias y tensi\'on de offset}
 
+
+\begin{circuitikz}
+  		\draw (0,0) node[op amp][yscale=-1] (opamp) {}
+  		(opamp.-) 	to[short]($(opamp.-)-(0.5,0)$) 
+  					to[short]($(opamp.-)-(0.5, 1.5)$)
+  					to[R=$R_1$]($(opamp.-)-(0.5,3)$)
+  					node [ground]{}
+  		($(opamp.-)-(0.5, 1.5)$) to[R=$R_2$] ($(opamp.-)-(-2.38, 1.5)$)
+  					to[short]($(opamp.out)$)
+  					
+  		(opamp.+) to[short] ($(opamp.+)-(2,0)$)
+  				  to[R=$R_3$]($(opamp.+)-(3.5,0)$)
+  				  to[sV=$V_{in}$]($(opamp.-)-(3.5,3)$) node[ground]{}
+  				  
+
+		($(opamp.+)-(1.5,0)$) to[R=$R_4$] ($(opamp.-)-(1.5,3)$) node[ground] {}
+		
+		(opamp.out) to ($(opamp.out)+(1,0)$) node[ocirc]{$\,\, V_{out}$}
+  		
+  		;
+\end{circuitikz}
+
+
+
 \subsection{Modelo de amplificador operacional con corrientes de bias y tensi\'on de offset}
 
 \begin{figure}[htb]	%modelo opamp vio ibias
@@ -236,15 +260,15 @@ Si se considera que $A_{vol}^2\beta \gg 1 \Rightarrow \beta \gg \frac{1}{A_{vol}
 
 
 \begin{equation}
-	H(s) = -\frac{1}{\beta}\cdot \frac{1}{\frac{s}{\frac{A_{vol}\beta}{RC}}+1}=-\frac{1}{\beta}\cdot \frac{1}{\frac{s}{\frac{T}{RC}}+1}
+	H(s) = -\frac{1}{\beta}\cdot \frac{1}{\frac{s}{\frac{A_{vol}\beta}{RC}}+1}
 	\label{eq:ej_3_transferencia_consigna_simplificada}
 \end{equation}
-siendo $T$ la ganancia de lazo.
+
 
 Sabiendo que $lim_{T\rightarrow \infty}A_{CL} = A_{CL\,ideal}$:
 
 \begin{equation}
-	A_{CL\,ideal} = -\frac{1}{\beta}
+	A_{CL\,ideal} = -\frac{1}{\beta} = -561
 \end{equation}
 
 
@@ -257,7 +281,7 @@ Cuando $f=0$, evaluando en la funci\'on transferencia (ecuaci\'on \ref{eg:ej_3_t
 	\item[Medici\'on de $V_{IO}$:] Cortocircuitando las resistencias R5 y R6 se obtiene que $V_{in} = V_{IO}$, valor que se puede obtener midiendo $V_{OUT}$:
 	
 	\[V_{IO} = -\frac{V_{OUT}}{561}\]
-	\item[Medici\'on de $I_B^\pm y I_B$:] Cortocircuitando R5 se obtiene $-\frac{V_{OUT}}{561} = V_{IO} + I_B^+\cdot R6$. Despejando:
+	\item[Medici\'on de $I_B^\pm$ y $I_B$:] Cortocircuitando R5 se obtiene $-\frac{V_{OUT}}{561} = V_{IO} + I_B^+\cdot R6$. Despejando:
 	\[I_B^+=\frac{1}{R6}\cdot\left( -\frac{V_{OUT}}{561}-V_{IO}  \right) \]
 	An\'alogamente,
 	\[I_B^-=-\frac{1}{R5}\cdot \left( V_{IO} + \frac{V_{OUT}}{561}   \right)\]
@@ -287,6 +311,8 @@ Las mediciones que son acordes a lo especificado en la hoja de datos son $V_{IO}
 
 
 \subsubsection{Funcionamiento en AC}
+
+
 
 
 
