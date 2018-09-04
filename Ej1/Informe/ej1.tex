@@ -9,8 +9,9 @@
 \begin{document}
 \section{OpAmp}
 \subsection{Introducci\'on}
-Se analizaron dos circuitos con Amplificadores operacionales. El primero es un circuito inversor, cuya salida es opuesta a la entrada y  la aplifica o atenua, de a cuerdo a como se configure. El segundo es no inversor, igual que el primero, atenua o amplifica la señal de entrada, pero no la invierte.
-El objetivo es evaluar las caracteristicas lineales y no lineales de los amplificadores operacionales. Tambien la respuesta en frecuencia y la respuesta  distintos valores de tensiones de entrada.
+Se analizaron dos circuitos con Amplificadores operacionales. El primero es un circuito inversor, cuya salida es opuesta a la entrada y la amplifica o atenúa, de acuerdo a como se configure. El segundo es no inversor, igual que el primero, atenúa o amplifica la señal de entrada, pero no la invierte.
+El objetivo es evaluar las características lineales y no lineales de los amplificadores operacionales. También la respuesta en frecuencia y la respuesta distintos valores de tensiones de entrada.
+
 
 
 \subsection{Circuito inversor}
@@ -112,7 +113,7 @@ f_{P}=\left( \frac {A_{0} \cdot R_{1} \cdot R_{3} + K}{K}\right)  \cdot \frac{W_
 
 
 
-El amplificador operacional utilizado fue el LM324 de ON Semiconductor, de la hoja de datos se obtuvieron las siguientes cararacteristicas del integrado:
+El amplificador operacional utilizado fue el LM324 de ON Semiconductor, de la hoja de datos se obtuvieron las siguientes características del integrado:
 
 
 \begin{table}[h]
@@ -145,7 +146,7 @@ Caso &Ganancia ideal & Ganancia $A_{vol}$ finito & Frecuencia de corte\\
 \end{center}
 \end{table}
 
-Acontinuacion se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con  $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
+A continuación se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
 
 \begin{figure}[H]
 \centering
@@ -167,9 +168,9 @@ Como se observa en los tres graficos de la figura \ref{fig=errorInv}, el error u
 \subsubsection{Alinealidades del Amplificador Operacional}
 En esta seccion se analizaran las alinealidades del Amplificador operacional
 \begin{itemize}  
-\item Saturacion, los amplificadores operacionales poseen alimentacion ( $+-V_{cc}$ ) externa para asi poder aplificar. Por ende la salida del amplificador no puede superar a la alimentacion. Si la señal de entrada fuera tal que aplificada superara la alimentacion, el amplificador operacional entrega a la salida $+ o -V_{cc}$. No todos los amplificadores operacionales saturan en $+-V_{cc}$, generalmnete lo hacen por devajo de dichas tensiones y no necesariamente saturan a la misma tension, por ejemplo un Amplificador operacional es alimnetado con +- 10 v, y la saturacion se da a los -8 v y a los 9v. 
-\item Slew Rate, es la tasa de cambio de la tension en funcion del tiempo. Los amplificadores Operacionales poseen un slew rate maximo, a partir del cual no pueden seguir la señal de entrada y la salida se distorciona. Para señales senoidales, la relacion entre la frecuencia de entrada, la ganancia y el slew rate es $ SlewRate_{max}=G  \cdot A \cdot 2 \cdot \pi \cdot f $, donde $ G $ es la ganancia del circuito, $ A $ es la amplitud de la señal de entrada y $f$ es la frecuencia de la señal.  
-\item Crossover Distortion, los amplificadores operacionales clase b y AB (ejemplo el LM324), poseen la caracteristica que la salida se encuentra en 0 v, cuando la tension de entrada del operacional se encuentra entre -0,7 v y 0,7v.
+\item Saturación, los amplificadores operacionales poseen alimentación ( $+-V_{cc}$ ) externa para así poder amplificar. Por ende la salida del amplificador no puede superar a la alimentación. Si la señal de entrada fuera tal que amplificada superara la alimentación, el amplificador operacional entrega a la salida $+ o -V_{cc}$. No todos los amplificadores operacionales saturan en $+-V_{cc}$, generalmente lo hacen por debajo de dichas tensiones y no necesariamente saturan a la misma tensión, por ejemplo un Amplificador operacional es alimentado con +- 10 v, y la saturación se da a los -8 v y a los 9v.
+\item Slew Rate,es la tasa de cambio de la tensión en función del tiempo. Los amplificadores Operacionales poseen un slew rate máximo, a partir del cual no pueden seguir la señal de entrada y la salida se distorsiona. Para señales senodales, la relación entre la frecuencia de entrada, la ganancia y el slew rate es $ SlewRate_{max}=G \cdot A \cdot 2 \cdot \pi \cdot f $, donde $ G $ es la ganancia del circuito, $ A $ es la amplitud de la señal de entrada y $f$ es la frecuencia de la señal.
+\item Crossover Distortion, los amplificadores operacionales clase b y AB (ejemplo el LM324), poseen la característica que la salida se encuentra en 0 v, cuando la tensión de entrada del operacional se encuentra entre -0,7 v y 0,7v.
 \end{itemize}
 
 \subsubsection{Dc sweep}
