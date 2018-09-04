@@ -117,11 +117,11 @@ El amplificador operacional utilizado fue el LM324 de ON Semiconductor, de la ho
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|l|l|l|}
 \hline
-$A_{0}$ & $f_{P}$ \\
+$A_{0}$ & $f_{P}$ & Slew rate \\
 \hline \hline
-$10\cdot 10^{4}$& $ 12Hz $ \\ \hline
+$10\cdot 10^{4}$& $ 12Hz $ & $0.5 \frac{V}{\mu S}$\\ \hline
 
 \end{tabular}
 \caption{Caracteristicas del LM324} 
@@ -346,7 +346,28 @@ La función de la $R_{4}$ de cargar al circuito, sin embargo no puede tener cual
 
 \subsection{Circuito no inversor}
 
-\todo{poner imagen del circuito}
+\begin{circuitikz}
+  		\draw (0,0) node[op amp][yscale=-1] (opamp) {}
+  		(opamp.-) 	to[short]($(opamp.-)-(0.5,0)$) 
+  					to[short]($(opamp.-)-(0.5, 1.5)$)
+  					to[R=$R_1$]($(opamp.-)-(0.5,3)$)
+  					node [ground]{}
+  		($(opamp.-)-(0.5, 1.5)$) to[R=$R_2$] ($(opamp.-)-(-2.38, 1.5)$)
+  					to[short]($(opamp.out)$)
+  					
+  		(opamp.+) to[short] ($(opamp.+)-(2,0)$)
+  				  to[R=$R_3$]($(opamp.+)-(3.5,0)$)
+  				  to[sV=$V_{in}$]($(opamp.-)-(3.5,3)$) node[ground]{}
+  				  
+
+		($(opamp.+)-(1.5,0)$) to[R=$R_4$] ($(opamp.-)-(1.5,3)$) node[ground] {}
+		
+		(opamp.out) to ($(opamp.out)+(1,0)$) node[ocirc]{$\,\, V_{out}$}
+  		
+  		;
+\end{circuitikz}
+
+Los valores de los componentes utilizados en cada caso, son  los indicados en la tabla \ref{tab=vResistencias}
 
 \subsubsection{Caso $A_{vol}$ infinito}
 Considerando que a traves de $V^{+}$ y $V^{-}$, no circula corrinte. Devido a  $A_{vol}$ infinito, $V^{+}=V^{-}$.
@@ -436,10 +457,6 @@ El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) 
 Tal como ocurrio en el circuito inversor, se puede usar la aproximacion del OpAmp como ideal cometiendo un erro menor que el $1\%$, a frecuencias una decada por devajo de la frecuencia de corte.
 
 
-
-\subsubsection{Alinealidades del Amplificador Operacional}
-Se tuvieron en consideracion las mismas alinealidades detalladas en el Circuito no inversor
-\todo{ver que hacer, si volarlo o no}
 \subsubsection{Dc sweep}
 La medición del dc sweep se realizó de la misma manera que el circuito inversor, mediante el osciloscopio y el generador de funciones.Tambien se alimento al OpAmp con $\pm 15 v$ y la tension de entrada vario en ese mismo rango.
 
@@ -602,6 +619,9 @@ En el caso que $R_{3}$ valga cero, la ganancia del circuito se altera de la sigu
 \subsection{Conclusión}
 Es importante tener presente las alinealidades en el uso del OpAmp, debido a que alteran altamente el comportamiento esperado. 
 También las puntas del osciloscopio alteran las mediciones si su impedancia es comparable con el circuito, este fenómeno se manifestó en la mediciones de la impedancia de entrada.
+En cuanto al GBP, a una misma ganancia y aumentado el GBP, tambien aumenta la frecuencia de corte, es decir el OpAmp se comporta como ideal a mayores frecuencias. 
+\\
+Teniendo en cuenta los factores ya mencionados, es posible considerar al OpAmp como ideal en un rango de frecuencias y tensiones.
 
 
 
