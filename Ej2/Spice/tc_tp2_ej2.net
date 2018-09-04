@@ -1,0 +1,26 @@
+* C:\Users\rochi\Google Drive\Materias\Teoría de circuitos\TPs\TC_TP2\Ej2\Spice\tc_tp2_ej2.asc
+V1 Vcc+ 0 15V
+V2 0 Vcc- 15V
+R1 N003 0 {mc{2k2, tola}}
+R2 Vout N003 {mc{150k, tola}}
+R3 N001 N002 {mc{100k, tola}}
+V3 N002 0 AC 1V Rser=50
+XU1 N001 N003 Vcc+ Vcc- Vout LM833#0
+C2 Vcc- 0 100n
+C3 Vcc+ 0 100n
+C N001 0 {mc{10p, tola}}
+R4 N001 0 {mc{10meg, tola}}
+R N002 0 {mc{10meg, tola}}
+C7 N002 0 {mc{10p, tola}}
+R5 0 Vout {mc{10meg, tola}}
+C4 0 Vout {mc{10p, tola}}
+C1 N001 N003 {mc{12p,tola}}
+.inc "LM833.lib"
+.ac dec 1000 1k 1meg
+;tran 0 5ms 0
+.param tola=0.20
+.param tolb = 0.00
+* .step param run 1 100 1
+;dc dec V3 10 10meg 100
+.backanno
+.end
