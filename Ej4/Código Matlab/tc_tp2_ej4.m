@@ -7,44 +7,45 @@ opt = bodeoptions();
 opt.FreqUnits = 'Hz';
 
 s = tf('s');
-w = 2*pi*logspace(2, 6, 10000);
+w = 2*pi*logspace(0, 8, 10000);
 
 %%derivador
-z1 = 1/s/c+470;
-z2 = r;
+% z1 = 1/s/c+470;
+% z2 = r;
 
-% %%%integrador
-% z1 = r;
-% z2 = 1/s/c;
+%%%integrador
+z1 = r;
+z2 = 1/s/c;
 
-G = -z2/z1; %ganancia ideal (Ao infinito)
-opt.Title.String = 'Diagrama de Bode: derivador, Ao infito';
+% G = -z2/z1; %ganancia ideal (Ao infinito)
+% opt.Title.String = 'Diagrama de Bode: derivador, Ao infito';
+% 
+% Zin = z1;
+%bode(Zin, w, opt);
 
-Zin = z1;
-%bode(G, w, opt);
-
-hold on;
-G = -Ao*z2/(z2+(Ao+1)*z1);
-Zin = z2/(Ao+1)+z1;
-opt.Title.String = 'Diagrama de Bode: derivador, Ao constante';
+% hold on;
+% G = -Ao*z2/(z2+(Ao+1)*z1);
+% Zin = z2/(Ao+1)+z1;
+% opt.Title.String = 'Diagrama de Bode: derivador, Ao constante';
 %figure;
-%bode(G, w, opt);
+% bode(Zin, w, opt);
+% hold on;
+% grid on;
 
 Avol = Ao/(1+s/wp);
 G = -Avol*z2/(z2+(Avol+1)*z1);
 Zin = z2/(Avol+1)+z1;
-opt.Title.String = 'Diagrama de Bode: derivador, A(s)';
-figure;
-%bode(Zin, w, opt);
+% opt.Title.String = 'Diagrama de Bode: derivador, A(s)';
+% bode(Zin, w, opt);
 
 
 %derivador compensado con Rs =470ohm
-rs = 470;
-z1 = rs+1/s/c; z2 = r;
+% rs = 470;
+% z1 = rs+1/s/c; z2 = r;
 
-% % % integrador compensado con Rp = 27k
-% % rp = 27e3;
-% % z1 = r; z2 = (s*c+1/rp)^-1;
+% integrador compensado con Rp = 27k
+rp = 27e3;
+z1 = r; z2 = (s*c+1/rp)^-1;
 % G = -z2/z1; %ganancia ideal (Ao infinito)
 % opt.Title.String = 'Diagrama de Bode: derivador compensado, Ao infito';
 % hold on;
@@ -85,7 +86,13 @@ Zin = z2/(Avol+1)+z1;
 %superponedor('','tc_tp2_ej4_d_Hf.csv','tc_tp2_ej4_d_Hf spice.csv', G, w, 'tc_tp2_ej4_d_Hf');
 %superponedor('','tc_tp2_ej4_d_Zin.csv','tc_tp2_ej4_d_Zin spice.csv', Zin, w, 'tc_tp2_ej4_d_Zin');
 %superponedor('','tc_tp2_ej4_dcomp_Hf.csv','tc_tp2_ej4_dcomp_Hf spice.csv', G, w, 'tc_tp2_ej4_dcomp_Hf');
-superponedor('','tc_tp2_ej4_dcomp_Zin.csv','tc_tp2_ej4_dcomp_Zin spice.csv', Zin, w, 'tc_tp2_ej4_dcomp_Zin');
+%superponedor('','tc_tp2_ej4_dcomp_Zin.csv','tc_tp2_ej4_dcomp_Zin spice.csv', Zin, w, 'tc_tp2_ej4_dcomp_Zin');
+
+%superponedor('','tc_tp2_ej4_i_Hf.csv','tc_tp2_ej4_i_Hf spice.csv', G, w, 'tc_tp2_ej4_i_Hf');
+%superponedor('','tc_tp2_ej4_i_Zin.csv','tc_tp2_ej4_i_Zin spice.csv', Zin, w, 'tc_tp2_ej4_i_Zin');
+%superponedor('','tc_tp2_ej4_icomp_Hf.csv','tc_tp2_ej4_icomp_Hf spice.csv', G, w, 'tc_tp2_ej4_icomp_Hf');
+superponedor('','tc_tp2_ej4_icomp_Zin.csv','tc_tp2_ej4_icomp_Zin spice.csv', Zin, w, 'tc_tp2_ej4_icomp_Zin');
+
 
 
 % 

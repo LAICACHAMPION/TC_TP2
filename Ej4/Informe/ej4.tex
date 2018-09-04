@@ -53,7 +53,7 @@ Podemos verificar la validez de estas expresiones notando que $\lim_{A_0\to\inft
 Para el operacional utilizado, el valor de $A_0$ es $110dB$.
 
 \subsubsection{$A_{vol}(s)$}
-Para obtener la f\'ormula del modelo de polo dominante aplicado a este circuito, basta reemplazar $A_0$ por $A_vol(s)=\frac{A_0}{\frac{s}{\omega_p} +1}$ en las ecuaciones \ref{eq:tf-ao} y \ref{eq:zin-ao}. Se obtiene entonces:
+Para obtener la f\'ormula del modelo de polo dominante aplicado a este circuito, basta reemplazar $A_0$ por $A_{vol}(s)=\frac{A_0}{\frac{s}{\omega_p} +1}$ en las ecuaciones \ref{eq:tf-ao} y \ref{eq:zin-ao}. Se obtiene entonces:
 
 \begin{equation} \label{eq:tf-avol} H(s) =-\frac{A_0\cdot Z_2}{\left(\frac{s}{\omega_p}+1\right)\left(Z_2+Z_1\right) + A_0 \cdot Z_1}  \sim
 - \left(\frac{A_0 \cdot Z_2}{A_0 \cdot Z_1 + Z_2}\right) \cdot \left(\frac{1}{\left(\frac{Z_1 + Z_2}{A_0 \cdot Z_1 + Z_2} \cdot \frac{1}{\omega_p}\right) \cdot s + 1}\right)
@@ -287,6 +287,46 @@ Colocando los componentes en el orden inverso al derivador se obtiene el circuit
 
 \subsubsection{An\'alisis matem\'atico: respuesta en frecuencia}
 
+ Reemplazando $Z_1$ por $R$ y $Z_2$ por $\frac{1}{sC}$ en la ecuaci\'on \ref{eq:tf-ideal}, obtenemos:
+
+
+\[ H(s) =  -\frac{1}{RC\cdot s}\]
+
+Efectuando la antitransformada de Laplace a esta expresi\'on, resulta que $v_{out}(t) = -\frac{1}{RC} \int_{-\infty}^t v(u)du$, es decir que a la salida se obtiene la integral de la se\~nal de la entrada, invertida y multiplicada por la constante \frac{1}{RC}. As\'i planteado, este sistema tiene ganancia infinita para corriente continua. Esto podr\'ia ser un problema debido a que cualquier ruido de frecuencias bajas se ver\'a enormemente amplificado. \par
+
+Utilizando la ecuaci\'on \ref{eq:tf-ao}, la nueva transferencia que obtenemos es:
+
+
+\[ H(s) = -  \frac {A_0}{(A_0+1)\cdot RC \cdot s+1} \]
+
+Aqu\'i el polo se traslada del origen a $f = \frac{1}{2\pi \cdot RC \cdot (A_0+1)} \sim 5mHz$. Esto establece un m\'aximo de ganancia para continua, pero en una frecuencia tan baja que ser\'ia razonable esperar que sea un problema de todas maneras. \par
+
+Por \'ultimo, considerando el polo del operacional la transferencia final queda en:
+
+\begin{equation}\label{eq:tf-int} H(s) = -\frac{A_0}{\frac{RC}{\omega_p} \cdot s^2 + \left(\frac{1}{\omega_p} + (A_0+1) \cdot RC\right) \cdot s +1} \end{equation}
+
+Esta funci\'on tiene tambi\'en un polo en $0.005Hz$, pero tiene un segundo en $16MHz$. Sin embargo, para esta frecuencia la atenuaci\'on probablemente sea tal que no se pueda medir la salida, puesto que los generadores de funciones utilizados para medir s\'olo pueden entregar hasta $20V_{pp}$. Por lo tanto, no podr\'ia en principio apreciarse un polo en esa frecuencia.
+
+
+\subsubsection{An\'alisis matem\'atico: impedancia de entrada}
+
+Idealmente, debido a la tierra virtual en $V^-$, la entrada s\'olo se carga con $Z_1 = R$, con lo cual la transferencia ser\'ia constante:
+
+\[ Z_{in}(s) =  R\]
+
+Si consideramos la expresi\'on \ref{zin-ao}, obtenemos en cambio que:
+
+\[ Z_{in}(s) = \frac{(A_0+1)\cdot RC \cdot s +1}{ (A_0 +1) \cdot C \cdot s }\]
+
+Seg\'un esta expresi\'on, tendr\'iamos un polo en el origen y un cero en $0.005Hz$. La ganancia que tendr\'ia el sistema en esas frecuencias ser\'ia, sin embargo, tan elevada que impidir\'ia medir la entrada sin que la salida sature, con lo cual s\'olo se podr\'ia medir en frecuencias donde los efectos del polo y el cero ya fueron neutralizados entre s\'i, y la expresi\'on se ver\'ia nuevamente reducida a $Z_{in}=R$.\par
+
+Finalmente, con el modelo de $A_{vol}$ la impedancia de entrada resulta ser:
+
+\begin{equation}Z_{in}(s) = \frac{\frac{RC}{\omega_p} \cdot s^2 + \left(\frac{1}{\omega_p} + (A_0+1) \cdot RC\right) \cdot s +1}{sC \cdot (A_0+1) \cdot \left(\frac{1}{\omega_p (A_0+1)}\cdot s +1\right) } \end{equation}
+
+Los polos de la transferencia mencionados en \ref{eq:tf-int} son ahora ceros de la impedancia. Esta funci\'on cuenta tambi\'en con un polo en $f = \frac{omega_p(A_0+1)}{2\pi} \sim BWP = 16MHz$ , que es la misma frecuencia de uno de los ceros. Esto 
+
+\todo[inline]{EN RESULTADOS DECIR QUE HABIA QUE TENER MUCHO CUIDADO CON EL OFFSET PORQUE TE MONTABA LA SALIDA SOBRE UNA CONTINUA ENORME Y SATURABA AL TOK}
 
 
 
