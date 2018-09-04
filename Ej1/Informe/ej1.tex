@@ -4,17 +4,18 @@
 
 
 
-\graphicspath{ {imagenes/} }
+
 
 \begin{document}
-\section{OpAmp}
+\section{Comportamiento de Amplificadores Operacionales}
 \subsection{Introducci\'on}
-Se analizaron dos circuitos con Amplificadores operacionales. El primero es un circuito inversor, cuya salida es opuesta a la entrada y  la aplifica o atenua, de a cuerdo a como se configure. El segundo es no inversor, igual que el primero, atenua o amplifica la señal de entrada, pero no la invierte.
-El objetivo es evaluar las caracteristicas lineales y no lineales de los amplificadores operacionales. Tambien la respuesta en frecuencia y la respuesta  distintos valores de tensiones de entrada.
+Se analizaron dos circuitos con Amplificadores operacionales. El primero es un circuito inversor, cuya salida es opuesta a la entrada y la amplifica o atenúa, de acuerdo a como se configure. El segundo es no inversor, igual que el primero, atenúa o amplifica la señal de entrada, pero no la invierte.
+El objetivo es evaluar las características lineales y no lineales de los amplificadores operacionales. También la respuesta en frecuencia y la respuesta distintos valores de tensiones de entrada.
+
 
 
 \subsection{Circuito inversor}
-\todo{algo desir alog}
+
 
 
 \begin{figure}[H]
@@ -112,16 +113,16 @@ f_{P}=\left( \frac {A_{0} \cdot R_{1} \cdot R_{3} + K}{K}\right)  \cdot \frac{W_
 
 
 
-El amplificador operacional utilizado fue el LM324 de ON Semiconductor, de la hoja de datos se obtuvieron las siguientes cararacteristicas del integrado:
+El amplificador operacional utilizado fue el LM324 de ON Semiconductor, de la hoja de datos se obtuvieron las siguientes características del integrado:
 
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{|l|l|}
+\begin{tabular}{|l|l|l|}
 \hline
-$A_{0}$ & $f_{P}$ \\
+$A_{0}$ & $f_{P}$ & Slew rate \\
 \hline \hline
-$10\cdot 10^{4}$& $ 12Hz $ \\ \hline
+$10\cdot 10^{4}$& $ 12Hz $ & $0.5 \frac{V}{\mu S}$\\ \hline
 
 \end{tabular}
 \caption{Caracteristicas del LM324} 
@@ -145,21 +146,20 @@ Caso &Ganancia ideal & Ganancia $A_{vol}$ finito & Frecuencia de corte\\
 \end{center}
 \end{table}
 
-Acontinuacion se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con  $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
+A continuación se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{real_ideal_mag_inv}
+\includegraphics[width=0.8\textwidth]{imagenes/real_ideal_mag_inv.png}
 \caption{Compración del modulo de la respuesta en frecuencia de los tres casos}
 \end{figure}
 
-\todo{poner graficos de fase?}
 
 El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) = \frac {\mid Ganancia A_{vol}(w) -Ganancia A_{vol} inifinito \mid} {\mid Ganancia A_{vol} (w) \mid }$, de esta manera se obtuvieron los siguientes graficos:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{error_inv}
+\includegraphics[width=1\textwidth]{imagenes/error_inv.png}
 \caption{Error relativo porcentual, de izquierda a derecha Caso 1, Caso 2 y Caso 3} \label{fig=errorInv}
 \end{figure}
 
@@ -168,9 +168,9 @@ Como se observa en los tres graficos de la figura \ref{fig=errorInv}, el error u
 \subsubsection{Alinealidades del Amplificador Operacional}
 En esta seccion se analizaran las alinealidades del Amplificador operacional
 \begin{itemize}  
-\item Saturacion, los amplificadores operacionales poseen alimentacion ( $+-V_{cc}$ ) externa para asi poder aplificar. Por ende la salida del amplificador no puede superar a la alimentacion. Si la señal de entrada fuera tal que aplificada superara la alimentacion, el amplificador operacional entrega a la salida $+ o -V_{cc}$. No todos los amplificadores operacionales saturan en $+-V_{cc}$, generalmnete lo hacen por devajo de dichas tensiones y no necesariamente saturan a la misma tension, por ejemplo un Amplificador operacional es alimnetado con +- 10 v, y la saturacion se da a los -8 v y a los 9v. 
-\item Slew Rate, es la tasa de cambio de la tension en funcion del tiempo. Los amplificadores Operacionales poseen un slew rate maximo, a partir del cual no pueden seguir la señal de entrada y la salida se distorciona. Para señales senoidales, la relacion entre la frecuencia de entrada, la ganancia y el slew rate es $ SlewRate_{max}=G  \cdot A \cdot 2 \cdot \pi \cdot f $, donde $ G $ es la ganancia del circuito, $ A $ es la amplitud de la señal de entrada y $f$ es la frecuencia de la señal.  
-\item Crossover Distortion, los amplificadores operacionales clase b y AB (ejemplo el LM324), poseen la caracteristica que la salida se encuentra en 0 v, cuando la tension de entrada del operacional se encuentra entre -0,7 v y 0,7v.
+\item Saturación, los amplificadores operacionales poseen alimentación ( $+-V_{cc}$ ) externa para así poder amplificar. Por ende la salida del amplificador no puede superar a la alimentación. Si la señal de entrada fuera tal que amplificada superara la alimentación, el amplificador operacional entrega a la salida $+ o -V_{cc}$. No todos los amplificadores operacionales saturan en $+-V_{cc}$, generalmente lo hacen por debajo de dichas tensiones y no necesariamente saturan a la misma tensión, por ejemplo un Amplificador operacional es alimentado con +- 10 v, y la saturación se da a los -8 v y a los 9v.
+\item Slew Rate,es la tasa de cambio de la tensión en función del tiempo. Los amplificadores Operacionales poseen un slew rate máximo, a partir del cual no pueden seguir la señal de entrada y la salida se distorsiona. Para señales senodales, la relación entre la frecuencia de entrada, la ganancia y el slew rate es $ SlewRate_{max}=G \cdot A \cdot 2 \cdot \pi \cdot f $, donde $ G $ es la ganancia del circuito, $ A $ es la amplitud de la señal de entrada y $f$ es la frecuencia de la señal.
+\item Crossover Distortion, los amplificadores operacionales clase b y AB (ejemplo el LM324), poseen la característica que la salida se encuentra en 0 v, cuando la tensión de entrada del operacional se encuentra entre -0,7 v y 0,7v.
 \end{itemize}
 
 \subsubsection{Dc sweep}
@@ -178,13 +178,13 @@ El dc sweep consiste en variar la tensión de entrada (corriente continua) del c
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{dc_sweep_inv}
+\includegraphics[width=1\textwidth]{imagenes/dc_sweep_inv.png}
 \caption{Dc Sweep Medido} \label{fig=dcInv}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.1\textwidth]{dc_sweep_inv_sim}
+\includegraphics[width=1.1\textwidth]{imagenes/dc_sweep_inv_sim.png}
 \caption{Dc Sweep Simulado, el grafico negro corresponde al Caso 1, el azul al Caso 2 y el rojo al Caso 3} \label{fig=dcInvSim}
 \end{figure}
 
@@ -199,7 +199,7 @@ En la medición de la respuesta en frecuencias se tuvieron que tener en cuenta l
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{slew-rate-inv}
+\includegraphics[width=1\textwidth]{imagenes/slew-rate-inv.png}
 \caption{Tension de entrada,slew rate} \label{fig=srInv}
 \end{figure}
 
@@ -210,11 +210,11 @@ Teniendo en cuenta los factores mencionados se midió la respuesta en frecuencia
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-1_mag_inv}
+\includegraphics[width=\textwidth]{imagenes/Caso-1_mag_inv.png}
 \caption{Magnitud}\label{fig=magInvC1}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-1_fase_inv}
+\includegraphics[width=\textwidth]{imagenes/Caso-1_fase_inv.png}
 \caption{Fase}
 \end{subfigure}
 \caption{Caso 1 - superposición respuesta en  frecuencia medida, simulada, calculada}
@@ -222,23 +222,22 @@ Teniendo en cuenta los factores mencionados se midió la respuesta en frecuencia
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{montecarlo_inv_c1}
+\includegraphics[width=1\textwidth]{imagenes/montecarlo_inv_c1.png}
 \caption{Montecarlo Caso-1} \label{fig=mcInvC1}
 \end{figure}
 
 
-De la figura \ref{fig=magInvC1}, obtuvimos la frecuencia de corte del circuito,a la cual la caida de la ganancia es de 3dB. Dicha frecuencia de corte es $47KHz$, la cual es distinta a la calculada teoricamente en la tabla \ref{tab=gananciayFrecCorte}. Sin embargo, se puede aceptar dicha frecuencia de corte, devido a que los componentes tienen tolerancias, tal como se observa en el Montecarlo (grafico  \ref{fig=mcInvC1} ) la frecuencia de corte pertenece al intervalo marcado en el grafico.
 
 
 
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-2_mag_inv}
+\includegraphics[width=\textwidth]{imagenes/Caso-2_mag_inv.png}
 \caption{Magnitud}\label{fig=magInvC2}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-2_fase_inv}
+\includegraphics[width=\textwidth]{imagenes/Caso-2_fase_inv.png}
 \caption{Fase}
 \end{subfigure}
 \caption{Caso 2 - superposición respuesta en  frecuencia medida, simulada, calculada}
@@ -246,21 +245,21 @@ De la figura \ref{fig=magInvC1}, obtuvimos la frecuencia de corte del circuito,a
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{montecarlo_inv_c2}
+\includegraphics[width=1\textwidth]{imagenes/montecarlo_inv_c2.png}
 \caption{Montecarlo Caso-2} \label{fig=mcInvC2}
 \end{figure}
 
-\todo{desir alguna reflexion mas al respecto}
-De la figura \ref{fig=magInvC2}, obtuvimos la frecuencia de corte del circuito,a la cual la caida de la ganancia es de 3dB. Dicha frecuencia de corte es $430KHz$, la cual es distinta a la calculada teoricamente en la tabla \ref{tab=gananciayFrecCorte}. Sin embargo, se puede aceptar dicha frecuencia de corte, devido a que los componentes tienen tolerancias, tal como se observa en el Montecarlo (grafico  \ref{fig=mcInvC2} ) la frecuencia de corte pertenece al intervalo marcado en el grafico.
+
+De las figuras \ref{fig=magInvC1} y \ref{fig=magInvC2} , obtuvimos las frecuencias de corte del circuito $47KHz$ y $430KHz$ respectivamente.  Ambas frecuencias no coinciden con las calculas en la tabla \ref{tab=gananciayFrecCorte}. Sin embargo dichas frecuencias de corte pertenecen a los intervalos marcados en los gráficos \ref{fig=mcInvC1} y \ref{fig=mcInvC2}, por ende podemos considerar que la diferencia se debe a la tolerancia de los componentes.
 
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-3_mag_inv}
+\includegraphics[width=\textwidth]{imagenes/Caso-3_mag_inv.png}
 \caption{Magnitud}\label{fig=magInvC3}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-3_fase_inv}
+\includegraphics[width=\textwidth]{imagenes/Caso-3_fase_inv.png}
 \caption{Fase} \label{fig=fasInvC3}
 \end{subfigure}
 \caption{Caso 3 - superposición respuesta en  frecuencia medida, simulada, calculada}
@@ -272,7 +271,7 @@ La diferencia que se observa entre lo simulado y lo medio, se debio a que se tuv
 Tambien se puede ver el fenomeno de los dos polos, en la fase.Tal como se observa en el grafico \ref{fig=fasInvC3}, la fase medida y simulada varian entre  $180^{\circ}$ y $0^{\circ}$, lo que implica la existencia de dos polos.
 
 \subsubsection{Impedancia de entrada}
-\todo{que onda la fase, desir o hacer algo}
+
 
 Reemplazando las ecuaciones \ref{eq=CircuitoA3} , \ref{eq=CircuitoA4} en \ref{eq=CircuitoA5} y despejando $V_{i}$ de la ecucaión \ref{eq=CircuitoA2} y reemplazando, obtengo la siguiente expresión de la imepedancia de entrada del circuito, con $A_{vol}$ finito.
 
@@ -291,11 +290,11 @@ También se tuvieron las mismas precauciones que en la medición de la respuesta
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_inv_r_c1}
+\includegraphics[width=\textwidth]{imagenes/z_inv_r_c1.png}
 \caption{Impedancia}\label{fig=zInvZc1}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_inv_f_c1}
+\includegraphics[width=\textwidth]{imagenes/z_inv_f_c1.png}
 \caption{Fase} \label{fig=zInvFc1}
 \end{subfigure}
 \caption{Caso 1 - superposición Impedancia de entrada  medida, simulada, calculada}
@@ -307,11 +306,11 @@ En cuanto a la fase, se observa en el grafico \ref{fig=zInvFc1}, que se produce 
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_inv_r_c2}
+\includegraphics[width=\textwidth]{imagenes/z_inv_r_c2.png}
 \caption{Impedancia}\label{fig=zInvZc2}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_inv_f_c2}
+\includegraphics[width=\textwidth]{imagenes/z_inv_f_c2.png}
 \caption{Fase} \label{fig=zInvFc2}
 \end{subfigure}
 \caption{Caso 2 - superposición Impedancia de entrada  medida, simulada, calculada}
@@ -323,21 +322,17 @@ Tal como el caso anterior, se observa diferencia entre los calculado y lo simula
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_inv_r_c3}
+\includegraphics[width=\textwidth]{imagenes/z_inv_r_c3.png}
 \caption{Impedancia}\label{fig=zInvZc3}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_inv_f_c3}
+\includegraphics[width=\textwidth]{imagenes/z_inv_f_c3.png}
 \caption{Fase} \label{fig=zInvFc3}
 \end{subfigure}
 \caption{Caso 3- superposición Impedancia de entrada  medida, simulada, calculada}
 \end{figure}
 
 Tambien, en este caso las puntas alteraron significativamente las mediciones, tal como se observa en el grafico \ref{fig=zInvZc3}, la impedancia de entrada desciende en vez de aumentar.
-
-\todo{desir algo mas, ver que hago con los graficos
-}
-
 
 
 
@@ -351,7 +346,28 @@ La función de la $R_{4}$ de cargar al circuito, sin embargo no puede tener cual
 
 \subsection{Circuito no inversor}
 
-\todo{poner imagen del circuito}
+\begin{circuitikz}
+  		\draw (0,0) node[op amp][yscale=-1] (opamp) {}
+  		(opamp.-) 	to[short]($(opamp.-)-(0.5,0)$) 
+  					to[short]($(opamp.-)-(0.5, 1.5)$)
+  					to[R=$R_1$]($(opamp.-)-(0.5,3)$)
+  					node [ground]{}
+  		($(opamp.-)-(0.5, 1.5)$) to[R=$R_2$] ($(opamp.-)-(-2.38, 1.5)$)
+  					to[short]($(opamp.out)$)
+  					
+  		(opamp.+) to[short] ($(opamp.+)-(2,0)$)
+  				  to[R=$R_3$]($(opamp.+)-(3.5,0)$)
+  				  to[sV=$V_{in}$]($(opamp.-)-(3.5,3)$) node[ground]{}
+  				  
+
+		($(opamp.+)-(1.5,0)$) to[R=$R_4$] ($(opamp.-)-(1.5,3)$) node[ground] {}
+		
+		(opamp.out) to ($(opamp.out)+(1,0)$) node[ocirc]{$\,\, V_{out}$}
+  		
+  		;
+\end{circuitikz}
+
+Los valores de los componentes utilizados en cada caso, son  los indicados en la tabla \ref{tab=vResistencias}
 
 \subsubsection{Caso $A_{vol}$ infinito}
 Considerando que a traves de $V^{+}$ y $V^{-}$, no circula corrinte. Devido a  $A_{vol}$ infinito, $V^{+}=V^{-}$.
@@ -426,7 +442,7 @@ Acontinuacion se graficaran los tres casos del circuito inversor, comparando la 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{real_ideal_mag_n}
+\includegraphics[width=0.8\textwidth]{imagenes/real_ideal_mag_n.png}
 \caption{Compración del modulo de la respuesta en frecuencia de los tres casos}
 \end{figure}
 
@@ -434,29 +450,25 @@ El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{error_n}
+\includegraphics[width=1\textwidth]{imagenes/error_n.png}
 \caption{Error relativo porcentual, de izquierda a derecha Caso 1, Caso 2 y Caso 3} \label{fig=errorn}
 \end{figure}
 
 Tal como ocurrio en el circuito inversor, se puede usar la aproximacion del OpAmp como ideal cometiendo un erro menor que el $1\%$, a frecuencias una decada por devajo de la frecuencia de corte.
 
 
-
-\subsubsection{Alinealidades del Amplificador Operacional}
-Se tuvieron en consideracion las mismas alinealidades detalladas en el Circuito no inversor
-\todo{ver que hacer, si volarlo o no}
 \subsubsection{Dc sweep}
 La medición del dc sweep se realizó de la misma manera que el circuito inversor, mediante el osciloscopio y el generador de funciones.Tambien se alimento al OpAmp con $\pm 15 v$ y la tension de entrada vario en ese mismo rango.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{dc_sweep_n}
+\includegraphics[width=1\textwidth]{imagenes/dc_sweep_n.png}
 \caption{Dc Sweep Medido} \label{fig=dcn}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.1\textwidth]{dc_sweep_n_sim}
+\includegraphics[width=1.1\textwidth]{imagenes/dc_sweep_n_sim.png}
 \caption{Dc Sweep Simulado, el grafico negro corresponde al Caso 1, el azul al Caso 2 y el rojo al Caso 3} \label{fig=dcnSim}
 \end{figure}
 
@@ -464,7 +476,7 @@ Tal como se observa  en ambas figuras, la saturacion del OpAmp, en los Casos 1 y
 Tambien se puede observa que la saturación no se da a la misma tension en las tensinoes de salidas positivas y las negativas.
 A partir de la pendiente de las rectas se puede inferir cual es la ganancia en veces del circuito.
 
-\todo{algo mas}
+
 
 
 \subsubsection{Respuesta en frecuencia}
@@ -479,7 +491,7 @@ En la medición de la respuesta en frecuencia se tuvieron en consideración las 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{slew-rate-n}
+\includegraphics[width=1\textwidth]{imagenes/slew-rate-n.png}
 \caption{Tension de entrada,slew rate} \label{fig=srn}
 \end{figure}
 
@@ -488,11 +500,11 @@ La figura \ref{fig=srn} muestra la máxima tensión peak-to-peak de entrada, sin
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-1_mag_n}
+\includegraphics[width=\textwidth]{imagenes/Caso-1_mag_n.png}
 \caption{Magnitud}\label{fig=magnC1}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-1_fase_n}
+\includegraphics[width=\textwidth]{imagenes/Caso-1_fase_n.png}
 \caption{Fase}
 \end{subfigure}
 \caption{Caso 1 - superposición respuesta en  frecuencia medida, simulada, calculada}
@@ -500,18 +512,18 @@ La figura \ref{fig=srn} muestra la máxima tensión peak-to-peak de entrada, sin
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{montecarlo_n_c1}
+\includegraphics[width=1\textwidth]{imagenes/montecarlo_n_c1.png}
 \caption{Montecarlo Caso-1} \label{fig=mcnC1}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-2_mag_n}
+\includegraphics[width=\textwidth]{imagenes/Caso-2_mag_n.png}
 \caption{Magnitud}\label{fig=magnC2}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-2_fase_n}
+\includegraphics[width=\textwidth]{imagenes/Caso-2_fase_n.png}
 \caption{Fase}
 \end{subfigure}
 \caption{Caso 2 - superposición respuesta en  frecuencia medida, simulada, calculada}
@@ -519,7 +531,7 @@ La figura \ref{fig=srn} muestra la máxima tensión peak-to-peak de entrada, sin
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\textwidth]{montecarlo_n_c2}
+\includegraphics[width=1\textwidth]{imagenes/montecarlo_n_c2.png}
 \caption{Montecarlo Caso-1} \label{fig=mcnC2}
 \end{figure}
 
@@ -528,11 +540,11 @@ En los casos 1 y 2, el comportamiento del circuito fue el esperado en cuanto a m
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-3_mag_n}
+\includegraphics[width=\textwidth]{imagenes/Caso-3_mag_n.png}
 \caption{Magnitud}\label{fig=magnC3}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{Caso-3_fase_n}
+\includegraphics[width=\textwidth]{imagenes/Caso-3_fase_n.png}
 \caption{Fase}
 \end{subfigure}
 \caption{Caso 3 - superposición respuesta en  frecuencia medida, simulada, calculada}\label{fig=bodeC3}
@@ -548,7 +560,7 @@ Como no circuila corriente entre los terminales $V^{+}$ y $V^{-}$ del OpAmp, con
 Z_{in}=R_{3} + R_{4}
 \end{equation}
 
-Para la medición de la impedancia de entrada se colocó una resistencia de 33K a la entrada del circuito, para los casos 1 y 2, para el caso 3 se utilizó una resistencia de 220 k. Estos valores se eligieron ya que el orden de magnitud coincide con el de la impedancia teórica del circuito.
+Para la medición de la impedancia de entrada se colocó una resistencia de $33K \Omega $ a la entrada del circuito, para los casos 1 y 2, para el caso 3 se utilizó una resistencia de $220 K\Omega $. Estos valores se eligieron ya que el orden de magnitud coincide con el de la impedancia teórica del circuito.
 \\
 En la medición se tuvieron las mismas precauciones que en la respuesta en frecuencia, en cuanto a las alinealidades.
 
@@ -558,11 +570,11 @@ En la medición se tuvieron las mismas precauciones que en la respuesta en frecu
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_n_r_c1}
+\includegraphics[width=\textwidth]{imagenes/z_n_r_c1.png}
 \caption{Impedancia}\label{fig=znZc1}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_n_f_c1}
+\includegraphics[width=\textwidth]{imagenes/z_n_f_c1.png}
 \caption{Fase} \label{fig=znFc1}
 \end{subfigure}
 \caption{Caso 1 - superposición Impedancia de entrada  medida, simulada, calculada}
@@ -573,11 +585,11 @@ En la medición se tuvieron las mismas precauciones que en la respuesta en frecu
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_n_r_c2}
+\includegraphics[width=\textwidth]{imagenes/z_n_r_c2.png}
 \caption{Impedancia}\label{fig=znZc2}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_n_f_c2}
+\includegraphics[width=\textwidth]{imagenes/z_n_f_c2.png}
 \caption{Fase} \label{fig=znFc2}
 \end{subfigure}
 \caption{Caso 2 - superposición Impedancia de entrada  medida, simulada, calculada}
@@ -587,11 +599,11 @@ En la medición se tuvieron las mismas precauciones que en la respuesta en frecu
 \begin{figure}[H]
 \centering
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_n_r_c3}
+\includegraphics[width=\textwidth]{imagenes/z_n_r_c3.png}
 \caption{Impedancia}\label{fig=znZc3}
 \end{subfigure}
 \begin{subfigure}[http]{0.49\textwidth}
-\includegraphics[width=\textwidth]{z_n_f_c3}
+\includegraphics[width=\textwidth]{imagenes/z_n_f_c3.png}
 \caption{Fase} \label{fig=znFc3}
 \end{subfigure}
 \caption{Caso 3 - superposición Impedancia de entrada  medida, simulada, calculada}
@@ -605,6 +617,12 @@ En el caso que $R_{3}$ valga cero, la ganancia del circuito se altera de la sigu
 
 
 \subsection{Conclusión}
+Es importante tener presente las alinealidades en el uso del OpAmp, debido a que alteran altamente el comportamiento esperado. 
+También las puntas del osciloscopio alteran las mediciones si su impedancia es comparable con el circuito, este fenómeno se manifestó en la mediciones de la impedancia de entrada.
+En cuanto al GBP, a una misma ganancia y aumentado el GBP, tambien aumenta la frecuencia de corte, es decir el OpAmp se comporta como ideal a mayores frecuencias. 
+\\
+Teniendo en cuenta los factores ya mencionados, es posible considerar al OpAmp como ideal en un rango de frecuencias y tensiones.
+
 
 
 

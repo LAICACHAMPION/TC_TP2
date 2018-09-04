@@ -8,7 +8,7 @@ En el presente informe se busca caracterizar el comportamiento de los amplificad
 
 El amplificador operacional, com\'unmente denominado \textit{op amp}, es un componente activo que cumple la funci\'on de amplificar en su salida lo m\'aximo posible la diferencia de potencial entre sus entradas positiva y negativa. Retroalimentando la salida al terminal positivo o negativo, pueden construirse circuitos que realicen operaciones matem\'aticas de gran utilidad como por ejemplo suma, multiplicaci\'on por una constante, derivaci\'on e integraci\'on. Otra aplicaci\'on que se puede mencionar de este componente es en dise\~no de filtros. \par
 
-\begin{figure}
+\begin{figure}[htb]
 	\centering
 	
 	\begin{circuitikz} \draw
@@ -22,8 +22,6 @@ El amplificador operacional, com\'unmente denominado \textit{op amp}, es un comp
 	
 	\caption{Amplificador operactional con entrada inversora $V^-$, entrada no inversora $V^+$, salida $V_{out}$, alimentaci\'on positiva $V_{CC} ^+$ y alimentaci\'on negativa $V_{CC} ^-$}
 \end{figure}
-
-\todo[inline]{dibujito lindo de un opamp que tenga bien indicado que es cada terminal. Decir que as\'i le vamos a decir a los terminales en todo el tp}
 
 La ecuaci\'on fundamental de un operacional ideal es:
 
@@ -39,9 +37,19 @@ Si bien en la mayor\'ia de los casos estudiados en este trabajol este modelo no 
 
 Una consecuencia interesante de esta suposici\'on es que si una de las entradas est\'a conectada a tierra, en la otra entrada se replicar\'a este potencial de referencia. De esta forma, se tendr\'a en el circuito lo que se conoce como tierra virtual, ya que existir\'a un punto que si bien no est\'a conectado con tierra, tiene su mismo potencial. \par
 
-\todo[inline]{dibujo de circuito con tierra virtual, el mas boludo de todos ya fue vieja no me importa nada aguante el paco}
 
+\begin{figure}[htb]
+	\centering
+	\begin{circuitikz}
+  		\draw (0,0) node[op amp] (opamp) {}
+  		(opamp.-) to  ($(opamp.-)-(2,0)$) node[ocirc]{}
+  		(opamp.out) to[short] ($(opamp.out)+(.5,0)$) node [ocirc] {} 
+  		(opamp.+) to[short] ($(opamp.+) - (0,.5)$) node[ground] {}		
+	;\end{circuitikz}
+	\caption{Circuito con tierra virtual}
+\end{figure}
 Otra de las suposiciones necesarias para considerar al operacional como ideal es que no hay corriente entre $V^+$ y $V^-$, es decir, que la impedancia entre esos dos puntos es infinita. En general, esta suposici\'on no se dejar\'a de lado incluso cuando se admita que la diferencia de potencial no es nula, ya que el valor de esta impedancia est\'a t\'ipicamente en el orden de los $M\Omega$.\par
+
 
 
 \subsection{Otros modelos}
@@ -55,10 +63,9 @@ Si bien la respuesta en frecuencia de un \textit{op amp} no presenta un \'unico 
  Esto \'ultimo es, sin embargo, una aproximaci\'on proveniente de asumir que el valor de $A_0$ es constante para todas las frecuencias, lo cual no siempre puede considerarse cierto. Esto se debe a que lo suele preocupar al fabricante de un operacional no es que este valor sea constante, si no que se mantenga lo suficientemente elevado como para que pueda considerarse infinito. \par
 
 
+
 \subsection{Alimentaci\'on y saturaci\'on}
 Como ya se mencion\'o, el amplificador operacional es un componente activo. Para que funcione se lo debe alimentar por $V_{CC} ^+$ y $V_{CC} ^-$ con una tensi\'on continua indicada en la hoja de datos del componente, que suele ser de alrededor de $\pm 15V$. En funci\'on del valor de $V_{CC}$, se deteminar\'a el rango de tensiones que puede tener $V_{out}$, fuera del cual el comportamiento del operacional deja de ser lineal. Este intervalo suele tomarse como $(V_{CC} ^-, V_{CC} ^+)$, con un cierto margen en ambos extremos (por ejemplo, si $V_{CC}=15V$, no deber\'ia considerarse que el circuito tendr\'a un comportamiento lineal m\'as all\'a de $12V$ o $13V$).
-
-\todo[inline]{grafiquito de saturacion vcc y bla}   
 
 
 \subsection{Otros par\'ametros del \textit{op amp}}
