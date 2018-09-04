@@ -3,8 +3,9 @@
 
 \section{Medici\'on corriente de bias y tensi\'on de offset}
 
+\subsection{Importancia de las corrientes de bias y la tensi\'on de offset}
 
-\subsection{Modelo de amplificador operacional con corrientes de bias y tensi\'on de offset}
+
 
 \begin{figure}[htb]	%modelo opamp vio ibias
 	\centering
@@ -16,9 +17,6 @@
 
 
 
-
-
-\subsection{Importancia de las corrientes de bias y la tensi\'on de offset}
 
 
 Las corrientes de bias($I_B^+$ y $I_B^-$) y la tensi\'on de offset ($V_{IO}$) pueden generar efectos que no concuerdan con el modelo ideal de un amplificador operacional. Se presentan a continuaci\'on tres ejemplos:
@@ -107,7 +105,7 @@ Un sistema tiene realimentaci\'on negativa si la fase de la ganancia de lazo est
 \begin{figure}[htbp] %Ejemplo realimentacion negativa y positiva opamp
 	\centering
 	\includegraphics[width=0.5\textwidth]{imagenes/pos_vs_neg_feedback.png}
-	\caption{Ejemplo de realimentaci\'on negativa y positiva en un \textit{op-amp}.}
+	\caption{Ejemplo de realimentaci\'on positiva (izquierda) y negativa (derecha) en un \textit{op-amp}.}
 	\label{fig:ej_3_realimentacion_pos_vs_neg_opamp}
 \end{figure}
 
@@ -158,15 +156,15 @@ Todas las tensiones a determinar son amplificadas para as\'i aumentar la precisi
 	\label{fig:ej_3_medicion_vio_simple}
 \end{figure}
 
-Ya que las se\~nales que se quieren medir tienen una amplitud comparable con el ruido que pueda llegar a inducirse en el circuito, es conveniente reducir la amplificaci\'on para las frecuencias mayores a cero. \todo{redaccion} Esto se logra en el circuito presentado en la consigna (figura \ref{fig:ej_3_medicion_vio_consigna})
+Ya que las se\~nales que se quieren medir tienen una amplitud comparable con el ruido que pueda llegar a inducirse en el circuito, es conveniente reducir la amplificaci\'on para las frecuencias mayores a cero. Esto se logra en el circuito presentado en la consigna (figura \ref{fig:ej_3_medicion_vio_consigna})
 
 \begin{figure}[htbp] %medicion vio ib+ ib- posta
+
 	\centering
 	\includegraphics[scale=1]{imagenes/medicion_bias_configuracion_consigna.png}
 	\caption{Circuito de medici\'on de $V_{IO}$, $I_B^+$ y $I_B^-$. El dispositivo cuyas caracter\'isticas se miden es el DUT, o \textit{device under test}, el cual es un amplificador con $V_{IO}$ y $I_B$ no despreciables. Las dos resistencias en serie con las entradas del DUT pueden tomar dos valores: $1M\Omega$ o $0\Omega$ si es que se las cortocircuita}
 	\label{fig:ej_3_medicion_vio_consigna}
 \end{figure}
-\todo{grafico de consigna con los valores posta}
 \begin{figure}[htbp] %medicion vio ib+ ib- posta con opamp ideal
 	\centering
 	\includegraphics[scale=1]{imagenes/medicion_bias_configuracion_consigna_dos.png}
@@ -175,30 +173,32 @@ Ya que las se\~nales que se quieren medir tienen una amplitud comparable con el 
 \end{figure}
 
 Se utiliza un diagrama de flujo de se\~nal (figura \ref{fig:ej_3_signal_flow_consigna_simplificado}) para obtener la funci\'on de transferencia del sistema. Se tomaron la siguiente consideraciones:
-\begin{itemize}
+
+\begin{itemize} %consideraciones para el signal flow
 	\item $\Delta V_{R1} = I_b^- \cdot 10\Omega \approx 0$
 	\item $I_{R2}\approx I_{R3}$
 	\item La ganancia a lazo abierto de ambos amplificadores es $A_{vol}$\footnote{Es importante distinguir la ganancia a lazo abierto de un \textit{op-amp} $A_{vol}$ de la ganancia a lazo abierto del circuito total $A_{OL}$ }
-	\item La ganancia a lazo cerrado del amplificador que no es el DUT es $A_{CL} = -\frac{A_{vol}}{1+srC(1+A_{vol}} \approx -\frac{A_{vol}}{1+srCA_{vol}}$
+	\item La ganancia a lazo cerrado del amplificador que no es el DUT es \[A_{CL} = -\frac{A_{vol}}{1+srC(1+A_{vol})} \approx -\frac{A_{vol}}{1+srCA_{vol}}\] (obtenida en el ejercicio de integrador y derivador).
 \end{itemize}
 
 
 \begin{figure}[htpb]%signal flow consigna
 	\centering
-	\begin{subfigure}[t]{0.49\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{imagenes/signal_flow_consigna.png}
-		\caption{Diagrama de flujo de se\~nal para el circuito de la consigna usando el modelo de la figura para el DUT}
+		\caption{Diagrama de flujo de se\~nal para el circuito de la consigna usando el modelo de la figura \ref{fig:ej_3_modelo_opamp_vio_ibias} para el DUT. Se desprecian los efectos de $I_B$ y $V_{IO}$ en el otro \textit{op-amp}.}
 		\label{fig:ej_3_signal_flow_consigna_no_simplificado}
 	\end{subfigure}%
 	\hfill%%
-	\begin{subfigure}[t]{0.49\textwidth}
+	\begin{subfigure}[t]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{imagenes/signal_flow_consigna_simplificado.png}
 		\caption{Simplificaci\'on del diagrama de flujo de se\~nal. La estructura coincide con la de un circuito con realimentacion (ver figura \ref{fig:ej_3_realimentacion}). }
 		\label{fig:ej_3_signal_flow_consigna_simplificado}
 	\end{subfigure}
-	\label{fig:ej_3_signal_flow_consigna}	
+	\label{fig:ej_3_signal_flow_consigna}
+	\caption{}	
 \end{figure}
 
 
@@ -218,7 +218,7 @@ Cabe destacar $V_{in}$ es una forma abstracta de agrupar los efectos no ideales 
 Con estos valores y teniendo en cuenta la ecuaci\'on \ref{eq:ej_3_ACL} se obtiene la funci\'on transferencia del sistema:
 
 \begin{equation}
-	H(s)=\frac{-\frac{A_{vol}^2}{1+sRC\cdot A_{vol}}}{1+\frac{A_{vol}}{1+sRC\cdot A_{vol}}\beta}
+	H(s)=\frac{-\frac{A_{vol}^2}{1+sRC\cdot A_{vol}}}{1+\frac{A_{vol}^2}{1+sRC\cdot A_{vol}}\beta}
 	=-\frac{1}{\frac{1}{A_{vol}^2}+\beta}\cdot \frac{1}{\frac{s}{\frac{1+A_{vol}^2\beta}{RCA_{vol}}} +1}
 	\label{eg:ej_3_transferencia_consigna_sin_simplificar}
 \end{equation}
@@ -227,10 +227,18 @@ Con estos valores y teniendo en cuenta la ecuaci\'on \ref{eq:ej_3_ACL} se obtien
 Si se considera que $A_{vol}^2\beta \gg 1 \Rightarrow \beta \gg \frac{1}{A_{vol}^2}$ se puede simplificar la expresi\'on:
 
 
+
+	\[H(s) = -\frac{1}{\beta}\cdot \frac{1}{\frac{s}{\frac{A_{vol}\beta}{RC}}+1}\]
+
+
+Utilizando el modelo de $A_{vol}$ de polo dominante (explicado en detalle en el ejercicio 1), se obtiene:
+\[H(s) = -\frac{1}{\beta} \cdot \frac{1}{\frac{s}{\frac{\frac{A_o}{\frac{1}{\omega _p}+1}\beta}{RC}}+1} \]
+
 \begin{equation}
-	H(s) = -\frac{1}{\beta}\cdot \frac{1}{\frac{s}{\frac{A_{vol}\beta}{RC}}+1}
+	H(s) = -\frac{1}{\beta} \cdot \frac{1}{s^2\frac{RC}{w_pA_o\beta}+s\frac{RC}{A_o\beta}+1}
 	\label{eq:ej_3_transferencia_consigna_simplificada}
 \end{equation}
+
 
 
 Sabiendo que $lim_{T\rightarrow \infty}A_{CL} = A_{CL\,ideal}$:
@@ -245,7 +253,7 @@ Sabiendo que $lim_{T\rightarrow \infty}A_{CL} = A_{CL\,ideal}$:
 Cuando $f=0$, evaluando en la funci\'on transferencia (ecuaci\'on \ref{eg:ej_3_transferencia_consigna_sin_simplificar}) se obtiene que la ganancia del circuito es $-\frac{1}{\beta}=-561$, por lo que $V_{in}=-\frac{V_{out}}{561}$
 
 
-\begin{description}
+\begin{description}%mediciones tomadas
 	\item[Medici\'on de $V_{IO}$:] Cortocircuitando las resistencias R5 y R6 se obtiene que $V_{in} = V_{IO}$, valor que se puede obtener midiendo $V_{OUT}$:
 	
 	\[V_{IO} = -\frac{V_{OUT}}{561}\]
@@ -256,7 +264,7 @@ Cuando $f=0$, evaluando en la funci\'on transferencia (ecuaci\'on \ref{eg:ej_3_t
 	Una vez obtenidas $I_B^\pm$, se calcula $I_B$ definida como $\frac{I_B^++I_B^-}{2}$
 \end{description}
 
-\begin{table}[htbp]
+\begin{table}[htbp]%resultados
 \centering
 \begin{tabular}{ccccc}
                        & \multicolumn{2}{c}{TL081} & \multicolumn{2}{c}{LF356} \\
@@ -279,6 +287,13 @@ Las mediciones que son acordes a lo especificado en la hoja de datos son $V_{IO}
 
 
 \subsubsection{Funcionamiento en AC}
+La transferencia cumple con la forma 
+\[\frac{cte}{\frac{s^2}{\omega_0^2}+s\frac{2\xi}{\omega_0}+1}\]
+con polos en el semiplano izquierdo del plano complejo (ver secci\'on \ref{ssec:ej_3_estabilidad_consigna}). Esto indica que el circuito es un pasabajos de orden 2 con frecuencia de corte $f_0=\frac{1}{2\pi}\cdot \sqrt{\frac{\omega_pA_o\beta}{RC}}=$. Para el TL081, $f_0=XXX$ y para el LF356 $f_0=XXX$. Se encontr\'o experimentalmente que el mayor ruido era de 50Hz. Si para atenuarlo se decidiera poner la frecuencia de corte a menos de 50Hz, se necesitar\'ia como m\'inimo un capacitor de $C=\frac{1}{4\pi^2}\cdot \sqrt{\frac{\omega_pA_o\beta}{R(50Hz)^2}}$. Para el TL081, $C=XXXXX$ y para el LF356 $C=XXXX$.
+
+
+
+\todo{REEMPLAZAR LOS VALORES }
 
 
 
@@ -295,46 +310,70 @@ Las mediciones que son acordes a lo especificado en la hoja de datos son $V_{IO}
 
 
 
+\subsection{Estabilidad en diferentes configuraciones} 
+
+Para determinar la estabilidad del circuito se analizan la posici\'on de los polos de la funci\'on transferencia:
+
+\subsubsection{Configuraci\'on consigna} \label{ssec:ej_3_estabilidad_consigna}
+De la ecuaci\'on \ref{eq:ej_3_transferencia_consigna_simplificada} se obtienen los polos.
+\todo[inline]{SACAR LOS POLOS Y COMPROBAR QUE SON DEL PLANO IZQUIERDO}
+
+\subsubsection{No DUT invertido}
+
+Nuevamente se obtiene la transferencia del circuito teniendo en cuenta que el diagrama de flujo de se\~nal es el de un sistema realimentado y usando la ecuaci\'on \ref{eq:ej_3_ACL}:
 
 
 
 
 
+\begin{figure}[htpb]%signal flow invirtiendo noDUT
+	\centering
+	\begin{subfigure}[t]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{imagenes/signal_flow_inv_noDUT.png}
+		\caption{}
+		\label{fig:ej_3_signal_flow_inv_noDUT_no_simplificado}
+	\end{subfigure}%
+	\hfill%%
+	\begin{subfigure}[t]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{imagenes/signal_flow_inv_noDUT_simplificado.png}
+		\caption{}
+		\label{fig:ej_3_signal_flow_inv_noDUT_simplificado}
+	\end{subfigure}
+	\caption{Diagrama de flujo de se\~nal el circuito de la consigna invirtiendo las entradas en el amplificador no DUT. La obtenci\'on de la transferencia del amplificador no DUT es an\'aloga a la de la configuraci\'on no inversora usado en el circuito de la consigna}
+	\label{fig:ej_3_signal_flow_inv_noDUT}	
+\end{figure}
 
 
-\subsection{Estabilidad en diferentes configuraciones}
 
 
-
-
-La estabilidad del sistema se analiza viendo la posici\'on de los polos en el plano complejo
-
-
-En la figura \ref{fig:ej_3_realimentacion_pos_vs_neg_opamp} se muestran ejemplos de realimentaci\'on negativa y positiva en un amplificador operacional.
-
-
-
-\subsubsection{Consigna}
-\subsubsection{Uno invertido}
 \subsubsection{Ambos invertidos}
 
 
 
+\begin{figure}[htpb]%signal flow invirtiendo ambos
+	\centering
+	\begin{subfigure}[t]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{imagenes/signal_flow_inv_ambos.png}
+		\caption{}
+		\label{fig:ej_3_signal_flow_inv_ambos_no_simplificado}
+	\end{subfigure}%
+	\hfill%%
+	\begin{subfigure}[t]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{imagenes/signal_flow_inv_ambos_simplificado.png}
+		\caption{}
+		\label{fig:ej_3_signal_flow_inv_ambos_simplificado}
+	\end{subfigure}
+	\label{fig:ej_3_signal_flow_inv_ambos}	
+	\caption{Diagrama de flujo de se\~nal el circuito de la consigna invirtiendo las entradas en ambos amplificadores.}
+\end{figure}
 
 
 
 
 
-
-
-
-
-\subsection{Medici\'on de $V_{IO}$ y $I_B^\pm$}
-
-
-\begin{itemize}
-	\item estabilidad
-	\item inversion de los opamps
-\end{itemize}
 
 \end{document}
