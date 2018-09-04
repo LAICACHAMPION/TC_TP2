@@ -73,9 +73,7 @@ Antes de comenzar con el diseño, se definen las asumpciones iniciales sobre las
 \begin{itemize}
 	\item La entrada ser\'a una señal de audio (20Hz a 20KHz) de amplitud menor o igual a 300mV pico a pico (dentro de esta categoria caen la mayor\'ia de los micr\'ofonos de guitarra el\'ectrica). La entrada en principio tendrá offset nulo.
 	\item La salida debe ser adecuada para un equipo de audio, por lo que tampoco tendrá tensión de offset continuo.
-	\item La fuente de alimentaci\'on debe ser de 9V no partida. De usar un AC ADAPTER, se debe considerar que suele tener un ripple no deseado producto de la conversi\'on no ideal de alterna a continua.
-	\item La salida se conectar\'a a un amplificador de guitarra con impedancia de entrada $Z_{in}$ mayor o igual a $200K\Omega$\todo{Zin: hay amplis con Zin mucho mas baja, tipo 44K. Nos falta hacer las cuentas que onda en ese caso, pero creo que nos jode}. Esto es el caso en la mayor\'ia de los amplificadores de guitarra, como por ejemplo la serie Mustang GT de Fender y la serie Cube de Roland, los cuales tienen $Z_{in} = 1M\Omega$, o el Fender Rumble para bajo, con $Z_in = 202K\Omega$ 
-	\item La se\~nal de entrada provendr\'a de una guitarra el\'ectrica con impedancia de salida menor a quinchimil millones de ohms.\todo[inline]{Buscar Zout guitarras}	
+	\item La fuente de alimentaci\'on debe ser de 9V no partida.
 \end{itemize}
 
 
@@ -103,7 +101,6 @@ Este circuito cuenta además con tres secciones notables a saber:
 \end{enumerate}
 La numeración de las secciones se corresponde con la imagen anterior. Cada una puede analizarse independientemente tomando los recaudos necesarios.
 
-\subsubsection{Caracter\'isticas del amplificador}
 \subsubsection{Secci\'on de alimentaci\'on}
 
 Con el objetivo de minimizar tanto el espacio ocupado por el pedal como la cantidad de baterías requeridas por el usuario para utilizarlo, se busca que el amplificador operacional (opamp) requerido para amplificar la señal de entrada sea alimentado únicamente por una batería en el extremo Vcc+, mientras que el otro extremo de alimentación esté conectado directamente a tierra, de esta manera se "ahorra" una batería, que en este caso en particular será de 9 volts por el tipo de señal con el que se trata. \par 
@@ -118,10 +115,8 @@ Es así como para la alimentación se propone el siguiente sub-circuito:
 \end{figure}
 
 
-En el caso en que $R_1$ = $R_2$, las dos resistencias crean un divisor resistivo con el cual se obtienen nodos 9V, 4.5V, y 0V. Esto funciona correctamente siempre que la corriente que circula por ambas resistencias no sea significativamente distinta, ya que en caso contrario la tensión que debería ser de 4.5V va a tomar otro valor. 
-\todo{explicar un poquito mejor esto de las corrientes porque no es a prueba de dummies (no aprobó la prueba "Tommy entender")}
-La función del capacitor es eliminar cualquier ruido o ripple presente en la tensi\'on de entrada. El ripple es producto del m\'etodo de funcionamiento de los transformadores de alterna a continua (anexo). Una fuente de ruido es ~~~\todo{describir minimamente ac->dc y como genera ripple y poner en el anexo, y poner una fuente de ruido si amerita.}\par
-Otra causa de ripple para la fuente de continua se dará en aquellos casos en los que el opamp demande corriente abruptamente, en cuyo caso, dado que la batería no es ideal, no podrá mantener la tensión completamente constante. Este problema se soluciona con el agregado del capacitor $C_5$, que acumulará carga podrá aportar tensión cuando aparezca el riple, manteniendo la tensión continua. Es claro ver que la impedancia del camino a tierra que produce $C_5$ disminuye cuanta más alta sea la frecuencia, por lo que fluctuaciones más grandes en tensión irán directamente a tierrra en vez de influir en el resto del circuito.\par
+En el caso en que $R_1$ = $R_2$, las dos resistencias crean un divisor resistivo con el cual se obtienen nodos 9V, 4.5V, y 0V. Como todo divisor resistivo, esto funciona correctamente siempre que la corriente que circula por ambas resistencias no sea significativamente distinta, ya que en caso contrario la tensión que debería ser de 4.5V va a tomar otro valor. 
+La función del capacitor es eliminar cualquier ruido o ripple presente en la tensi\'on de entrada. El ripple es producto del m\'etodo de funcionamiento de los transformadores de alterna a continua (anexo). Tambi\'en podr\'a haber ripple para la fuente de continua cuando el opamp demande corriente abruptamente, en cuyo caso, dado que la batería no es ideal, no podrá mantener la tensión completamente constante. Este problema se soluciona con el agregado del capacitor $C_5$, que acumulará carga podrá aportar tensión cuando aparezca el ripple, manteniendo la tensión continua. Es claro ver que la impedancia del camino a tierra que produce $C_5$ disminuye cuanta más alta sea la frecuencia, por lo que fluctuaciones más grandes en tensión irán directamente a tierrra en vez de influir en el resto del circuito.\par
 Dado que los cambios en la demanda de corriente por parte del opamp pueden ser significativamente abruptos, se busca un capacitor que pueda acumular una carga acorde (alta capacitancia, en nuestro caso 1$\mu$F). 
 
 \subsubsection{Secci\'on de clipping}
@@ -145,7 +140,7 @@ Los \underline{diodos} suelen ser representados por su curva característica:
 	\label{fig:ej5_diode_curva}
 \end{figure}
 
-De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_R$, la demanda de corriente por parte del diodo aumentará exponencialmente y, por no poder suplirla, el circuito mantendrá la tensión a ese nivel en caso de recibir una señal que deba sobrepasar los límites antes mencionados. Es así como los diodos suelen utilizarse para realizar clipping. En particular, la configuración elegida en el circuito es tal que el clipping será en los valores de $V_f$ y $-V_f$, por lo que el clipping resultará simétrico.  
+De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_R$, la demanda de corriente por parte del diodo aumentará exponencialmente y, por no poder suplirla, el circuito mantendrá la tensión a ese nivel en caso de recibir una señal que deba sobrepasar los límites antes mencionados. Es así como los diodos suelen utilizarse para realizar clipping. En particular, la configuración elegida en el circuito es tal que el clipping será en los valores de $V_f$ y $-V_f$, por lo que el clipping resultará simétrico. Mientras mayor sea la amplificaci\'on de la sen\~nal de entrada, mayor va a ser a pendiente de los flancos, entonces al recortarla m\'as parecida a una se\~nal cuadrada va a ser la salida. Regulando la amplificacion del op-amp se puede entonces regular la distorsi\'on.
 
 \begin{figure}[H]		%diode clipping (a)simetrico
 	\centering
@@ -175,8 +170,7 @@ De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llega
 	\label{fig:ej5_esquematico_amplificacion}
 \end{figure}
 
-Dado que la alimentaci\'on no es partida, se alimenta el amplificador con Vcc$^-=0$V y Vcc$^+=$9V, lo cual genera la necesidad de montar la se\~nal de audio sobre una continua de 4.5V. Para lograr esto, se conecta la entrada a 4.5V, poniendo el capacitor $C_1$ para que solo pase la tensi\'on alterna de la se\~nal y no la continua que se le suma \todo{Redaccion}. Dado que se quiere que este capacitor afecte lo minimo posible a cualquier frecuencia que no sea continua, se eligi\'o un valor alto de capacidad: $1\mu F$. En el peor de los casos, tiene un impedancia no despreciable (~800$\Omega$ a 20Hz), pero para XXXXXXXXXXXX
-
+Dado que la alimentaci\'on no es partida, se alimenta el amplificador con Vcc$^-=0$V y Vcc$^+=$9V, lo cual genera la necesidad de montar la se\~nal de audio sobre una continua de 4.5V. Para lograr esto, se conecta la entrada a 4.5V, poniendo el capacitor $C_1$ para que solo pase la tensi\'on alterna de la se\~nal y no la continua que se le suma. Dado que se quiere que este capacitor afecte lo minimo posible a cualquier frecuencia que no sea continua, se eligi\'o un valor alto de capacidad: $1\mu F$. En el peor de los casos, tiene un impedancia no despreciable (~800$\Omega$ a 20Hz), pero esta decrece a medida que aumenta la frecuencia.
 Para no amplificar la componente continua agregada de la se\~nal, se utiliza el capacitor $C_2$. Se puede ver el efecto analizando la funci\'on transferencia del amplificador: 	\todo{escribir deduccion trasnferencia y mandar al anexo. esta bien considerarlo ideal en todos los casos en los que trabajamos? analizar BWP}
 
 \begin{equation}
@@ -201,15 +195,10 @@ Se considera el que amplificador tiene un comportamiento lineal si \[SR \geqslan
 El SR no afecta el desempe\~no del pedal como instrumento ya que sus efectos se notan solo en frecuencias fuera del rango audible.
 
 
-$R_4$ y $R_3$ controlan la m\'axima ganancia del amplificador. La funci\'on del potenci\'ometro $R_9$ es permitirle al usuario tener control sobre el nivel de distorsi\'on variando la ganancia \todo{agregar referencia a donde expliquemos que mas ampificaci\'on implica mas distorsi\'on}, pero sin permitirle aumentarla tanto que el amplificador sature.
+$R_4$ y $R_3$ controlan la m\'axima ganancia del amplificador. La funci\'on del potenci\'ometro $R_9$ es permitirle al usuario tener control sobre el nivel de distorsi\'on variando la ganancia, pero sin permitirle aumentarla tanto que el amplificador sature.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=.4]{imagenes/bode_opamp_simulacion_300mv.png}
-	\missingfigure{hacer lindo en matlab la superposicion de lo calculado, lo simulado, y lo medido}
-	\caption{Transferencia del amplificador}
-	\label{fig:ej5_transferencia_opamp}
-\end{figure}
+Otro factor a tener en cuenta es la corriente de bias. Como se mencion\'o anteriormente, la secci\'on de alimentaci\'on puede proveer 4.5V al circuito siempre que al conectarlo no se modifique la corriente que pasa por alguna de las resistencias del divisor resisitivo considerablemente. En este caso, la corriente $I_B^=$, la cual tiene valor ti\'ipico de 80nA, va a circular por alguna de las resistencias. Esto genera una ca\'ida de tensi\'on de $30nA\cdot 47k\Omega = 3mV$, valor que se puede despreciar.
+
 
 \subsection{Implementación del circuito y valores elegidos}
 \begin{figure}[H]

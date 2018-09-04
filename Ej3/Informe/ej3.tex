@@ -4,44 +4,14 @@
 \section{Medici\'on corriente de bias y tensi\'on de offset}
 
 
-\begin{circuitikz}
-  		\draw (0,0) node[op amp][yscale=-1] (opamp) {}
-  		(opamp.-) 	to[short]($(opamp.-)-(0.5,0)$) 
-  					to[short]($(opamp.-)-(0.5, 1.5)$)
-  					to[R=$R_1$]($(opamp.-)-(0.5,3)$)
-  					node [ground]{}
-  		($(opamp.-)-(0.5, 1.5)$) to[R=$R_2$] ($(opamp.-)-(-2.38, 1.5)$)
-  					to[short]($(opamp.out)$)
-  					
-  		(opamp.+) to[short] ($(opamp.+)-(2,0)$)
-  				  to[R=$R_3$]($(opamp.+)-(3.5,0)$)
-  				  to[sV=$V_{in}$]($(opamp.-)-(3.5,3)$) node[ground]{}
-  				  
-
-		($(opamp.+)-(1.5,0)$) to[R=$R_4$] ($(opamp.-)-(1.5,3)$) node[ground] {}
-		
-		(opamp.out) to ($(opamp.out)+(1,0)$) node[ocirc]{$\,\, V_{out}$}
-  		
-  		;
-\end{circuitikz}
-
-
-
 \subsection{Modelo de amplificador operacional con corrientes de bias y tensi\'on de offset}
 
 \begin{figure}[htb]	%modelo opamp vio ibias
 	\centering
-	\includegraphics[width=0.4\textwidth]{imagenes/modelo_opamp_vio_ibias.png}
+	\includegraphics[width=0.7\textwidth]{imagenes/modelo_opamp_vio_ibias.png}
 	\caption{Modelo de amplificador operacional con corrientes de bias y tensi\'on de offset}
 	\label{fig:ej_3_modelo_opamp_vio_ibias}
 \end{figure}
-
-\todo[inline]{Que es corriente de bias y tension de offset. fijarme que puso roch en la intro}
-
-
-
-
-
 
 
 
@@ -58,7 +28,7 @@ Las corrientes de bias($I_B^+$ y $I_B^-$) y la tensi\'on de offset ($V_{IO}$) pu
 \begin{figure}[htb]	%vio no despreciable
 	\centering
 	\includegraphics[height=0.2\textheight]{imagenes/vio_amplificacion.png}
-	\caption{Modelo de amplificador con configuraci\'on inversora con $V_{IO}$ no despreciable}
+	\caption{Amplificador con $V_{IO}$ no despreciable en configuraci\'on inversora }
 	\label{fig:ej_3_efecto_vio}
 \end{figure}
 
@@ -75,7 +45,7 @@ Sin embargo, si se considera la tensi\'on de offset, no es posible obtener obten
 Dependiendo el orden de $V_{IN}$ y de $V_{IO}$ y de la precisi\'on necesaria, el efecto de $V_{IO}$ en $V_{OUT}$ no puede ser despreciado.
 
 \subsubsection*{Efecto de $I_B^+$ y $I_B^-$}
-El amplificador operacional no puede funcionar si se impide el paso de las corrientes de bias. \todo{"impide el paso" suena medio choto pero no s\'e como decirlo m\'as mejor}Si se decide poner un capacitor en serie con una de las entradas, $I_B$ no podr\'a circular, haciendo que el amplificador no funcione correctamente. Ver ejemplo en figura \ref{fig:ej_3_GIC}. \todo{redaccion}
+El amplificador operacional no puede funcionar si se impide el paso de las corrientes de bias. Si se decide poner un capacitor en serie con una de las entradas, $I_B$ no podr\'a circular, haciendo que el amplificador no funcione correctamente. Ver ejemplo en figura \ref{fig:ej_3_GIC}.
 
 \begin{figure}[htb] %GIC
 	\centering
@@ -85,7 +55,7 @@ El amplificador operacional no puede funcionar si se impide el paso de las corri
 \end{figure}
 
 
-Por otro lado, si hay una resistencia $R$ en serie con la entrada del operacional, habr\'a una ca\'ida de tensi\'on $V=I_B^\pm\cdot R$ que puede o no ser despreciable dependiendo de la relaci\'on entre $I_B^\pm$ y $R$ y las caracter\'isticas del circuito. Este efecto es usado en el circuito de medici\'on explicado en la siguiente secci\'on para medir $I_B^+$ y $I_B^-$
+Por otro lado, si hay una resistencia $R$ en serie con la entrada del operacional, habr\'a una ca\'ida de tensi\'on $V=I_B^\pm\cdot R$ que puede o no ser despreciable dependiendo de la relaci\'on entre $I_B^\pm$ y $R$ y las caracter\'isticas del circuito. Este efecto es usado en el circuito de medici\'on de $I_B^+$ y $I_B^-$
 
 
 
@@ -132,7 +102,7 @@ Suponiendo que $T\gg 1$ se obtiene la ganancia a lazo cerrado ideal:
 	\label{eq:ej_3_ACL_IDEAL}
 \end{equation}
 
-Un sistema tiene realimentaci\'on negativa si la fase de la ganancia de lazo est\'a entre $180^\circ$ (inclusive) y $360^\circ$ (no inclusive)\todo{googlear algo de esto por que solo lo s\'e porque es palabra santo del senior, no tengo ninguna fuente}, y realimentaci\'on positiva en caso contrario.
+Un sistema tiene realimentaci\'on negativa si la fase de la ganancia de lazo est\'a entre $180^\circ$ (inclusive) y $360^\circ$ (no inclusive), y realimentaci\'on positiva en caso contrario.
 
 \begin{figure}[htbp] %Ejemplo realimentacion negativa y positiva opamp
 	\centering
@@ -164,14 +134,11 @@ La funci\'on del circuito es medir la tensi\'on de offset y las corrientes de bi
 Valor t\'ipico & 3            & 30        & 5         & 3            & 30    & 3     \\
 Valor m\'aximo & 6            & 200       & 100       & 10           & 200   & 50   
 \end{tabular}
+\caption{Valores de las hojas de datos}
+\label{tab:ej_3_datasheet}
 \end{table}
 
-Todas las tensiones a determinar son amplificadas para as\'i aumentar la precisi\'on en la medici\'on. Una posibilidad ser\'ia amplificar a lazo abierto. Este m\'etodo cuenta con dos desventajas:
-\begin{itemize}	%desventajas lazo abierto
-	\item La ganancia a lazo abierto $A_{vol}$ t\'ipica de ambos amplificadores es 200V/mV. Con los valores de la tabla \ref{tab:ej_3_datasheet}, el amplificador saturar\'ia.
-	\item Incluso si no hubiera saturaci\'on, \todo{redaccion: avol es super impreciso/ cambia una bocha entonces el resultado seria muy impreciso}
-\end{itemize}
-Por estos motivos se utiliza amplificaci\'on a lazo cerrado. En la figura \ref{fig:ej_3_medicion_vio_simple} se muestra un circuito de medici\'on de $V_{IO}$ con ganancia lazo cerrado. Sabiendo que la ganancia de un circuito de amplificacion no inversor es $1+\frac{R_2}{R_1}$, se obtiene $V_{IO}=\frac{R_1}{R_1+R_2}\cdot V_{OUT}$. 
+Todas las tensiones a determinar son amplificadas para as\'i aumentar la precisi\'on en la medici\'on. Se utiliza amplificaci\'on con realimentaci\'on para tener un control preciso sobre la ganancia. En la figura \ref{fig:ej_3_medicion_vio_simple} se muestra un circuito de medici\'on de $V_{IO}$ con ganancia lazo cerrado. Sabiendo que la ganancia de un circuito de amplificacion no inversor es $1+\frac{R_2}{R_1}$, se obtiene $V_{IO}=\frac{R_1}{R_1+R_2}\cdot V_{OUT}$. 
 
 
 \begin{figure}[htbp]	%medicion vio simplificado
@@ -196,13 +163,13 @@ Ya que las se\~nales que se quieren medir tienen una amplitud comparable con el 
 \begin{figure}[htbp] %medicion vio ib+ ib- posta
 	\centering
 	\includegraphics[scale=1]{imagenes/medicion_bias_configuracion_consigna.png}
-	\caption{Circuito de medici\'on de $V_{IO}$, $I_B^+$ y $I_B^-$. El dispositivo cuyas caracter\'isticas se miden es el DUT, o \textit{device under test}, el cual es un amplificador con $V_{IO}$ y $I_B$ no despreciables.}
+	\caption{Circuito de medici\'on de $V_{IO}$, $I_B^+$ y $I_B^-$. El dispositivo cuyas caracter\'isticas se miden es el DUT, o \textit{device under test}, el cual es un amplificador con $V_{IO}$ y $I_B$ no despreciables. Las dos resistencias en serie con las entradas del DUT pueden tomar dos valores: $1M\Omega$ o $0\Omega$ si es que se las cortocircuita}
 	\label{fig:ej_3_medicion_vio_consigna}
 \end{figure}
 \todo{grafico de consigna con los valores posta}
 \begin{figure}[htbp] %medicion vio ib+ ib- posta con opamp ideal
 	\centering
-	\missingfigure[figwidth=\textwidth]{circuito con las fuentes}
+	\includegraphics[scale=1]{imagenes/medicion_bias_configuracion_consigna_dos.png}
 	\caption{Mismo circuito que en la figura \ref{fig:ej_3_medicion_vio_consigna} cambiando el DUT por el modelo de la figura \ref{fig:ej_3_modelo_opamp_vio_ibias}}
 	\label{fig:ej_3_medicion_vio_consigna_modelando}
 \end{figure}
@@ -212,6 +179,7 @@ Se utiliza un diagrama de flujo de se\~nal (figura \ref{fig:ej_3_signal_flow_con
 	\item $\Delta V_{R1} = I_b^- \cdot 10\Omega \approx 0$
 	\item $I_{R2}\approx I_{R3}$
 	\item La ganancia a lazo abierto de ambos amplificadores es $A_{vol}$\footnote{Es importante distinguir la ganancia a lazo abierto de un \textit{op-amp} $A_{vol}$ de la ganancia a lazo abierto del circuito total $A_{OL}$ }
+	\item La ganancia a lazo cerrado del amplificador que no es el DUT es $A_{CL} = -\frac{A_{vol}}{1+srC(1+A_{vol}} \approx -\frac{A_{vol}}{1+srCA_{vol}}$
 \end{itemize}
 
 
@@ -241,7 +209,7 @@ El diagrama de flujo de se\~nal coincide con el de un sistema realimentado descr
 	\label{eq:ej_3_vin_aparente}
 \end{equation}
 
-Cabe destacar $V_{in}$ es una forma abstracta de agrupar los efectos generados por tres se\~nales reales distintas, y no corresponde necesariamente con una diferencia de potencial real entre dos puntos.
+Cabe destacar $V_{in}$ es una forma abstracta de agrupar los efectos no ideales del \textit{op-amp} real, y no corresponde necesariamente con una diferencia de potencial real entre dos puntos.
 
  Se puede obtener entonces la ganancia de lazo cerrado y la ganancia de realimentaci\'on del circuito:
 \[\beta = \frac{1}{561}\]
