@@ -47,4 +47,6 @@ Zpunta =  1/(s*cpunta+1/rpunta);
 Zopam = 1/(s*copam);
 Zin = r3 + 1/(1/Zpunta+1/(Zopam+r1));
 w = 2*pi*logspace(3, 6, 1000);
-superponedor('', 'tc_tp2_ej2 Zin.csv', '', Zin, w);
+
+superponedor('', 'tc_tp2_ej2 bode.csv', '', Zin, w);
+%superponedor('', 'tc_tp2_ej2 Zin.csv', '', Zin, w);

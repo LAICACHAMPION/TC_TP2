@@ -25,7 +25,7 @@ En esta secci\'on se estudiar\'a c\'omo la presencia del operacional afecta a un
 
 Los componentes utilizados fueron: \par
 
-\begin{table}[h]
+\begin{table}[htb]
 	\begin{center}
 		\begin{tabular}{|l|l|l|l|}
 		\hline
@@ -72,13 +72,22 @@ Hasta este punto, parecer\'ia que la resistencia $R_3$ no tiene ninguna influenc
 
 Para  verificar que este an\'alisis tiene m\'erito, se midi\'o la diferencia de potencial entre la entrada y la salida cuando la fase entre ellas era de $0^\circ$, que se cumpl\'ia en $f=1kHz$.
 
-\todo{foto del offset}
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.5]{fotos/tc_tp2_ej2_offset.png}
+	\caption{\textit{Offset} entre la salida y la entrada cuando $\phase{H(f)|}=0^\circ$}
+\end{figure}
 
 Efectivamente, se obtuvo un \textit{offset} de 2.15V en esta medici\'on. La discrepancia entre lo calculado y lo obtenido podr\'ia provenir de una corriente de \textit{bias} superior a la t\'ipica: una corriente de $327nA$ explicar\'ia perfectamente el resultado obtenido, y la informaci\'on aportada por el fabricante indica que este valor puede llegar hasta los $750nA$, con lo cual parecer\'ia un valor razonable. A su vez, parte de la tensi\'on continua que se ve amplificada podr\'ia deberse a una $V_{DC}$ par\'asita del generador utilizado, ya que $2.5mV$ extra en la entrada tambi\'en explicar\'ian el resultado obtenido. Cualquiera de estos dos factores, o una combinaci\'on de ambos, podr\'ia estar influyendo en el resultado.\par
 
 Debido a este fen\'omeno, se debi\'o trabajar con un \textit{offset} de alrededor de $-30mV$ a la hora de medir la respuesta en frecuencia y la impedancia de entrada del circuito (aproximadamente porque no en todas als mediciones se us\'o exactamente el mismo valor). No considerarlo llevaba a una asimetr\'ia en la saturaci\'on del operacional que limitaba la tensi\'on de entrada a\'un m\'as que lo que permit\'ia la gran ganancia del circuito y el \textit{slew rate}. \par
 
-\todo{foto de la medicion chueca}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{fotos/tc_tp2_ej2_saturacion.png}
+	\caption{Saturaci\'on producto del \textit{offset} entre la salida y la entrada}
+\end{figure}
 
 En cuanto a la impedancia de entrada, la misma se midi\'o asumiendo que la resistencia $R_3$ pod\'ia considerarse constante y con fase $0^\circ$ para todas las frecuencias, de forma tal que midiendo $V_{R_3}$, se puede obtener la corriente como $I = \frac{V_{R_3}}{R_3}$.
 
