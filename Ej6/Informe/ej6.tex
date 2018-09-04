@@ -121,7 +121,7 @@ Los \underline{diodos Zener} suelen usarse para protección de circuitos y puede
 	\label{fig:ej6_zener_diode_curva}
 \end{figure}
 
-De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_z$, la demanda de corriente por parte del diodo aumentará exponencialmente. Es aquí cuando recordamos una de las condiciones de la subsección \nameref{condiciones}: La corriente de salida del LM35 tomará un valor máximo de 10mA. Esto deberá ser tenido en cuenta cuando se presente la implementación final del circuito, junto con la salida de corriente máxima del opamp a utilizar para la transformación lineal.\par
+De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_z$, la demanda de corriente por parte del diodo aumentará exponencialmente. Es aquí cuando recordamos una de las condiciones de la subsección \nameref{condiciones}: La corriente de salida del LM35 tomará un valor máximo de 10mA. Esto y la corriente máxima de salida del opamp amplificador deberán ser tenidos en cuenta cuando se presente la implementación final del circuito, junto con la salida de corriente máxima del opamp a utilizar para la transformación lineal.\par
 De esta manera, se buscará que los valores de $V_f$ y $V_z$ sean tales que la demanda de corriente sea tan alta luego de los mismos que la tensión de salida no pueda estos valores para que se logre suplir. De esta manera, se muestra gráficamente la tensión de salida en función de la tensión de entrada:
 
 \begin{figure}[H]	%curva diodo zener
