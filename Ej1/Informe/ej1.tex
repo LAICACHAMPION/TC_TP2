@@ -7,9 +7,9 @@
 
 
 \begin{document}
-\section{Comportamiento de Amplificadores Operacionales}
+\section{Comportamiento de amplificadores operacionales}
 \subsection{Introducci\'on}
-Se analizaron dos circuitos con Amplificadores operacionales. El primero es un circuito inversor, cuya salida es opuesta a la entrada y la amplifica o atenúa, de acuerdo a como se configure. El segundo es no inversor, igual que el primero, atenúa o amplifica la señal de entrada, pero no la invierte.
+Se analizaron dos circuitos con amplificadores operacionales. El primero es un circuito inversor, cuya salida es opuesta a la entrada y la amplifica o atenúa, de acuerdo a c\'omo se configure. El segundo es no inversor, igual que el primero, atenúa o amplifica la señal de entrada, pero no la invierte.
 El objetivo es evaluar las características lineales y no lineales de los amplificadores operacionales. También la respuesta en frecuencia y la respuesta distintos valores de tensiones de entrada.
 
 
@@ -38,7 +38,7 @@ Caso & $R_{1}=R_{3}$ & $R_{2}$ & $R_{4}$\\
 2 & $5 K\Omega $ &  $5 K\Omega $ &  $20 K\Omega $ \\ \hline
 3 & $50 K\Omega $ &  $5 K\Omega $ &  $100 K\Omega $ \\ \hline
 \end{tabular}
-\caption{Valores de resistensias.} 
+\caption{Valores de resistencias.} 
 \label{tab=vResistencias}
 \end{center}
 \end{table}
@@ -47,12 +47,12 @@ Caso & $R_{1}=R_{3}$ & $R_{2}$ & $R_{4}$\\
 
 \subsubsection{Caso $A_{vol}$ infinito}
 
-Como $A_{vol}$ lo consideramos infinito, $V_{i}=0$ \big( tierra virtual \big).Por ende $i_{3}=0$ e $i_{2}=-i_{1}$, Ademas no circula corriente por la entrada del   amplificador operacional.
+Como $A_{vol}$ lo consideramos infinito, $V_{i}=0$ (tierra virtual). Por ende $i_{3}=0$ e $i_{2}=-i_{1}$. Adem\'as no circula corriente por la entrada del amplificador operacional.
 \begin{gather}
 V_{out}=-\frac{i_{1}}{R_{2}}\label{eq=CircuitoA6}\\
 i_{1}=\frac{V_{in}}{R_{1}}\label{eq=CircuitoA7}
 \end{gather}
-Reemplazando \ref{eq=CircuitoA7} en \ref{eq=CircuitoA6} y operando algebraicamente se obtine:
+Reemplazando \ref{eq=CircuitoA7} en \ref{eq=CircuitoA6} y operando algebr\'aicamente se obtiene:
 \begin{equation}
 \frac{V_{out}}{V_{in}}= -\frac{R_{2}}{R_{1}} \label{eq=CircuitoAideal}
 \end{equation}
@@ -60,7 +60,7 @@ Reemplazando \ref{eq=CircuitoA7} en \ref{eq=CircuitoA6} y operando algebraicamen
 
 \subsubsection{Caso $A_{vol}$ finito}
 
-Como $A_{vol}$  lo consideramos finito, $V^{+}\neq V^{-}$ . Se considera que no circula corriente por  los terminales de entrada del amplificador operacional, devido a la alta impedancia que hay entre ellos.
+Como $A_{vol}$  lo consideramos finito, $V^{+}\neq V^{-}$ . Se considera que no circula corriente por  los terminales de entrada del amplificador operacional, debido a la alta impedancia que hay entre ellos.
 
 \begin{gather}
 V_{out}= -V_{i}\cdot A_{vol}\label{eq=CircuitoA1}\\
@@ -70,50 +70,50 @@ i_{3}=\frac{-V_{i}}{R_{3}}\label{eq=CircuitoA4}\\
 i_{1}+i_{2}+i_{3}=0\label{eq=CircuitoA5}
 \end{gather}
 
-Reemplazando \ref{eq=CircuitoA1},\ref{eq=CircuitoA2},\ref{eq=CircuitoA3},\ref{eq=CircuitoA4} en \ref{eq=CircuitoA5}, se obtiene:
+Reemplazando \ref{eq=CircuitoA1}, \ref{eq=CircuitoA2}, \ref{eq=CircuitoA3}, \ref{eq=CircuitoA4} en \ref{eq=CircuitoA5}, se obtiene:
 
 
 $$\frac{V_{in}}{R_{1}} + \frac{V_{out}}{R_{2}}+\frac{V_{out}}{A_{vol}}\cdot \bigg( \frac{1}{R_{1}} + \frac{1}{R_{2}} + \frac{1}{R_{3}} \bigg) = 0$$
 
-Operando algebraicamente, se obtiene:
+Operando algebr\'aicamente, se obtiene:
 
 \begin{equation}
 \frac{V_{out}}{V_{in}}= - \frac{A_{vol} \cdot R_{2} \cdot R_{3}}{A_{vol}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }\label{eq=gananciaAfinito}
 \end{equation}
-\textit{Observacion:}
+\textit{Observaci\'on:}
 
 $$ \lim_{A_{vol}\to\infty} \big( \ref{eq=gananciaAfinito} \big) = -\frac{R_{2}}{R_{1}} $$
-La expresion se redujo a la ganancia del circuito, con el apmlificador operacional ideal\\ \big(\ref{eq=CircuitoAideal}\big).
+La expresi\'on se redujo a la ganancia del circuito, con el amplificador operacional ideal \big(\ref{eq=CircuitoAideal}\big).
 
 \subsubsection{Caso $A_{vol}$  con polo dominante}
 
 \begin{equation}
-A_{vol }=\frac{A_{0}}{1+\frac{s}{W_{p}}}\label{eq=AvolWp}\\
+A_{vol }=\frac{A_{0}}{1+\frac{s}{\omega_{p}}}\label{eq=AvolWp}\\
 \end{equation} 
 
 Reemplazando \big(\ref{eq=AvolWp}\big) en  \big(\ref{eq=gananciaAfinito}\big)  se obtiene:
 
 \begin{equation}
-\frac{V_{out}}{V_{in}}= - \frac{\frac{A_{0}}{1+\frac{s}{W_{p}}} \cdot R_{2} \cdot R_{3}}{\frac{A_{0}}{1+\frac{s}{W_{p}}}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }
+\frac{V_{out}}{V_{in}}= - \frac{\frac{A_{0}}{1+\frac{s}{\omega_{p}}} \cdot R_{2} \cdot R_{3}}{\frac{A_{0}}{1+\frac{s}{\omega_{p}}}\cdot R_{1} \cdot R_{3} + R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2} }
 \end{equation}
 
 Llamando $K= R_{2} \cdot R_{3} +  R_{1} \cdot R_{3} + R_{1} \cdot R_{2}$
 
 
 \begin{equation}
-\frac{V_{out}}{V_{in}}=- \frac{A_{0} \cdot  R_{2} \cdot  R_{3} }{A_{0} \cdot R_{1} \cdot  R_{3} + K }  \cdot \frac{1}{1 +\frac {S}{\frac{W_{p}  \cdot \big( A_{0} \cdot R_{1} \cdot R_{3} + K \big) }{K}}} \label{eq=poloDominante}
+\frac{V_{out}}{V_{in}}=- \frac{A_{0} \cdot  R_{2} \cdot  R_{3} }{A_{0} \cdot R_{1} \cdot  R_{3} + K }  \cdot \frac{1}{1 +\frac {S}{\frac{\omega_{p}  \cdot \big( A_{0} \cdot R_{1} \cdot R_{3} + K \big) }{K}}} \label{eq=poloDominante}
 \end{equation}
 
  Despejando se obtiene la frecuencia de corte del circuito:
 \begin{equation}
-f_{P}=\left( \frac {A_{0} \cdot R_{1} \cdot R_{3} + K}{K}\right)  \cdot \frac{W_{P}}{2\cdot \pi}  \label{eq=fCorte}
+f_{P}=\left( \frac {A_{0} \cdot R_{1} \cdot R_{3} + K}{K}\right)  \cdot \frac{\omega_{P}}{2\cdot \pi}  \label{eq=fCorte}
 \end{equation}
 
-\textit{Observacion:}  la ecuacion \big(\ref{eq=poloDominante} \big) posee la misma forma que la funcion transferencia de un pasabajos.
+\textit{Observaci\'on:}  la ecuaci\'on \big(\ref{eq=poloDominante} \big) posee la misma forma que la funci\'on transferencia de un pasabajos.
 
 
 
-El amplificador operacional utilizado fue el LM324 de ON Semiconductor, de la hoja de datos se obtuvieron las siguientes características del integrado:
+El amplificador operacional utilizado fue el LM324 de ON Semiconductor. De la hoja de datos se obtuvieron las siguientes características del integrado:
 
 
 \begin{table}[h]
@@ -129,7 +129,7 @@ $10\cdot 10^{4}$& $ 12Hz $ & $0.5 \frac{V}{\mu S}$\\ \hline
 \label{tab=lm324Carac}
 \end{center}
 \end{table}
-Donde $A_{0}$ es la ganancia del amplificador operacional a lazo abierto y  $f_{P}$ es la frecuencia de corte a lazo abierto. A partir de las tablas \ref{tab=vResistencias} y \ref{tab=lm324Carac} y de ecuación  \ref{eq=poloDominante}, se calcularon las caracteristicas de las tres configuraciones del circuito analizadas.
+Donde $A_{0}$ es la ganancia del amplificador operacional a lazo abierto y  $f_{P}$ es la frecuencia de corte a lazo abierto. A partir de las tablas \ref{tab=vResistencias} y \ref{tab=lm324Carac} y de ecuación  \ref{eq=poloDominante}, se calcularon las caracter\'isticas de las tres configuraciones del circuito analizadas.
 
 \begin{table}[h]
 \begin{center}
@@ -141,21 +141,21 @@ Caso &Ganancia ideal & Ganancia $A_{vol}$ finito & Frecuencia de corte\\
 2 & $-1$ &  $-0,999 $ &  386$KHz$  \\ \hline
 3 & $-0,1$ &- 0,099 &960$KHz$\\ \hline
 \end{tabular}
-\caption{Ganancia y frecuencia de corte del circuito.La ganancias es en veces.} 
+\caption{Ganancia en veces y frecuencia de corte del circuito.} 
 \label{tab=gananciayFrecCorte}
 \end{center}
 \end{table}
 
-A continuación se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
+A continuación se graficar\'an los tres casos del circuito inversor, comparando la respuesta en frecuencia con $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/real_ideal_mag_inv.png}
-\caption{Compración del modulo de la respuesta en frecuencia de los tres casos}
+\caption{Comparación del m\'odulo de la respuesta en frecuencia de los tres casos}
 \end{figure}
 
 
-El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) = \frac {\mid Ganancia A_{vol}(w) -Ganancia A_{vol} inifinito \mid} {\mid Ganancia A_{vol} (w) \mid }$, de esta manera se obtuvieron los siguientes graficos:
+El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(\omega) = \frac {\mid Ganancia A_{vol}(\omega) -Ganancia A_{vol} inifinito \mid} {\mid Ganancia A_{vol} (\omega) \mid }$, de esta manera se obtuvieron los siguientes gr\'aficos:
 
 \begin{figure}[H]
 \centering
@@ -164,47 +164,50 @@ El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) 
 \end{figure}
 
 
-Como se observa en los tres graficos de la figura \ref{fig=errorInv}, el error una decada antes del polo dominante es menor que el 1 \% , por ende utilizando el Amplificador Operacional a una frecuencia menor que una decada antes de la frecuecia de corte, se lo puede considerar como ideal.
-\subsubsection{Alinealidades del Amplificador Operacional}
-En esta seccion se analizaran las alinealidades del Amplificador operacional
+Como se observa en los tres gr\'aficos de la figura \ref{fig=errorInv}, el error una d\'ecada antes del polo dominante es menor que el $1\%$ , por ende utilizando el amplificador operacional a una frecuencia menor que una d\'ecada antes de la frecuecia de corte, se lo puede considerar como ideal.
+
+
+
+\subsubsection{Alinealidades del amplificador operacional}
+En esta secci\'on se analizaran las alinealidades del amplificador operacional
 \begin{itemize}  
-\item Saturación, los amplificadores operacionales poseen alimentación ( $+-V_{cc}$ ) externa para así poder amplificar. Por ende la salida del amplificador no puede superar a la alimentación. Si la señal de entrada fuera tal que amplificada superara la alimentación, el amplificador operacional entrega a la salida $+ o -V_{cc}$. No todos los amplificadores operacionales saturan en $+-V_{cc}$, generalmente lo hacen por debajo de dichas tensiones y no necesariamente saturan a la misma tensión, por ejemplo un Amplificador operacional es alimentado con +- 10 v, y la saturación se da a los -8 v y a los 9v.
-\item Slew Rate,es la tasa de cambio de la tensión en función del tiempo. Los amplificadores Operacionales poseen un slew rate máximo, a partir del cual no pueden seguir la señal de entrada y la salida se distorsiona. Para señales senodales, la relación entre la frecuencia de entrada, la ganancia y el slew rate es $ SlewRate_{max}=G \cdot A \cdot 2 \cdot \pi \cdot f $, donde $ G $ es la ganancia del circuito, $ A $ es la amplitud de la señal de entrada y $f$ es la frecuencia de la señal.
-\item Crossover Distortion, los amplificadores operacionales clase b y AB (ejemplo el LM324), poseen la característica que la salida se encuentra en 0 v, cuando la tensión de entrada del operacional se encuentra entre -0,7 v y 0,7v.
+\item \textbf{Saturación}: los amplificadores operacionales poseen alimentación ( $+-V_{cc}$ ) externa para así poder amplificar. Por ende la salida del amplificador no puede superar a la alimentación. Si la señal de entrada fuera tal que amplificada superara la alimentación, el amplificador operacional entrega a la salida $\pm V_{cc}$. No todos los amplificadores operacionales saturan en $+-V_{cc}$, generalmente lo hacen por debajo de dichas tensiones y no necesariamente saturan a la misma tensión, por ejemplo un Amplificador operacional es alimentado con $\pm10$ v, y la saturación se da a los $-8V$ y a los $9V$.
+\item \textbf{Slew Rate}: es la tasa de cambio de la tensión en función del tiempo. Los amplificadores operacionales poseen un slew rate máximo, a partir del cual no pueden seguir la señal de entrada y la salida se distorsiona. Para señales senoidales, la relación entre la frecuencia de entrada, la ganancia y el slew rate es $ SlewRate_{max}=G \cdot A \cdot 2 \cdot \pi \cdot f $, donde $ G $ es la ganancia del circuito, $ A $ es la amplitud de la señal de entrada y $f$ es la frecuencia de la señal.
+\item \textbf{Crossover distortion}: los amplificadores operacionales clase B y AB (ejemplo el LM324), poseen la característica que la salida se encuentra en 0 v, cuando la tensión de entrada del operacional se encuentra entre $-0,7 v$ y $0,7v$.
 \end{itemize}
 
-\subsubsection{Dc sweep}
-El dc sweep consiste en variar la tensión de entrada (corriente continua) del circuito y observar la salida. En este caso se varió la entrada entre $\pm V_{cc}$($\pm 15 v$). Dicho procedimiento se realizó de la siguiente manera, en la entrada se inyecto una rampa  cuya  tensión variaba entre$\pm V_{cc}$ y de periodo 60 segundos, y la salida se midió con el osciloscopio. Luego se exportaron los datos del osciloscopio en formato CSV y se supepuso la informacion en el siguiente grafico.
+\subsubsection{DC sweep}
+El DC sweep consiste en variar la tensión de entrada (corriente continua) del circuito y observar la salida. En este caso se varió la entrada entre $\pm V_{cc}$($\pm 15 V$). Dicho procedimiento se realizó de la siguiente manera: en la entrada se inyect\'o una rampa  cuya  tensión variaba entre$\pm V_{cc}$ y de per\'iodo 60 segundos, y la salida se midió con el osciloscopio. Luego se exportaron los datos del osciloscopio en formato CSV y se superpuso la informaci\'on en el siguiente gr\'afico.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{imagenes/dc_sweep_inv.png}
-\caption{Dc Sweep Medido} \label{fig=dcInv}
+\caption{DC Sweep Medido} \label{fig=dcInv}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.1\textwidth]{imagenes/dc_sweep_inv_sim.png}
-\caption{Dc Sweep Simulado, el grafico negro corresponde al Caso 1, el azul al Caso 2 y el rojo al Caso 3} \label{fig=dcInvSim}
+\caption{Dc Sweep Simulado para caso 1 (negro), caso 2 (azul) y caso 3 (rojo)} \label{fig=dcInvSim}
 \end{figure}
 
-La figura \ref{fig=dcInv}, es la superposición de los dc sweep medidos de los tres casos. En ella se manifiesta fenómeno de la saturación del amplificador operacional, en dos de los tres casos analizados. Dependiendo de la ganancia del circuito (pendiente de la recta), la saturación se da a distintitas tensiones de entrada, a mayor ganancia (Caso 1) satura a menor tensión que el circuito de menor ganancia (Caso 2). Como se alimentó con $\pm V_{cc}$ el circuito 3 no se logró llegar a la saturación. Para lograrlo se tendría que haber realizado el dc sweep con tensiones del orden de 150 V.
-Tanto en la figura \ref{fig=dcInv} como en la figura \ref{fig=dcInvSim},  se observa que la saturación se da a tensiones en módulo menores que VCC. Sin embargo la medición y la simulación no coinciden, esto se puede deber a que el modelo utilizado no se ajusta al amplificador operacional que se usó en el circuito.
+La figura \ref{fig=dcInv}, es la superposición de los DC sweep medidos de los tres casos. En ella se manifiesta fenómeno de la saturación del amplificador operacional, en dos de los tres casos analizados. Dependiendo de la ganancia del circuito (pendiente de la recta), la saturación se da a distintitas tensiones de entrada, a mayor ganancia (caso 1) satura a menor tensión que el circuito de menor ganancia (caso 2). Como se alimentó con $\pm V_{cc}$ el circuito 3 no se logró llegar a la saturación. Para lograrlo se tendría que haber realizado el DC sweep con tensiones del orden de 150V.
+Tanto en la figura \ref{fig=dcInv} como en la figura \ref{fig=dcInvSim},  se observa que la saturación se da a tensiones en módulo menores que $V_{CC}$. Sin embargo la medición y la simulación no coinciden, esto se puede deber a que el modelo utilizado no se ajusta al amplificador operacional que se usó en el circuito.
 
 \subsubsection{Respuesta en frecuencia}
 
-La ecuación \ref{eq=poloDominante} es la función transferencia del circuito, como la parte real del polo es negativa el sistema es bibo-estable y para hallar la respuesta en frecuencia vasta con reemplazar s=i2pif. El sistema corresponde a un circuito pasa bajos de primer orden, por ende se esperaría que las frecuencias una década menor que la frecuencia de corte no se vean atenuadas y frecuencias una década superiores a la frecuencias de corte, se vean atenuadas. En cuanto a la fase debería variar entre $180^{\circ}$, una década antes de la frecuencia de corte, y$90^{\circ}$ grados una década después de la frecuencia de corte, pasando por los $135^{\circ}$ en la frecuencia de corte.
-\\
-En la medición de la respuesta en frecuencias se tuvieron que tener en cuenta las alinealidades ya mencionadas. Para que el crossover distortion no afecte las mediciones, a la señal de excitación se la monto sobre una tensión continua, tal que la señal de entrada no cruce por cero. Esto provocó que la amplitud de la señal tenga que ser menor que la esperada para que no se sature la salida. Otro factor importante a tener en cuenta es el slew rate. En base a esto la tensión de entrada quedo limitada de la siguiente manera.
+La ecuación \ref{eq=poloDominante} es la función transferencia del circuito, como la parte real del polo es negativa el sistema es bibo-estable y para hallar la respuesta en frecuencia basta con reemplazar $s=i2\pi f$. El sistema corresponde a un circuito pasa bajos de primer orden, por ende se esperaría que las frecuencias una década menor que la frecuencia de corte no se vean atenuadas y frecuencias una década superiores a la frecuencias de corte, se vean atenuadas. En cuanto a la fase debería variar entre $180^{\circ}$, una década antes de la frecuencia de corte, y $90^{\circ}$ grados una década después de la frecuencia de corte, pasando por los $135^{\circ}$ en la frecuencia de corte.\par
+
+En la medición de la respuesta en frecuencias se tuvieron que tener en cuenta las alinealidades ya mencionadas. Para que el crossover distortion no afecte las mediciones, a la señal de excitación se la mont\'o sobre una tensión continua, tal que la señal de entrada no cruce por cero. Esto provocó que la amplitud de la señal tenga que ser menor que la esperada para que no se sature la salida. Otro factor importante a tener en cuenta es el slew rate. En base a esto la tensión de entrada qued\'o limitada de la siguiente manera.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{imagenes/slew-rate-inv.png}
-\caption{Tension de entrada,slew rate} \label{fig=srInv}
+\caption{Tens\'ion de entrada,slew rate} \label{fig=srInv}
 \end{figure}
 
-El grafico \ref{fig=srInv}, muestra la máxima tensión de entrada en cada caso, sin embargo únicamente tiene en cuenta el slew rate, entonces de acuerdo al offset de la señal se limitara la amplitud para que no haya saturación.
-\\
+El gr\'afico \ref{fig=srInv}  muestra la máxima tensión de entrada en cada caso, sin embargo únicamente tiene en cuenta el slew rate, entonces de acuerdo al offset de la señal se limitar\'a la amplitud para que no haya saturación.\par
+
 Teniendo en cuenta los factores mencionados se midió la respuesta en frecuencia del circuito.
 
 \begin{figure}[H]
@@ -250,7 +253,7 @@ Teniendo en cuenta los factores mencionados se midió la respuesta en frecuencia
 \end{figure}
 
 
-De las figuras \ref{fig=magInvC1} y \ref{fig=magInvC2} , obtuvimos las frecuencias de corte del circuito $47KHz$ y $430KHz$ respectivamente.  Ambas frecuencias no coinciden con las calculas en la tabla \ref{tab=gananciayFrecCorte}. Sin embargo dichas frecuencias de corte pertenecen a los intervalos marcados en los gráficos \ref{fig=mcInvC1} y \ref{fig=mcInvC2}, por ende podemos considerar que la diferencia se debe a la tolerancia de los componentes.
+De las figuras \ref{fig=magInvC1} y \ref{fig=magInvC2}, obtuvimos las frecuencias de corte del circuito: $47KHz$ y $430KHz$ respectivamente.  Ambas frecuencias no coinciden con las calculadas en la tabla \ref{tab=gananciayFrecCorte}. Sin embargo dichas frecuencias de corte pertenecen a los intervalos marcados en los gráficos \ref{fig=mcInvC1} y \ref{fig=mcInvC2}. Por ende, podemos considerar que la diferencia se debe a la tolerancia de los componentes.
 
 \begin{figure}[H]
 \centering
@@ -265,15 +268,14 @@ De las figuras \ref{fig=magInvC1} y \ref{fig=magInvC2} , obtuvimos las frecuenci
 \caption{Caso 3 - superposición respuesta en  frecuencia medida, simulada, calculada}
 \end{figure}
 
-En la figura \ref{fig=magInvC3}, se observa un sobrepico, cercano a la frecuencia de corte, en la medicion y la simulacion, sin embargo éste no se observa en los calculos. Suponemos que este fenomeno se deve a la baja ganancia del circuito, lo que amplia su ancho de banda haciendo que el polo domianante del  
-$A_{vol}$ se acerque a un polo secundario, provocando el sobrepico.
-La diferencia que se observa entre lo simulado y lo medio, se debio a que se tuvo que cambiar de modelo en Ltspice, puesto que el que se utilizo en los otros casos, posee un unico polo del $A_{vol}$ .
-Tambien se puede ver el fenomeno de los dos polos, en la fase.Tal como se observa en el grafico \ref{fig=fasInvC3}, la fase medida y simulada varian entre  $180^{\circ}$ y $0^{\circ}$, lo que implica la existencia de dos polos.
+En la figura \ref{fig=magInvC3}, se observa un sobrepico cercano a la frecuencia de corte, en la medici\'on y la simulaci\'on, sin embargo éste no se observa en los c\'alculos. Suponemos que este fen\'omeno se debe a la baja ganancia del circuito, lo que ampl\'ia su ancho de banda haciendo que el polo dominante del $A_{vol}$ se acerque a un polo secundario, provocando el sobrepico.
+La diferencia que se observa entre lo simulado y lo medido se debi\'o a que se tuvo que cambiar de modelo en Ltspice, puesto que el que se utiliz\'o en los otros casos posee un \'unico polo del $A_{vol}$ .\par
+Tambi\'en se puede ver el fen\'omeno de los dos polos, en la fase. Tal como se observa en el gr\'afico \ref{fig=fasInvC3}, la fase medida y simulada var\'ian entre  $180^{\circ}$ y $0^{\circ}$, lo que implica la existencia de dos polos.
 
 \subsubsection{Impedancia de entrada}
 
 
-Reemplazando las ecuaciones \ref{eq=CircuitoA3} , \ref{eq=CircuitoA4} en \ref{eq=CircuitoA5} y despejando $V_{i}$ de la ecucaión \ref{eq=CircuitoA2} y reemplazando, obtengo la siguiente expresión de la imepedancia de entrada del circuito, con $A_{vol}$ finito.
+Reemplazando las ecuaciones \ref{eq=CircuitoA3}, \ref{eq=CircuitoA4} en \ref{eq=CircuitoA5} y despejando $V_{i}$ de la ecuación \ref{eq=CircuitoA2} y reemplazando, obtengo la siguiente expresión de la impedancia de entrada del circuito, con $A_{vol}$ finito.
 
 \begin{equation}
 Z_{in}=\frac{R_{2} R_{3}+ R_{1} (R_{3}(A_{vol} +1)+R_{2} )}{R_{3}(A_{vol}+1)+R_{2}}\label{eq=zInv}
@@ -283,9 +285,9 @@ La impedancia ideal del circuito es
 
 $$ \lim_{A_{vol}\to\infty} \big( \ref{eq=zInv} \big) =R_{1} $$
 
-Para la medición de la impedancia de entrada del circuito, se colocó un resistencia de $100K \Omega$ en serie a la entrada, se midió la tensión antes y después de ella. De esta manera haciendo la resta fesoria de las tensiones y conociendo la resistencia, se obtuvo la corriente. Luego dividiendo la tensión después de la resistencia por la corriente se halló la impedancia.
-\\
-También se tuvieron las mismas precauciones que en la medición de la respuesta en frecuencia, sobre las alinealidades.
+Para la medición de la impedancia de entrada del circuito, se colocó un resistencia de $100k \Omega$ en serie a la entrada, y se midió la tensión antes y después de ella. De esta manera haciendo la resta fasorial de las tensiones y conociendo la resistencia, se obtuvo la corriente. Luego dividiendo la tensión después de la resistencia por la corriente se halló la impedancia.
+\par
+También se tuvieron las mismas precauciones sobre las alinealidades que en la medición de la respuesta en frecuencia.
 
 \begin{figure}[H]
 \centering
@@ -300,8 +302,8 @@ También se tuvieron las mismas precauciones que en la medición de la respuesta
 \caption{Caso 1 - superposición Impedancia de entrada  medida, simulada, calculada}
 \end{figure}
 
-Como se observa en el grafico \ref{fig=zInvZc1} , lo calculado tiene un comportamiento distinto al simulado y medido, esto se debe a que  la ecuación de  impedancia de entrada no tiene en consideración las dos puntas del osciloscopio utilizadas para medir la caída de tensión en la resistencia. Debido a esto, en la simulación se agregaron la puntas del osciloscopio, modeladas como el paralelo de un capacitor de $100uf$ y una resistencia de $1M \Omega $, ya que se midió con las puntas en por uno.
-En cuanto a la fase, se observa en el grafico \ref{fig=zInvFc1}, que se produce un salto de fase en el simulado, dicho salto en realidad no ocurre, debido a que es de $360^{\circ}$.
+Como se observa en el gr\'afico \ref{fig=zInvZc1} , lo calculado tiene un comportamiento distinto al simulado y medido, esto se debe a que  la ecuación de  impedancia de entrada no tiene en consideración las dos puntas del osciloscopio utilizadas para medir la caída de tensión en la resistencia. Debido a esto, en la simulación se agregaron la puntas del osciloscopio, modeladas como el paralelo de un capacitor de $100\mu F$ y una resistencia de $1M \Omega $, ya que se midió con las puntas en por uno.\par
+En cuanto a la fase, se observa en el gr\'afico \ref{fig=zInvFc1}, que se produce un salto de fase en el simulado, dicho salto en realidad no ocurre, debido a que es de $360^{\circ}$.
 
 \begin{figure}[H]
 \centering
@@ -316,7 +318,7 @@ En cuanto a la fase, se observa en el grafico \ref{fig=zInvFc1}, que se produce 
 \caption{Caso 2 - superposición Impedancia de entrada  medida, simulada, calculada}
 \end{figure}
 
-Tal como el caso anterior, se observa diferencia entre los calculado y lo simulada, medido. Esto se debe también a las puntas. Sin embargo en este caso no se observa sobre pico, esto se debe a que las frecuencias en este caso son mayores y los efectos de las puntas se manifiesta antes.
+Tal como el caso anterior, se observan diferencias entre los calculado, lo simulado y lo medido. Esto se debe también a las puntas. Sin embargo en este caso no se observa sobre pico. Esto se debe a que las frecuencias en este caso son mayores y los efectos de las puntas se manifiestan antes.
 
 
 \begin{figure}[H]
@@ -332,14 +334,14 @@ Tal como el caso anterior, se observa diferencia entre los calculado y lo simula
 \caption{Caso 3- superposición Impedancia de entrada  medida, simulada, calculada}
 \end{figure}
 
-Tambien, en este caso las puntas alteraron significativamente las mediciones, tal como se observa en el grafico \ref{fig=zInvZc3}, la impedancia de entrada desciende en vez de aumentar.
+Tambi\'en en este caso las puntas alteraron significativamente las mediciones, tal como se observa en el gr\'afico \ref{fig=zInvZc3}, la impedancia de entrada desciende en vez de aumentar.
 
 
 
 \subsubsection{Observaciones del circuito}
-Si la $R_{3}$ valiese cero, $V^{+}$ y $V^{-}$, valen lo mismo independientemente de la frecuencia y de la tensión de entrada.De acuerdo a la ecuacion $V_{out}=A_{vol}(V^{+}-V^{-})$, la salida del OpAmp seria cero. Esto mismo se puede ver haciendo el limite tendiendo a cero de $R_{3}$ de la ecuación \ref{eq=poloDominante}, la salida del es cero independientemente de la entrada.
-\\
-La función de la $R_{4}$ de cargar al circuito, sin embargo no puede tener cualquier valo. Como la salida del circuito tiene una tensión $V_{o}$ independiente de la carga, si se conecta una resistencia de valor pequeño la corriente debería aumentar para así mantener la salida. En principio esa resistencia podría ser tan pequeña como se desee, entonces la corriente debería aumentar para mantener la tensión. Sin embargo los OpAmp reales tienen una máxima corriente de salida $i_{max}$, entonces se debe cumplir $R_{4}> \frac {V_{o}}{ i_{max}}$.
+Si la $R_{3}$ valiese cero, $V^{+}$ y $V^{-}$, valen lo mismo independientemente de la frecuencia y de la tensión de entrada. De acuerdo a la ecuacion $V_{out}=A_{vol}(V^{+}-V^{-})$, la salida del opamp ser\'ia cero. Esto mismo se puede ver haciendo el l\'imite tendiendo a cero de $R_{3}$ de la ecuación \ref{eq=poloDominante}, la salida del operacional es cero independientemente de la entrada.\par
+
+La función de la $R_{4}$ es cargar al circuito, sin embargo no puede tener cualquier valor. Como la salida del circuito tiene una tensión $V_{o}$ independiente de la carga, si se conecta una resistencia de valor pequeño la corriente debería aumentar para así mantener la salida. En principio esa resistencia podría ser tan pequeña como se desee, entonces la corriente debería aumentar para mantener la tensión. Sin embargo los OpAmp reales tienen una máxima corriente de salida $i_{max}$, entonces se debe cumplir $R_{4}> \frac {V_{o}}{ i_{max}}$.
 
 
 
@@ -367,10 +369,10 @@ La función de la $R_{4}$ de cargar al circuito, sin embargo no puede tener cual
   		;
 \end{circuitikz}
 
-Los valores de los componentes utilizados en cada caso, son  los indicados en la tabla \ref{tab=vResistencias}
+Los valores de los componentes utilizados en cada caso son  los indicados en la tabla \ref{tab=vResistencias}
 
 \subsubsection{Caso $A_{vol}$ infinito}
-Considerando que a traves de $V^{+}$ y $V^{-}$, no circula corrinte. Devido a  $A_{vol}$ infinito, $V^{+}=V^{-}$.
+Considerando que a traves de $V^{+}$ y $V^{-}$, no circula corriente. Debido a  $A_{vol}$ infinito, $V^{+}=V^{-}$.
 
 \begin{gather}
 V^{+}=V^{-}\label{eq=niA1} \\
@@ -378,7 +380,7 @@ V^{+}=V^{-}\label{eq=niA1} \\
 \frac {V^{-}} {R_{1}}=\frac{V_{out}}{R_{1}+R_{2}}\label{eq=niA3}
 \end{gather}
 
-Reemplazando \ref{eq=niA2} , \ref{eq=niA3} en \ref{eq=niA1} y operando, se obriene la ganacia del circuito ideal
+Reemplazando \ref{eq=niA2} , \ref{eq=niA3} en \ref{eq=niA1} y operando, se obtiene la ganacia del circuito ideal
 
 \begin{equation}
 \frac{V_{out}}{V_{in}}= \frac {R_{4}(R_{1}+R_{2})}{R_{1}(R_{3}+R_{4})} \label{eq=niAideal}
@@ -388,7 +390,7 @@ Reemplazando \ref{eq=niA2} , \ref{eq=niA3} en \ref{eq=niA1} y operando, se obrie
 
 
 \subsubsection{Caso $A_{vol}$ finito}
-Consideramos que la impedancia de entrada del OpAmp es muy alta, por ende no circula corriente entre $V^{+}$ y $V^{-}$.
+Consideramos que la impedancia de entrada del ppamp es muy alta, por ende no circula corriente entre $V^{+}$ y $V^{-}$.
 
 \begin{equation}
 V_{out}=A_{vol}(V^{+}-V^{-})\label{eq=niAi1} 
@@ -400,26 +402,26 @@ Reemplazando \ref{eq=niA2} , \ref{eq=niA3} en \ref{eq=niAi1} y operando, se obri
  \frac{V_{out}}{V_{in}}=\frac{A_{vol}R_{4}(R_{1}+R_{2})}{(R_{1}+R_{2}+A_{vol}	R_{1})(R_{3}+R_{4})}\label{eq=niAifinito} 
 \end{equation}
 
-\textit{Observacion:}
+\textit{Observaci\'on:}
 
 $$ \lim_{A_{vol}\to\infty} \big( \ref{eq=niAifinito} \big) = \frac {R_{4}(R_{1}+R_{2})}{R_{1}(R_{3}+R_{4})} $$
-La expresión se redujo a la ganancia del circuito con el apmlificador operacional ideal \big( \ref{eq=niAideal} \big).
+La expresión se redujo a la ganancia del circuito con el amplificador operacional ideal \big( \ref{eq=niAideal} \big).
 
 
 \subsubsection{Caso $A_{vol}$  con polo dominante}
 \begin{equation}
-A_{vol }=\frac{A_{0}}{1+\frac{s}{W_{p}}}\label{eq=AvolWpNi}\\
+A_{vol }=\frac{A_{0}}{1+\frac{s}{\omega_{p}}}\label{eq=AvolWpNi}\\
 \end{equation} 
 Reemplazando \ref{eq=AvolWpNi} en \ref{eq=niAifinito}  y operando, se obtine la ganancia del circuito en funcion de la frecuencia
 
 \begin{equation}
- \frac{V_{out}}{V_{in}}=\frac{A_{vol}R_{4}(R_{1}+R_{2})}{(R_{1}+R_{2}+A_{vol}	R_{1})(R_{3}+R_{4})}  \frac{1}{1 + \frac{S}{\frac{W_{p}(R_{1}(A_{0})+R_{2})}{R_{1}+R_{2}}}}\label{eq=AvolPoloNi}
+ \frac{V_{out}}{V_{in}}=\frac{A_{vol}R_{4}(R_{1}+R_{2})}{(R_{1}+R_{2}+A_{vol}	R_{1})(R_{3}+R_{4})}  \frac{1}{1 + \frac{S}{\frac{\omega_{p}(R_{1}(A_{0})+R_{2})}{R_{1}+R_{2}}}}\label{eq=AvolPoloNi}
 \end{equation}
 
 Despejando se obtiene la frecuencia de corte del circuito:
 
 \begin{equation}
-f_{P}=\frac{W_{p}(R_{1}(A_{0}+1)+R_{2})}{(R_{1}+R_{2})2 \pi } \label{eq=fpNi}
+f_{P}=\frac{\omega_{p}(R_{1}(A_{0}+1)+R_{2})}{(R_{1}+R_{2})2 \pi } \label{eq=fpNi}
 \end{equation}
 
 A partir de las ecuaciones \ref{eq=AvolPoloNi}y\ref{eq=fpNi}, la tabla \ref{tab=lm324Carac} y de los valores de los componentes, se calculó siguiente tabla.
@@ -434,65 +436,64 @@ Caso &Ganancia ideal & Ganancia $A_{vol}$ finito & Frecuencia de corte\\
 2 & $1.6$ &  $1,599 $ &  600$KHz$  \\ \hline
 3 & $0.733$ &0.733 &1100$KHz$\\ \hline
 \end{tabular}
-\caption{Ganancia y frecuencia de corte del circuito.La ganancias es en veces.} 
+\caption{Ganancia en veces y frecuencia de corte del circuito.} 
 \label{tab=gananciayFrecCorteNi}
 \end{center}
 \end{table}
-Acontinuacion se graficaran los tres casos del circuito inversor, comparando la respuesta en frecuencia con  $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
+A continuaci\'on se graficar\'an los tres casos del circuito inversor, comparando la respuesta en frecuencia con  $A_{vol}$ infinito y $A_{vol}$ con polo dominante.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/real_ideal_mag_n.png}
-\caption{Compración del modulo de la respuesta en frecuencia de los tres casos}
+\caption{Comparación del m\'odulo de la respuesta en frecuencia de los tres casos}
 \end{figure}
 
-El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) = \frac {\mid Ganancia A_{vol}(w) -Ganancia A_{vol} inifinito \mid} {\mid Ganancia A_{vol} (w) \mid }$, de esta manera se obtuvieron los siguientes graficos:
+El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(\omega) = \frac {\mid Ganancia A_{vol}(\omega) -Ganancia A_{vol} inifinito \mid} {\mid Ganancia A_{vol} (\omega) \mid }$, de esta manera se obtuvieron los siguientes gr\'aficos:
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{imagenes/error_n.png}
-\caption{Error relativo porcentual, de izquierda a derecha Caso 1, Caso 2 y Caso 3} \label{fig=errorn}
+\caption{Error relativo porcentual. De izquierda a derecha: caso 1, caso 2 y caso 3} \label{fig=errorn}
 \end{figure}
 
-Tal como ocurrio en el circuito inversor, se puede usar la aproximacion del OpAmp como ideal cometiendo un erro menor que el $1\%$, a frecuencias una decada por devajo de la frecuencia de corte.
+Tal como ocurri\'o en el circuito inversor, se puede usar la aproximaci\'on del opamp como ideal cometiendo un error menor que el $1\%$, a frecuencias una d\'ecada por debajo de la frecuencia de corte.
 
 
-\subsubsection{Dc sweep}
-La medición del dc sweep se realizó de la misma manera que el circuito inversor, mediante el osciloscopio y el generador de funciones.Tambien se alimento al OpAmp con $\pm 15 v$ y la tension de entrada vario en ese mismo rango.
+\subsubsection{DC sweep}
+La medición del DC sweep se realizó de la misma manera que el circuito inversor, mediante el osciloscopio y el generador de funciones. Tambi\'en se aliment\'o al OpAmp con $\pm 15 V$ y la tension de entrada vari\'o en ese mismo rango.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{imagenes/dc_sweep_n.png}
-\caption{Dc Sweep Medido} \label{fig=dcn}
+\caption{DC Sweep medido} \label{fig=dcn}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.1\textwidth]{imagenes/dc_sweep_n_sim.png}
-\caption{Dc Sweep Simulado, el grafico negro corresponde al Caso 1, el azul al Caso 2 y el rojo al Caso 3} \label{fig=dcnSim}
+\caption{DC Sweep simulado para caso 1 (negro), caso 2 (azul) y caso 3 (rojo)} \label{fig=dcnSim}
 \end{figure}
 
-Tal como se observa  en ambas figuras, la saturacion del OpAmp, en los Casos 1 y 2. Esto se deve a su alta ganancias en comparacion a la tension de entrada.Para poder haver observado la saturación del caso 3, la tension de entrada deveria haver sido de  $\pm 25 v$ .
-Tambien se puede observa que la saturación no se da a la misma tension en las tensinoes de salidas positivas y las negativas.
-A partir de la pendiente de las rectas se puede inferir cual es la ganancia en veces del circuito.
+Tal como se observa  en ambas figuras, la saturaci\'on del opamp, en los casos 1 y 2. Esto se debe a su alta ganancia en comparaci\'on a la tensi\'on de entrada. Para poder haber observado la saturación del caso 3, la tensi\'on de entrada deberia haber sido de  $\pm 25 V$.Tambien se puede observar que la saturación no se da a la misma tensi\'on en las tensiones de salida positivas y las negativas.\par
+A partir de la pendiente de las rectas se puede inferir cu\'al es la ganancia en veces del circuito.
 
 
 
 
 \subsubsection{Respuesta en frecuencia}
 
-La ecuación \ref{eq=AvolPoloNi} es la función transferencia el circuito, como el polo de la función posee su parte real negativa y el grado del denominador es mayor que el numerador el sistema es BIBO estable. Por ende, para hallar la respuesta en frecuencia, vasta reemplazar $S=i2 \pi f$. Dicha función transferencia corresponde a un pasa bajos de primer orden, por ende se esperarían los siguientes comportamientos:
+La ecuación \ref{eq=AvolPoloNi} es la función transferencia el circuito, como el polo de la función posee su parte real negativa y el grado del denominador es mayor que el numerador el sistema es BIBO estable. Por ende, para hallar la respuesta en frecuencia, basta reemplazar $S=i2 \pi f$. Dicha función transferencia corresponde a un pasa bajos de primer orden, por ende se esperarían los siguientes comportamientos:
 \begin{itemize}  
-\item La fase varia entre $0^{\circ}$($0.1 f_{P}$) y $-90^{\circ}$($10 f_{P}$).
+\item La fase var\'ia entre $0^{\circ}$($0.1 f_{P}$) y $-90^{\circ}$($10 f_{P}$).
 \item La magnitud en $f_{P}$ cae 3dB y luego 20 dB por década.
 \end{itemize}  
 
-En la medición de la respuesta en frecuencia se tuvieron en consideración las alinealidades. Para evitar el crossover distorition se agregó un tensión de offset tal que la señal de entrada no pase por 0 v. Además se controló la amplitud de la señal de entrada para evitar la saturación y a medida que aumentaba la frecuencia, dicha amplitud se redujo para evitar el slew rate.
+En la medición de la respuesta en frecuencia se tuvieron en consideración las alinealidades. Para evitar el crossover distortion se agregó un tensión de offset tal que la señal de entrada no pase por $0V$. Además se controló la amplitud de la señal de entrada para evitar la saturación y a medida que aumentaba la frecuencia, dicha amplitud se redujo para evitar el slew rate.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1\textwidth]{imagenes/slew-rate-n.png}
-\caption{Tension de entrada,slew rate} \label{fig=srn}
+\caption{Tensi\'on de entrada, slew rate} \label{fig=srn}
 \end{figure}
 
 La figura \ref{fig=srn} muestra la máxima tensión peak-to-peak de entrada, sin que haya slew rate. Sin embargo las mediciones se realizaron con tensiones menores a las indicadas en el gráfico, puesto que en él no se tiene en cuenta la saturación  y el offset.
@@ -550,18 +551,18 @@ En los casos 1 y 2, el comportamiento del circuito fue el esperado en cuanto a m
 \caption{Caso 3 - superposición respuesta en  frecuencia medida, simulada, calculada}\label{fig=bodeC3}
 \end{figure}
 
-En el caso 3, el comportamiento del circuito no era el esperado, la fase varía entre $0^{\circ}$ y $-180^{\circ}$, y la ganancia cae  40 dB por década, tal como se observa en la figura \ref{fig=bodeC3}. Este comportamiento corresponde a un  pasa bajos de orden 2. Suponemos que esto se debe a que se está manifestando un segundo polo del $A_vol$.
+En el caso 3, el comportamiento del circuito no era el esperado, la fase varía entre $0^{\circ}$ y $-180^{\circ}$, y la ganancia cae  40 dB por década, tal como se observa en la figura \ref{fig=bodeC3}. Este comportamiento corresponde a un  pasa bajos de orden 2. Suponemos que esto se debe a que se está manifestando un segundo polo del $A_{vol}$.
 
 \subsubsection{Impedancia de entrada}
 
-Como no circuila corriente entre los terminales $V^{+}$ y $V^{-}$ del OpAmp, considerandolo ideal , con $A_{vol}$ finito y con polo dominante, la impedancia de entradar es la misma.
+Como no circuila corriente entre los terminales $V^{+}$ y $V^{-}$ del opamp, consider\'andolo ideal , con $A_{vol}$ finito y con polo dominante, la impedancia de entrada es la misma.
 
 \begin{equation}
 Z_{in}=R_{3} + R_{4}
 \end{equation}
 
-Para la medición de la impedancia de entrada se colocó una resistencia de $33K \Omega $ a la entrada del circuito, para los casos 1 y 2, para el caso 3 se utilizó una resistencia de $220 K\Omega $. Estos valores se eligieron ya que el orden de magnitud coincide con el de la impedancia teórica del circuito.
-\\
+Para la medición de la impedancia de entrada se colocó una resistencia de $33K \Omega $ a la entrada del circuito, para los casos 1 y 2, para el caso 3 se utilizó una resistencia de $220 K\Omega $. Estos valores se eligieron ya que el orden de magnitud coincide con el de la impedancia teórica del circuito.\par
+
 En la medición se tuvieron las mismas precauciones que en la respuesta en frecuencia, en cuanto a las alinealidades.
 
 
@@ -609,19 +610,18 @@ En la medición se tuvieron las mismas precauciones que en la respuesta en frecu
 \caption{Caso 3 - superposición Impedancia de entrada  medida, simulada, calculada}
 \end{figure}
 
-En los tres casos se observa el mismo comportamiento, la impedancia en vez de mantenerse constante, tal como muestra el cálculo, decrece, como lo indica la simulación y lo medido. Esto se debe a que los cálculos no tienen en cuenta las puntas del osciloscopio (se midió con puntas por 10), que la simulación si las tiene. Las puntas se modelaron como el paralelo de una resistencia de 10M y un capacitor de 10pf. A pesar de la baja capacidad de la punta, a medida que la frecuencia aumenta la impedancia de la punta disminuye y como se conectaron en paralelo con el circuito, a medida que disminuía bajaba la impedancia.
+En los tres casos se observa el mismo comportamiento, la impedancia en vez de mantenerse constante, tal como muestra el cálculo, decrece, como lo indica la simulación y lo medido. Esto se debe a que los cálculos no tienen en cuenta las puntas del osciloscopio (se midió con puntas por 10), que la simulación s\'i las tiene. Las puntas se modelaron como el paralelo de una resistencia de $10M\Omega$ y un capacitor de $10pF$. A pesar de la baja capacidad de la punta, a medida que la frecuencia aumenta la impedancia de la punta disminuye y como se conectaron en paralelo con el circuito, a medida que disminuía bajaba la impedancia.
 
 
 \subsubsection{Observaciones del circuito}
-En el caso que $R_{3}$ valga cero, la ganancia del circuito se altera de la siguiente manera $ \frac{V_{out}}{V_{in}}=\frac {(R_{1}+R_{2})}{R_{1}}$, en contraposicion al caso del circuito inversor, la salida del OpAmp no es cero, y depende de la tension de entrada y la frecuencia. Tampoco la ganancia del circuito depende de la resistencias $R_{4}$.
+En el caso que $R_{3}$ valga cero, la ganancia del circuito se altera de la siguiente manera $ \frac{V_{out}}{V_{in}}=\frac {(R_{1}+R_{2})}{R_{1}}$, en contraposici\'on al caso del circuito inversor, la salida del opamp no es cero, y depende de la tensi\'on de entrada y la frecuencia. Tampoco la ganancia del circuito depende de la resistencias $R_{4}$.
 
 
 \subsection{Conclusión}
 Es importante tener presente las alinealidades en el uso del OpAmp, debido a que alteran altamente el comportamiento esperado. 
-También las puntas del osciloscopio alteran las mediciones si su impedancia es comparable con el circuito, este fenómeno se manifestó en la mediciones de la impedancia de entrada.
-En cuanto al GBP, a una misma ganancia y aumentado el GBP, tambien aumenta la frecuencia de corte, es decir el OpAmp se comporta como ideal a mayores frecuencias. 
-\\
-Teniendo en cuenta los factores ya mencionados, es posible considerar al OpAmp como ideal en un rango de frecuencias y tensiones.
+También las puntas del osciloscopio alteran las mediciones si su impedancia es comparable con el circuito, este fenómeno se manifestó en la mediciones de la impedancia de entrada.\par
+En cuanto al GBP, a una misma ganancia y aumentado el GBP, tambien aumenta la frecuencia de corte, es decir el OpAmp se comporta como ideal a mayores frecuencias. \par
+Teniendo en cuenta los factores ya mencionados, es posible considerar al opamp como ideal en un rango de frecuencias y tensiones.
 
 
 
