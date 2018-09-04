@@ -14,7 +14,7 @@ El objetivo es evaluar las caracteristicas lineales y no lineales de los amplifi
 
 
 \subsection{Circuito inversor}
-\todo{algo desir alog}
+
 
 
 \begin{figure}[H]
@@ -153,7 +153,6 @@ Acontinuacion se graficaran los tres casos del circuito inversor, comparando la 
 \caption{Compración del modulo de la respuesta en frecuencia de los tres casos}
 \end{figure}
 
-\todo{poner graficos de fase?}
 
 El error relativo de considerar $A_{vol}$  como infinito, se calculo $ Error(w) = \frac {\mid Ganancia A_{vol}(w) -Ganancia A_{vol} inifinito \mid} {\mid Ganancia A_{vol} (w) \mid }$, de esta manera se obtuvieron los siguientes graficos:
 
@@ -250,7 +249,7 @@ De la figura \ref{fig=magInvC1}, obtuvimos la frecuencia de corte del circuito,a
 \caption{Montecarlo Caso-2} \label{fig=mcInvC2}
 \end{figure}
 
-\todo{desir alguna reflexion mas al respecto}
+
 De la figura \ref{fig=magInvC2}, obtuvimos la frecuencia de corte del circuito,a la cual la caida de la ganancia es de 3dB. Dicha frecuencia de corte es $430KHz$, la cual es distinta a la calculada teoricamente en la tabla \ref{tab=gananciayFrecCorte}. Sin embargo, se puede aceptar dicha frecuencia de corte, devido a que los componentes tienen tolerancias, tal como se observa en el Montecarlo (grafico  \ref{fig=mcInvC2} ) la frecuencia de corte pertenece al intervalo marcado en el grafico.
 
 \begin{figure}[H]
@@ -272,7 +271,7 @@ La diferencia que se observa entre lo simulado y lo medio, se debio a que se tuv
 Tambien se puede ver el fenomeno de los dos polos, en la fase.Tal como se observa en el grafico \ref{fig=fasInvC3}, la fase medida y simulada varian entre  $180^{\circ}$ y $0^{\circ}$, lo que implica la existencia de dos polos.
 
 \subsubsection{Impedancia de entrada}
-\todo{que onda la fase, desir o hacer algo}
+
 
 Reemplazando las ecuaciones \ref{eq=CircuitoA3} , \ref{eq=CircuitoA4} en \ref{eq=CircuitoA5} y despejando $V_{i}$ de la ecucaión \ref{eq=CircuitoA2} y reemplazando, obtengo la siguiente expresión de la imepedancia de entrada del circuito, con $A_{vol}$ finito.
 
@@ -334,10 +333,6 @@ Tal como el caso anterior, se observa diferencia entre los calculado y lo simula
 \end{figure}
 
 Tambien, en este caso las puntas alteraron significativamente las mediciones, tal como se observa en el grafico \ref{fig=zInvZc3}, la impedancia de entrada desciende en vez de aumentar.
-
-\todo{desir algo mas, ver que hago con los graficos
-}
-
 
 
 
@@ -464,7 +459,7 @@ Tal como se observa  en ambas figuras, la saturacion del OpAmp, en los Casos 1 y
 Tambien se puede observa que la saturación no se da a la misma tension en las tensinoes de salidas positivas y las negativas.
 A partir de la pendiente de las rectas se puede inferir cual es la ganancia en veces del circuito.
 
-\todo{algo mas}
+
 
 
 \subsubsection{Respuesta en frecuencia}
@@ -605,6 +600,9 @@ En el caso que $R_{3}$ valga cero, la ganancia del circuito se altera de la sigu
 
 
 \subsection{Conclusión}
+Es importante tener presente las alinealidades en el uso del OpAmp, debido a que alteran altamente el comportamiento esperado. 
+También las puntas del osciloscopio alteran las mediciones si su impedancia es comparable con el circuito, este fenómeno se manifestó en la mediciones de la impedancia de entrada.
+
 
 
 

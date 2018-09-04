@@ -5,13 +5,13 @@ A0=10e4; %%dato sacado del grafico
 wp=2*pi*12; %%frecuencai da corte obtenida del datasheet
 sr=0.5e6;
 s=tf('s');
-r1=50e3;
-r3=50e3;
-r2=5e3;
-r4=100e3;
-Dm=csvread('circuito_n_caso3_Zin.csv');
-Ds=csvread('circuito_n_caso3_Zin_sim.csv');
-w=[50000*2*pi:10:10000000*2*pi];
+r1=5e3;
+r3=r1;
+r2=50e3;
+r4=20e3;
+Dm=csvread('circuito_n_caso1_Zin.csv');
+Ds=csvread('circuito_n_caso1_Zin_sim.csv');
+w=[9000*2*pi:10:400000*2*pi];
 
 
 Av=A0/(1+(s/wp));
@@ -24,8 +24,8 @@ mag=squeeze(mag);
 phase=squeeze(phase);
 
 
-%R=33000;
-R=220e3;
+R=33000;
+%R=220e3;
 ir=Dm(:,2)-(Dm(:,3).*exp(Dm(:,4).*((1i*pi)/180)));
 ir=ir./R;
 z=(Dm(:,3).*exp(-Dm(:,4).*((1i*pi)/180)))./ir;
@@ -42,7 +42,7 @@ figure
 hold on;
 
 semilogx(Dm(:,1).*1000,(angle(z).*(180/pi)),'-o')
-semilogx(Ds(:,1),Ds(:,3),'LineWidth',3);
+semilogx(Ds(:,1),Ds(:,3)-180,'LineWidth',3);
 semilogx(w./(2*pi),phase,'LineWidth',3);
 formataxes('', 'Frecuencia (Hz)', 'Fase ($\circ$)', ... % titulo y ejes
                     'Medici\''on','Simulaci\''on ','C\''alculo')% legends
