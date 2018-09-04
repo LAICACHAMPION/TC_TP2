@@ -14,6 +14,6 @@ H=(A*r4*(r1+r2))/((r1+r2+(A*r1))*(r3+r4));
 
 
 
-w1=[130000*2*pi:10:10000000*2*pi];
+w1=[130000*2*pi:10:3000000*2*pi];
 
-superponedor('Bode caso 3','circuitob_ninv_caso3_bode.csv','circuitob_ninv_caso3_bode_simulacion.csv',H,w1,'s');
+superponedor('Caso-3','circuitob_ninv_caso2_bode.csv','circuitob_ninv_caso2_bode_simulacion.csv',H,w1,'s');
