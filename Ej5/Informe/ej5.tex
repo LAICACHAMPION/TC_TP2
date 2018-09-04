@@ -8,8 +8,7 @@
 \subsection{Introducción}
 
 Se busca implementar un pedal de distorsión para guitarra eléctrica. La distorsión a implementar ser\'a de tipo clipping, utilizando diodos para efectuar tal distorsión.
-Las señales de audio se manejan con niveles de tensión, que representan directamente la onda de entrada, en nuestro caso proveniente de una guitarra eléctrica. Es luego de la conversión de esta onda sonora a una eléctrica que se realizan los cambios de tensión que darán los efectos distorsionantes deseados al sonido.  La señal eléctrica ser\'a nuevamente convertida a audio y ser\'a la salida de cualquier dispositivo reproductor de audio de elección que caiga dentro de las consideraciones que se enumerarán en la subsección "Consideraciones de dise\~no".  	\par
-\todo[inline] {Malu acá podríamos tirar el link a la subsección mencionada que no se cómo ponerlo. Cuando leas esto please enseñame también.}
+Las señales de audio se manejan con niveles de tensión, que representan directamente la onda de entrada, en nuestro caso proveniente de una guitarra eléctrica. Es luego de la conversión de esta onda sonora a una eléctrica que se realizan los cambios de tensión que darán los efectos distorsionantes deseados al sonido.  La señal eléctrica ser\'a nuevamente convertida a audio y ser\'a la salida de cualquier dispositivo reproductor de audio de elección que caiga dentro de las consideraciones que se enumerarán en la subsección \nameref{disenoCirc}.\par %link a diseño del circuito
 
 A modo de delimitar un marco teórico y notacional a partir del cual se presentarán con mayor claridad y precisión los efectos del pedal, se procede a definir el concepto de distorsión a través de la ausencia de la misma: \par
 
@@ -75,7 +74,7 @@ Antes de comenzar con el diseño, se definen las asumpciones iniciales sobre las
 
 
 \subsection{Dise\~no del circuito}
-
+\label{disenoCirc}
 El circuito con el cual se impondrá la distorsión, con los valores todavía sin definir, es:
 
 \begin{figure}[H]	%esquemático sección alimentación
