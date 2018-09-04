@@ -523,7 +523,7 @@ Si bien los circuitos no compensados cumplen su funci\'on de integrador y deriva
 
 En el caso del derivador, debido a la interacci\'on entre los polos del operacional con el resto del circuito se form\'o un sistema de segundo orden subamortiguado. Esto provoca picos de tensi\'on en la respuesta transitoria y ganancia de m\'as de $40dB$ en la frecuencia del polo, lo cual lo hace inutilizable en este rango de frecuencias. Al compensar este efecto con una resistecia en serie, limitando la impedancia de entrada para que no se haga 0 cuando el capacitor pasa a comportarse como un cable, el sistema pas\'o de estar subamortiguado a sobreamortiguado, con lo cual estos problemas se vieron solucionados. Sin embargo, el rango de frecuencias donde el circuito derivaba se redujo al de mucho menores que la frecuencia de corte. Elegir una resistencia de compensaci\'on menor habr\'ia ampliado este rango unos $kHz$ m\'as, pero a costo de tener m\'as ganancia entre el primer polo y el segundo.\par
 
-En cuanto al integrador, fue necesario limitar la ganancia en frecuencias bajas para que \textit{offsets} de unos pocos milivolt en la entrada de continua no deseada saturaran el operacional. 
+En cuanto al integrador, fue necesario limitar la ganancia en frecuencias bajas para que \textit{offsets} de unos pocos milivolt en la entrada de continua no deseada saturaran el operacional. Al compensar este problema, sin embargo, el circuito dej\'o de integrar para frecuencias menores o del mismo orden que la del nuevo polo.\par
 
 
 \end{document}
