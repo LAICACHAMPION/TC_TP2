@@ -103,7 +103,6 @@ Este circuito cuenta además con tres secciones notables a saber:
 \end{enumerate}
 La numeración de las secciones se corresponde con la imagen anterior. Cada una puede analizarse independientemente tomando los recaudos necesarios.
 
-\subsubsection{Caracter\'isticas del amplificador}
 \subsubsection{Secci\'on de alimentaci\'on}
 
 Con el objetivo de minimizar tanto el espacio ocupado por el pedal como la cantidad de baterías requeridas por el usuario para utilizarlo, se busca que el amplificador operacional (opamp) requerido para amplificar la señal de entrada sea alimentado únicamente por una batería en el extremo Vcc+, mientras que el otro extremo de alimentación esté conectado directamente a tierra, de esta manera se "ahorra" una batería, que en este caso en particular será de 9 volts por el tipo de señal con el que se trata. \par 
@@ -144,7 +143,9 @@ Los \underline{diodos} suelen ser representados por su curva característica:
 	\label{fig:ej5_diode_curva}
 \end{figure}
 
-De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_R$, la demanda de corriente por parte del diodo aumentará exponencialmente y, por no poder suplirla, el circuito mantendrá la tensión a ese nivel en caso de recibir una señal que deba sobrepasar los límites antes mencionados. Es así como los diodos suelen utilizarse para realizar clipping. En particular, la configuración elegida en el circuito es tal que el clipping será en los valores de $V_f$ y $-V_f$, por lo que el clipping resultará simétrico.  
+De esta curva se hace notar que al superar el valor de tensión $V_f$ o al llegar a un nivel de tensión menor a $V_R$, la demanda de corriente por parte del diodo aumentará exponencialmente y, por no poder suplirla, el circuito mantendrá la tensión a ese nivel en caso de recibir una señal que deba sobrepasar los límites antes mencionados. Es así como los diodos suelen utilizarse para realizar clipping. En particular, la configuración elegida en el circuito es tal que el clipping será en los valores de $V_f$ y $-V_f$, por lo que el clipping resultará simétrico.  \par
+
+Mientras mayor sea la amplificaci\'on de la sen\~nal de entrada, mayor va a ser a pendiente de los flancos, entonces al recortarla m\'as parecida a una se\~nal cuadrada va a ser la salida. Regulando la amplificacion del op-amp se puede entonces regular la distorsi\'on.
 
 \begin{figure}[H]		%diode clipping (a)simetrico
 	\centering
@@ -187,7 +188,9 @@ Se considera el que amplificador tiene un comportamiento lineal si \[SR \geqslan
 
 El SR no afecta el desempe\~no del pedal como instrumento ya que sus efectos se notan solo en frecuencias fuera del rango audible.
 
-$R_4$ y $R_3$ controlan la m\'axima ganancia del amplificador. La funci\'on del potenci\'ometro $R_9$ es permitirle al usuario tener control sobre el nivel de distorsi\'on variando la ganancia (explicado en profundidad más adelante) pero sin permitirle aumentarla tanto que el amplificador sature.
+$R_4$ y $R_3$ controlan la m\'axima ganancia del amplificador. $R_3$ tendrá un potenciómetro en serie cuya funci\'on es permitirle al usuario tener control sobre el nivel de distorsi\'on variando la ganancia (explicado en profundidad más adelante) pero sin permitirle aumentarla tanto que el amplificador sature. \par
+
+Otro factor a tener en cuenta es la corriente de bias. Como se mencion\'o anteriormente, la secci\'on de alimentaci\'on puede proveer 4.5V al circuito siempre que al conectarlo no se modifique la corriente que pasa por alguna de las resistencias del divisor resisitivo considerablemente. En este caso, la corriente $I_B^=$, la cual tiene valor ti\'ipico de 80nA, va a circular por alguna de las resistencias. Esto genera una ca\'ida de tensi\'on de $30nA\cdot 47k\Omega = 3mV$, valor que se puede despreciar.\par
 
 \begin{figure}[H]
 	\centering
@@ -196,7 +199,9 @@ $R_4$ y $R_3$ controlan la m\'axima ganancia del amplificador. La funci\'on del 
 	\label{fig:ej5_transferencia_opamp}
 \end{figure}
 
+%Implementación del circuito y valores elegidos
 \subsection{Implementación del circuito y valores elegidos}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{imagenes/circuito_final.png}
@@ -204,8 +209,10 @@ $R_4$ y $R_3$ controlan la m\'axima ganancia del amplificador. La funci\'on del 
 	\label{fig:ej5_circuito_final}
 \end{figure}
 
-Donde pote es un potenciómetro que varía entre 0 y 50k, afectando la ganancia. De esta manera el usuario podrá regular el nivel de distorsión a utilizar.
+Donde pote es un potenciómetro que varía entre 0 y 50k, afectando la ganancia. De esta manera el usuario podrá regular el nivel de distorsión a utilizar. \par
+Además como opamp se eligió al LM741 porque no necesita ser compensado y porque tiene una correcta respuesta en frecuencia para el rango audible. 
 
+%Simulaciones
 \subsection{Simulaciones}
 
 Se busca la respuesta en frecuencia del circuito cuando la amplificación antes de la distorsión es máxima. La amplificación o atenuación de las distintas frecuencias nos darán así una idea de qué tan cuadrada la onda resultante resultará. Esto se debe a que a mayor amplificación, el corte en tensión (que es a un valor fijo determinado por los diodos) se realizará en la parte más baja de la senoidal y por ende la parte con mayor pendiente. \par
